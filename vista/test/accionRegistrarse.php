@@ -1,10 +1,10 @@
 <?php
 include_once("../estructura/Cabecera.php");
-$metodo = data_submitted();
-$objPersona = new c_usuarios();
+$datos = data_submitted();
+$objPersona = new C_Usuario();
 $objCaptcha = new c_testCaptchas();
-if ($objCaptcha->reCaptchav2($metodo["g-recaptcha-response"])) {
-    if ($objPersona->cargar($metodo)) {
+if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
+    if ($objPersona->alta($datos)) {
 ?>
         <script>
             Swal.fire({
@@ -14,10 +14,10 @@ if ($objCaptcha->reCaptchav2($metodo["g-recaptcha-response"])) {
                 timer: 1500
             })
 
-            function redireccionarPagina() {
+            /* function redireccionarPagina() {
                 location.href = "index.php"
             }
-            setTimeout("redireccionarPagina()", 1450);
+            setTimeout("redireccionarPagina()", 1450); */
         </script>
 <?php
     } else {
@@ -30,10 +30,10 @@ if ($objCaptcha->reCaptchav2($metodo["g-recaptcha-response"])) {
                 timer: 1500
             })
 
-            function redireccionarPagina() {
+            /* function redireccionarPagina() {
                 location.href = "registrarse.php"
             }
-            setTimeout("redireccionarPagina()", 1450);
+            setTimeout("redireccionarPagina()", 1450); */
         </script>
         <?php
     }
@@ -47,10 +47,10 @@ if ($objCaptcha->reCaptchav2($metodo["g-recaptcha-response"])) {
             timer: 1500
         })
 
-        function redireccionarPagina() {
+        /* function redireccionarPagina() {
             location.href = "registrarse.php"
         }
-        setTimeout("redireccionarPagina()", 1450);
+        setTimeout("redireccionarPagina()", 1450); */
     </script>
     <?php
 }

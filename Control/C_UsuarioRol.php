@@ -1,5 +1,4 @@
 <?php
-include_once ('../configuracion.php');
 
 class C_UsuarioRol {
     //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
@@ -126,9 +125,11 @@ class C_UsuarioRol {
             if  (isset($param['idRol']))
                 $where.=" and idRol ='".$param['idRol']."'";
         }
-            
             $arreglo = UsuarioRol::listar($where, "");
             return $arreglo;
-        
+    }
+
+    public function darDescripcionRoles(){
+
     }
 }

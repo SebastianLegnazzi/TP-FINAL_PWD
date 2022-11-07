@@ -21,6 +21,10 @@ class UsuarioRol{
 
     //ver de agregar funcion setearConClave
 
+    public function setearRol($rol){
+        $this->setRol($rol);
+    }
+
     public function setearConClave($idUsuario,$idRol){
         $this->setRol($rol);
         $this->setUsuario($usuario);
@@ -147,7 +151,7 @@ class UsuarioRol{
                         $objRol->cargar();
                     }
                     $obj = new Usuariorol();
-                    $obj->setear($objUsuario, $objRol);
+                    $obj->setearRol($objRol);
                     array_push($arreglo, $obj);
                 }
             }
