@@ -93,7 +93,7 @@ class Usuario{
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['usNombre'], $row['usPass'], $row['usMail']);
+                    $this->setearSinId($row['usNombre'], $row['usPass'], $row['usMail']);
                 }
             }
         } else {
