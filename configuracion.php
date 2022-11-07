@@ -23,7 +23,7 @@ $INICIO = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/vista/login/login
 $PRINCIPAL = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/index.php";
 
 
-$_SESSION['ROOT']=$ROOT; 
+$GLOBALS['ROOT']=$ROOT; 
 
 
 ?>
