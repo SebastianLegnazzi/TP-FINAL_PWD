@@ -20,7 +20,7 @@ include "../../configuracion.php";
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Third navbar example" id="header">
     <div class="container-fluid">
-      <span class="navbar-brand text-white" style="font-family: 'Chivo', sans-serif;">| Clases Utiles - Utilizacion de Capcha |</span>
+      <span class="navbar-brand text-white" style="font-family: 'Chivo', sans-serif;">| De Todo Un Poco |</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
