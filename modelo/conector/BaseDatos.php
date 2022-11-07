@@ -40,22 +40,12 @@ class BaseDatos extends PDO {
      */
     public function Iniciar(){
         return $this->getConec();
-        
     }
-    
-  
-    
-    
-    
-    
     
     public function getConec(){
         return $this->conec;
     }
-    
-    
-    
-    
+
     public function setDebug($debug){
         $this->debug = $debug;
     }
@@ -68,10 +58,7 @@ class BaseDatos extends PDO {
      * Funcion que setea la variable instancia error
      */
     public function setError($e){
-      
         $this->error = $e;
-        
-        
     }
         
     /**
@@ -235,10 +222,4 @@ class BaseDatos extends PDO {
       return $this->resultado;
    }
    
-   
-   
-   
-
-   
- 
 } 
