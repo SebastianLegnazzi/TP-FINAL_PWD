@@ -1,5 +1,4 @@
 <?php
-include_once('../configuracion.php');
 
 class C_Rol{
     private function cargarObjeto($param){
