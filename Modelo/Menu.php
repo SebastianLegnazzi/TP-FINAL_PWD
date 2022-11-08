@@ -101,7 +101,7 @@ class Menu {
         $resp = false;
         $base = new BaseDatos();
 
-        $idPadre = $this->getIdPadre();
+        $idPadre = $this->getPadre();
         if($idPadre != null){
             $idPadre = "'".$idPadre->getIdMenu()."'";
         }
@@ -135,7 +135,7 @@ class Menu {
         $resp = false;
         $base=new BaseDatos();
 
-        $idPadre = $this->getIdPadre();
+        $idPadre = $this->getPadre();
         if($idPadre != null){
             $idPadre = "'".$idPadre->getIdMenu()."'";
         }

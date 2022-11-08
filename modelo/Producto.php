@@ -166,7 +166,7 @@ class Producto
     public function buscar($param)
     {
         $base = new BaseDatos();
-        $consulta = "SELECT * FROM producto WHERE idproducto='" . $param["idproducto"] . "'";
+        $consulta = "SELECT * FROM producto WHERE idproducto ='" . $param["idproducto"] . "'";
         $resp = false;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -190,18 +190,18 @@ class Producto
     {
         $arregloUsuarios = null;
         $base = new BaseDatos();
-        $consultaPersona = "SELECT * FROM usuario ";
+        $consultaPersona = "SELECT * FROM producto ";
         if ($condicion != "") {
             $consultaPersona = $consultaPersona . ' WHERE ' . $condicion;
         }
-        $consultaPersona .= " ORDER BY idusuario ";
+        $consultaPersona .= " ORDER BY idproducto ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaPersona)) {
-                $arregloUsuarios = array();
-                while ($usuario = $base->Registro()) {
-                    $objUsuario = new Usuario();
-                    $objUsuario->Buscar($usuario['usnombre']);
-                    array_push($arregloUsuarios, $objUsuario);
+                $arregloProductos = array();
+                while ($Producto = $base->Registro()) {
+                    $objProducto = new Producto();
+                    $objProducto->Buscar($Producto['idproducto']);
+                    array_push($arregloProductos, $objProducto);
                 }
             } else {
                 $this->setMensajeFuncion($base->getError());
@@ -209,7 +209,7 @@ class Producto
         } else {
             $this->setMensajeFuncion($base->getError());
         }
-        return $arregloUsuarios;
+        return $arregloProductos;
     }
 
     public function eliminar()
@@ -217,7 +217,7 @@ class Producto
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM usuario WHERE idusuario= '" . $this->getId() . "'";
+            $consulta = "DELETE FROM producto WHERE idproducto = '" . $this->getIdProducto() . "'";
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
             } else {
