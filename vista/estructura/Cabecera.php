@@ -18,7 +18,7 @@ include "../../configuracion.php";
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Third navbar example" id="header">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example" id="header">
     <div class="container-fluid">
       <span class="navbar-brand text-white" style="font-family: 'Chivo', sans-serif;">| De Todo Un Poco |</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,10 @@ include "../../configuracion.php";
             <a class="nav-link text-white btn btn-primary m-2" href="../test/index.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
         </ul>
+        <div id="content__login" class="d-flex align-self-center">
+            <a class="nav-link text-white btn btn-secondary m-2" href="registrarse.php" style="font-family: 'Chivo', sans-serif;">Registrarse</a>
+            <a class="nav-link text-white btn btn-secondary m-2" href="IniciarSesion.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
+        </div>
       </div>
     </div>
   </nav>
