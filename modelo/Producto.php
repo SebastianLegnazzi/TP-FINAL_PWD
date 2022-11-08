@@ -160,9 +160,6 @@ class Producto
         return $resp;
     }
 
-    /*
-	 Función que busca una auto en base a un usuario
-	*/
     public function buscar($param)
     {
         $base = new BaseDatos();
@@ -188,7 +185,7 @@ class Producto
 
     public function listar($condicion = "")
     {
-        $arregloUsuarios = null;
+        $arregloProductos = null;
         $base = new BaseDatos();
         $consultaPersona = "SELECT * FROM producto ";
         if ($condicion != "") {
@@ -200,7 +197,7 @@ class Producto
                 $arregloProductos = array();
                 while ($Producto = $base->Registro()) {
                     $objProducto = new Producto();
-                    $objProducto->Buscar($Producto['idproducto']);
+                    $objProducto->buscar($Producto['idproducto']);
                     array_push($arregloProductos, $objProducto);
                 }
             } else {
