@@ -88,6 +88,7 @@ class Menu {
                         $objPadre->cargar();
                     }
                 
+                    $resp =  true;
                     $this->setear($row['idMenu'],$row['meNombre'],$row['meDescripcion'],$objPadre,$row['meDeshabilitado']);
                 }
             }
