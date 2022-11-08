@@ -111,8 +111,7 @@ class Menu {
             $deshabilitado = "'".$deshabilitado."'"; 
         }
 
-        $sql = "INSERT INTO menu (idMenu, meNombre, meDescripcion, idPadre, meDeshabilitado)  VALUES (
-                '".$this->getIdMenu(). "',
+        $sql = "INSERT INTO menu (meNombre, meDescripcion, idPadre, meDeshabilitado)  VALUES (
                 '".$this->getMeNombre(). "',
                 '".$this->getMeDescripcion(). "',
                 ".$idPadre. ",
@@ -208,7 +207,7 @@ class Menu {
                     
                     if ($row['idpadre']!=null){
                         $objPadre = new Menu();
-                        $objPadre->setIdMenu($row['idpadre']);
+                        $objPadre->setIdMenu($row['idPadre']);
                         $objPadre->cargar();
                     }
 
