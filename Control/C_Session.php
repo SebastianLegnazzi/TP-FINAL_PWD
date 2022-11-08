@@ -1,7 +1,4 @@
 <?php
-include_once('../configuracion.php');
-
-
 class C_Session{
     private $objUsuario;
     private $listaRoles;
@@ -37,14 +34,13 @@ class C_Session{
     }
 
     //Valida si los datos ingresados son validos: Aca pasarle la contraseña ya encriptada
-    public function valida($user,$pass){
+    public function valida($param){
         $valida=false;
         $objUsuario=new C_Usuario();
-        $param['usNombre']=$user;
-        $param['usPass']=$pass;
         $listaUsuarios=$objUsuario->buscar($param);
         if(count($listaUsuarios)>0){
             $this->setObjUsuario($listaUsuarios[0]);
+            $valida=true;
         }
         return $valida;
     }
