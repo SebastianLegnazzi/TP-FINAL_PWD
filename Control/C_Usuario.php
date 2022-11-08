@@ -70,7 +70,7 @@ class C_Usuario{
     public function baja($param){
         $resp=false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjetoConClave($param);
+            $objUsuario=$this->cargarObjetoConId($param);
             if ($objUsuario!=null && $objUsuario->eliminar()){
                 $resp = true;
             }
@@ -100,8 +100,8 @@ class C_Usuario{
                 $where.=" and usNombre='".$param['usNombre']."'";
             if  (isset($param['usPass']))
                 $where.=" and usPass='".$param['usPass']."'";
-            if  (isset($param['$usMail']))
-                $where.=" and $usMail='".$param['$usMail']."'";
+            if  (isset($param['usMail']))
+                $where.=" and usMail='".$param['$usMail']."'";
         }
         $objUsuario=new Usuario();
         $arreglo=$objUsuario->listar($where);  
