@@ -3,6 +3,7 @@
 include_once("../../configuracion.php");
 $metodo = data_submitted();
 $objCaptcha = new c_testCaptchas();
+$objSesion=new C_Session();
 if ($objCaptcha->mtCaptcha($metodo["mtcaptcha-verifiedtoken"])) {
 ?>
     <script>
