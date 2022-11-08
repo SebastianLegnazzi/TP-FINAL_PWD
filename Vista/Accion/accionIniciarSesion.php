@@ -1,6 +1,6 @@
 <script src="../js/iniciarSesion.js"></script>
 <?php
-include_once("../estructura/Cabecera.php");
+include_once("../../configuracion.php");
 $metodo = data_submitted();
 $objCaptcha = new c_testCaptchas();
 if ($objCaptcha->mtCaptcha($metodo["mtcaptcha-verifiedtoken"])) {
@@ -19,10 +19,10 @@ if ($objCaptcha->mtCaptcha($metodo["mtcaptcha-verifiedtoken"])) {
             timer: 1500
         })
 
-        function redireccionarPagina() {
+        /* function redireccionarPagina() {
             location.href = "IniciarSesion.php"
         }
-        setTimeout("redireccionarPagina()", 1450);
+        setTimeout("redireccionarPagina()", 1450); */
     </script>
 <?php
 }

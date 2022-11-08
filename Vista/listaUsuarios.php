@@ -1,5 +1,5 @@
 <?php
-include_once('../estructura/Cabecera.php');
+include_once('estructura/Cabecera.php');
 
 $objUsuario=new C_Usuario;
 $objUsuarioRol=new C_UsuarioRol;
@@ -21,7 +21,6 @@ if ($arrayUsers != null) {
         }
         array_push($rolesDesc,$roles);
     }
-    print_r($rolesDesc);
 } else {
     $cantUsers = -1;
 }

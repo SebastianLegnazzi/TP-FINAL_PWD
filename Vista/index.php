@@ -1,7 +1,7 @@
 <?php
-include_once("../estructura/Cabecera.php");
+include_once("estructura/Cabecera.php");
 ?>
-<div class="text-light">
+<div class="">
     <div class="container">
         <h1 class="text-center">Productos</h1>
         <hr>
@@ -202,5 +202,5 @@ include_once("../estructura/Cabecera.php");
     </div>
 </div>
 <?php
-include_once("../estructura/Pie.php")
+include_once("estructura/Pie.php")
 ?>

@@ -1,5 +1,5 @@
 <?php
-include_once('../estructura/Cabecera.php');
+include_once('estructura/Cabecera.php');
 
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
@@ -7,7 +7,7 @@ $usuarioModificar=$objUsuario->buscar($datos);
 ?>
 
 <main class="form-signin w-25 m-auto mt-5 text-center">
-    <form class="row gy-2 text-center justify-content-center" method="post" action="loginActualizado.php">
+    <form class="row gy-2 text-center justify-content-center" method="post" action="Accion/loginActualizado.php">
     <div class="col-10" style="display:none;">
         <label for="floatingInput" class="form-label mt-2">ID</label>
         <input type="number" class="form-control" 
