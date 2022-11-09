@@ -1,5 +1,5 @@
 <?php
-include_once("estructura/Cabecera.php");
+include_once("../estructura/Cabecera.php");
 ?>
 <div class="">
     <div class="container">
@@ -202,5 +202,5 @@ include_once("estructura/Cabecera.php");
     </div>
 </div>
 <?php
-include_once("estructura/Pie.php")
+include_once("../estructura/Pie.php")
 ?>

@@ -1,5 +1,5 @@
 <?php
-include_once('estructura/Cabecera.php');
+include_once('../estructura/Cabecera.php');
 
 $objUsuario=new C_Usuario;
 $objUsuarioRol=new C_UsuarioRol;

@@ -11,13 +11,7 @@ class MenuRol
     /**************************************/
     /**************** SET *****************/
     /**************************************/
-
-    //ver de agregar funcion setearConClave
-    public function setearRol($rol)
-    {
-        $this->setRol($rol);
-    }
-
+    
     public function setRol($rol)
     {
         $this->rol = $rol;

@@ -1,5 +1,5 @@
 <?php
-include_once("estructura/Cabecera.php");
+include_once("../estructura/Cabecera.php");
 ?>
 <script>
     var mtcaptchaConfig = {
@@ -59,5 +59,5 @@ include_once("estructura/Cabecera.php");
 </div>
 <script src="../js/validarCamposVacios.js"></script>
 <?php
-include_once("estructura/Pie.php")
+include_once("../estructura/Pie.php")
 ?>
