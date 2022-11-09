@@ -5,6 +5,7 @@ class Producto
     private $nombre;
     private $detalle;
     private $cantStock;
+    private $urlImagen;
     private $mensajeFuncion;
 
 
@@ -53,6 +54,14 @@ class Producto
         $this->mensajeFuncion = $mensajeFuncion;
     }
 
+    /**
+     * Establece el valor de urlImagen
+     */
+    public function setUrlImagen($urlImagen)
+    {
+        $this->urlImagen = $urlImagen;
+    }
+
     /**************************************/
     /**************** GET *****************/
     /**************************************/
@@ -97,6 +106,14 @@ class Producto
         return $this->mensajeFuncion;
     }
 
+    /**
+     * Obtiene el valor de urlImagen
+     */
+    public function getUrlImagen()
+    {
+        return $this->urlImagen;
+    }
+
     /**************************************/
     /************** FUNCIONES *************/
     /**************************************/
@@ -109,12 +126,13 @@ class Producto
         $this->cantStock = "";
     }
 
-    public function setear($idProducto, $nombre, $detalle, $cantStock)
+    public function setear($idProducto, $nombre, $detalle, $cantStock, $ulrImagen)
     {
         $this->setIdProducto($idProducto);
         $this->setNombre($nombre);
         $this->setDetalle($detalle);
         $this->setCantStock($cantStock);
+        $this->setUrlImagen($ulrImagen);
     }
 
     public function insertar()
@@ -160,22 +178,21 @@ class Producto
         return $resp;
     }
 
-    public function buscar($param)
+    public function cargar()
     {
-        $base = new BaseDatos();
-        $consulta = "SELECT * FROM producto WHERE idproducto ='" . $param["idproducto"] . "'";
         $resp = false;
+        $base = new BaseDatos();
+        if ($this->getIdProducto() != '') {
+            $sql = "SELECT * FROM producto WHERE idProducto = " . $this->getIdProducto();
+        }
+        //echo $sql;
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($consulta)) {
-                if ($producto = $base->Registro()) {
-                    $this->setIdProducto($producto['idproducto']);
-                    $this->setNombre($producto['pronombre']);
-                    $this->setDetalle($producto['prodetalle']);
-                    $this->setCantStock($producto['procantstock']);
-                    $resp = true;
+            $res = $base->Ejecutar($sql);
+            if ($res > -1) {
+                if ($res > 0) {
+                    $row = $base->Registro();
+                    $this->setear($row['idProducto'], $row['proNombre'], $row['proDetalle'], $row['proCantStock'], $row['urlImagen']);
                 }
-            } else {
-                $this->setMensajeFuncion($base->getError());
             }
         } else {
             $this->setMensajeFuncion($base->getError());
@@ -197,7 +214,7 @@ class Producto
                 $arregloProductos = array();
                 while ($Producto = $base->Registro()) {
                     $objProducto = new Producto();
-                    $objProducto->buscar($Producto['idproducto']);
+                    $objProducto->setear($Producto['idProducto'], $Producto['proNombre'], $Producto['proDetalle'], $Producto['proCantStock'], $Producto['urlImagen']);
                     array_push($arregloProductos, $objProducto);
                 }
             } else {

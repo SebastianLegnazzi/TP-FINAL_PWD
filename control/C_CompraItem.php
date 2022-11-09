@@ -1,5 +1,5 @@
 <?php
-class C_Producto
+class C_CompraItem
 {
     //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
 
@@ -11,15 +11,15 @@ class C_Producto
      */
     private function cargarObjeto($param)
     {
-        $objProducto = null;
+        $objCompraItem = null;
 
-        if (array_key_exists('idproducto', $param) and array_key_exists('pronombre', $param) and array_key_exists('prodetalle', $param) and array_key_exists('procantstock', $param) and array_key_exists('urlImagen', $param)) {
-            $objProducto = new UsuarioRol();
-            if(!$objProducto->cargar($param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['urlImagen'])){
-                $objProducto = null;
+        if (array_key_exists('idCompraItem', $param) and array_key_exists('idProducto', $param) and array_key_exists('idCompra', $param) and array_key_exists('ciCantidad', $param)) {
+            $objCompraItem = new Compra();
+            if(!$objCompraItem->cargar($param['idCompraItem'], $param['idProducto'], $param['idCompra'], $param['ciCantidad'])){
+                $objCompraItem = null;
             }
         }
-        return $objProducto;
+        return $objCompraItem;
     }
 
     /**
@@ -31,7 +31,7 @@ class C_Producto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idproducto'])) {
+        if (isset($param['idCompraItem'])) {
             $resp = true;
         }
         return $resp;
@@ -45,10 +45,10 @@ class C_Producto
     public function alta($param)
     {
         $resp = false;
-        $param['idproducto'] = null;
-        $objProducto = $this->cargarObjeto($param);
-        if ($objProducto!=null) {
-            if($objProducto->insertar()){
+        $param['idCompraItem'] = null;
+        $objCompraItem = $this->cargarObjeto($param);
+        if ($objCompraItem!=null) {
+            if($objCompraItem->insertar()){
                 $resp = true;
             }
         }
@@ -63,8 +63,8 @@ class C_Producto
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objProducto = $this->cargarObjeto($param);
-            if ($objProducto!=null and $objProducto->eliminar()) {
+            $objCompraItem = $this->cargarObjeto($param);
+            if ($objCompraItem!=null and $objCompraItem->eliminar()) {
                 $resp = true;
             }
         }
@@ -82,8 +82,8 @@ class C_Producto
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objProducto = $this->cargarObjeto($param);
-            if ($objProducto!=null and $objProducto->modificar()) {
+            $objCompraItem = $this->cargarObjeto($param);
+            if ($objCompraItem!=null and $objCompraItem->modificar()) {
                 $resp = true;
             }
         }
@@ -100,12 +100,12 @@ class C_Producto
         $where = " true ";
         if ($param<>null) {
             if (isset($param)) {
-                $where.=" and idproducto ='".$param["idproducto"]."'";
+                $where.=" and idCompraItem ='".$param["idCompraItem"]."'";
             }
         }
-        $objProducto= new UsuarioRol();
-        $arregloProductos = $objProducto->listar($where);
-        return $arregloProductos;
+        $objCompraItem= new Compra();
+        $arregloCompraItem = $objCompraItem->listar($where);
+        return $arregloCompraItem;
     }
 }
 ?>

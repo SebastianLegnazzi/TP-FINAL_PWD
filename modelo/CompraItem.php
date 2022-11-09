@@ -3,7 +3,7 @@ class CompraItem
 {
     private $idCompraItem;
     private $objProducto;
-    private $idCompra;
+    private $objCompra;
     private $cantidad;
     private $mensajeFuncion;
 
@@ -31,9 +31,9 @@ class CompraItem
     /**
      * Establece el valor de idCompra
      */
-    public function setIdCompra($idCompra)
+    public function setObjCompra($objCompra)
     {
-        $this->idCompra = $idCompra;
+        $this->objCompra = $objCompra;
     }
 
     /**
@@ -74,9 +74,9 @@ class CompraItem
     /**
      * Obtiene el valor de idCompra
      */
-    public function getIdCompra()
+    public function getObjCompra()
     {
-        return $this->idCompra;
+        return $this->objCompra;
     }
 
     /**
@@ -103,16 +103,17 @@ class CompraItem
     {
         $this->idCompraItem = "";
         $this->objProducto = new Producto;
-        $this->idCompra = "";
+        $this->objCompra = new Compra;
         $this->cantidad = ""; 
     }
 
     public function setear($idCompraItem, $idProducto, $idCompra, $cantidad)
     {
         $resp = false;
-        if($this->objProducto->buscar($idProducto)){
+        $this->objProducto->setIdProducto($idProducto);
+        $this->objCompra->setIdCompra($idCompra);
+        if($this->objProducto->cargar() && $this->objCompra->cargar()){
             $this->setIdCompraItem($idCompraItem);
-            $this->setIdCompra($idCompra);
             $this->setCantidad($cantidad);
             $resp = true;
         }
@@ -126,7 +127,7 @@ class CompraItem
         $consulta = "INSERT INTO compraitem (idCompraItem, idProducto, idCompra, ciCantidad) VALUES (
 		'" . $this->getIdCompraItem() . "',
 		'" . $this->getObjProducto()->getIdProducto() . "',
-		'" . $this->getIdCompra() . "',
+		'" . $this->getObjCompra()->getIdCompra() . "',
 		'" . $this->getCantidad() . "')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -147,9 +148,9 @@ class CompraItem
         $consulta = "UPDATE compraitem
         SET idCompraItem = '{$this->getIdCompraItem()}',
         idProducto = '{$this->getObjProducto()->getIdProducto()}',
-        idCompra = '{$this->getIdCompra()}',
+        idCompra = '{$this->getObjCompra()->getIdCompra()}',
         ciCantidad = '{$this->getCantidad()}',
-        WHERE idCompraItem = '{$this->getIdCompra()}'";
+        WHERE idCompraItem = '{$this->getIdCompraItem()}'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
@@ -162,22 +163,20 @@ class CompraItem
         return $resp;
     }
 
-    public function buscar($param)
-    {
-        $base = new BaseDatos();
-        $consulta = "SELECT * FROM compraitem WHERE idCompraItem ='" . $param["idCompraItem"] . "'";
+    public function cargar(){
         $resp = false;
+        $base = new BaseDatos();
+        if($this->getIdCompraItem()!=''){
+            $sql = "SELECT * FROM compraitem WHERE idCompraItem = " . $this->getIdCompraItem();
+        }
+        //echo $sql;
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($consulta)) {
-                if ($producto = $base->Registro()) {
-                    $this->setIdCompraItem($producto['idCompraItem']);
-                    $this->setObjProducto($this->getObjProducto()->buscar($producto['idProducto']));
-                    $this->setIdCompra($producto['idCompra']);
-                    $this->setCantidad($producto['ciCantidad']);
-                    $resp = true;
+            $res = $base->Ejecutar($sql);
+            if ($res > -1) {
+                if ($res > 0) {
+                    $row = $base->Registro();
+                    $this->setear($row['idCompraItem'], $row['idProducto'], $row['idCompra'], $row['ciCantidad']);
                 }
-            } else {
-                $this->setMensajeFuncion($base->getError());
             }
         } else {
             $this->setMensajeFuncion($base->getError());
@@ -187,7 +186,7 @@ class CompraItem
 
     public function listar($condicion = "")
     {
-        $arregloProductos = null;
+        $consultaCompraItem = null;
         $base = new BaseDatos();
         $consultaCompraItem = "SELECT * FROM compraitem ";
         if ($condicion != "") {
@@ -199,7 +198,7 @@ class CompraItem
                 $arregloComraitem = array();
                 while ($compraItem = $base->Registro()) {
                     $objCompraItem = new CompraItem();
-                    $objCompraItem->buscar($compraItem['idCompraItem']);
+                    $objCompraItem->setear($compraItem["idCompraItem"], $compraItem["idProducto"], $compraItem["idCompra"], $compraItem["ciCantidad"],);
                     array_push($arregloComraitem, $objCompraItem);
                 }
             } else {
@@ -216,7 +215,7 @@ class CompraItem
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM producto WHERE idproducto = '" . $this->getIdProducto() . "'";
+            $consulta = "DELETE FROM compraitem WHERE idCompraItem = '" . $this->getIdCompraItem() . "'";
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
             } else {

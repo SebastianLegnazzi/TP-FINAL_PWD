@@ -1,5 +1,5 @@
 <?php
-class C_Producto
+class C_Compra
 {
     //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
 
@@ -11,15 +11,15 @@ class C_Producto
      */
     private function cargarObjeto($param)
     {
-        $objProducto = null;
+        $objCompra = null;
 
-        if (array_key_exists('idproducto', $param) and array_key_exists('pronombre', $param) and array_key_exists('prodetalle', $param) and array_key_exists('procantstock', $param) and array_key_exists('urlImagen', $param)) {
-            $objProducto = new UsuarioRol();
-            if(!$objProducto->cargar($param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['urlImagen'])){
-                $objProducto = null;
+        if (array_key_exists('idCompra', $param) and array_key_exists('coFecha', $param) and array_key_exists('idUsuario', $param)) {
+            $objCompra = new Compra();
+            if(!$objCompra->cargar($param['idCompra'], $param['coFecha'], $param['idUsuario'])){
+                $objCompra = null;
             }
         }
-        return $objProducto;
+        return $objCompra;
     }
 
     /**
@@ -31,7 +31,7 @@ class C_Producto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idproducto'])) {
+        if (isset($param['idCompra'])) {
             $resp = true;
         }
         return $resp;
@@ -45,10 +45,10 @@ class C_Producto
     public function alta($param)
     {
         $resp = false;
-        $param['idproducto'] = null;
-        $objProducto = $this->cargarObjeto($param);
-        if ($objProducto!=null) {
-            if($objProducto->insertar()){
+        $param['idCompra'] = null;
+        $objCompra = $this->cargarObjeto($param);
+        if ($objCompra!=null) {
+            if($objCompra->insertar()){
                 $resp = true;
             }
         }
@@ -63,8 +63,8 @@ class C_Producto
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objProducto = $this->cargarObjeto($param);
-            if ($objProducto!=null and $objProducto->eliminar()) {
+            $objCompra = $this->cargarObjeto($param);
+            if ($objCompra!=null and $objCompra->eliminar()) {
                 $resp = true;
             }
         }
@@ -82,8 +82,8 @@ class C_Producto
         //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objProducto = $this->cargarObjeto($param);
-            if ($objProducto!=null and $objProducto->modificar()) {
+            $objCompra = $this->cargarObjeto($param);
+            if ($objCompra!=null and $objCompra->modificar()) {
                 $resp = true;
             }
         }
@@ -100,12 +100,12 @@ class C_Producto
         $where = " true ";
         if ($param<>null) {
             if (isset($param)) {
-                $where.=" and idproducto ='".$param["idproducto"]."'";
+                $where.=" and idCompra ='".$param["idCompra"]."'";
             }
         }
-        $objProducto= new UsuarioRol();
-        $arregloProductos = $objProducto->listar($where);
-        return $arregloProductos;
+        $objCompra= new Compra();
+        $arregloCompras = $objCompra->listar($where);
+        return $arregloCompras;
     }
 }
 ?>
