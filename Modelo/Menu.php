@@ -10,6 +10,66 @@ class Menu {
     private $meDeshabilitado;
     private $mensajeOperacion;
 
+    /**************************************/
+    /**************** SET *****************/
+    /**************************************/
+    
+    public function setIdMenu($idMenu){
+        $this->idMenu = $idMenu;
+    }
+
+    public function setMeNombre($meNombre){
+        $this->meNombre = $meNombre;
+    }
+    
+    public function setMeDeshabilitado($meDeshabilitado){
+        $this->meDeshabilitado = $meDeshabilitado;
+    }    
+
+    public function setPadre($padre){
+        $this->padre = $padre;
+    }
+
+    public function setMeDescripcion($meDescripcion){
+        $this->meDescripcion = $meDescripcion;
+    }
+    
+    public function setMensajeOperacion($mensajeOperacion){
+        $this->mensajeOperacion = $mensajeOperacion;
+    }
+    
+    /**************************************/
+    /**************** GET *****************/
+    /**************************************/
+    
+    public function getIdMenu(){
+        return $this->idMenu;
+    }
+    
+    public function getMeNombre(){
+        return $this->meNombre;
+    }
+    
+    public function getMeDeshabilitado(){
+        return $this->meDeshabilitado;
+    }
+    
+    public function getPadre(){
+        return $this->padre;
+    }
+    
+    public function getMeDescripcion(){
+        return $this->meDescripcion;
+    }
+    
+    public function getMensajeOperacion(){
+        return $this->mensajeOperacion;
+    }
+    
+    /**************************************/
+    /************** FUNCIONES *************/
+    /**************************************/
+    
     public function __construct(){
         $this->idMenu = "";
         $this->meNombre = "";
@@ -17,49 +77,7 @@ class Menu {
         $this->meDeshabilitado = null;
         $this->mensajeOperacion = "";
     }
-    
-    public function getIdMenu(){
-        return $this->idMenu;
-    }
-    public function setIdMenu($idMenu){
-        $this->idMenu = $idMenu;
-    }
-    
-    public function getMeNombre(){
-        return $this->meNombre;
-    }
-    public function setMeNombre($meNombre){
-        $this->meNombre = $meNombre;
-    }
-    
-    public function getMeDeshabilitado(){
-        return $this->meDeshabilitado;
-    }
-    public function setMeDeshabilitado($meDeshabilitado){
-        $this->meDeshabilitado = $meDeshabilitado;
-    }    
-    
-    public function getPadre(){
-        return $this->padre;
-    }
-    public function setPadre($padre){
-        $this->padre = $padre;
-    }
 
-    public function getMeDescripcion(){
-        return $this->meDescripcion;
-    }
-    public function setMeDescripcion($meDescripcion){
-        $this->meDescripcion = $meDescripcion;
-    }
-    
-    public function getMensajeOperacion(){
-        return $this->mensajeOperacion;
-    }
-    public function setMensajeOperacion($mensajeOperacion){
-        $this->mensajeOperacion = $mensajeOperacion;
-    }
-       
     public function setear($id, $nombre, $descripcion, $padre, $deshabilitado){
         $this->setIdMenu($id);
         $this->setMeNombre($nombre);
@@ -220,14 +238,3 @@ class Menu {
         return $arreglo;
     }
 }
-
-?>
-    
-
-    
-    
-
-    
-    
-
-    

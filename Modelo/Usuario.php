@@ -1,7 +1,4 @@
 <?php
-
-include_once('Conector/BaseDatos.php');
-
 class Usuario{
     private $idUsuario;
     private $usNombre;
@@ -9,6 +6,67 @@ class Usuario{
     private $usMail;
     private $usDeshabilitado;
     private $mensajeOperacion;
+    
+    /**************************************/
+    /**************** SET *****************/
+    /**************************************/
+    
+    public function setIdUsuario($idUsuario){
+        $this->idUsuario = $idUsuario;
+    }
+
+    public function setUsNombre($usNombre){
+        $this->usNombre = $usNombre;
+    }
+    
+    public function setUsPass($usPass){
+        $this->usPass = $usPass;
+    }
+
+    public function setUsMail($usMail){
+        $this->usMail = $usMail;
+    }
+
+    public function setUsDeshabilitado($usDeshabilitado){
+        $this->usDeshabilitado = $usDeshabilitado;
+    }
+
+    public function setMensajeOperacion($mensajeOperacion){
+        $this->mensajeOperacion = $mensajeOperacion;
+    }
+    
+    /**************************************/
+    /**************** GET *****************/
+    /**************************************/
+    
+    public function getIdUsuario(){
+        return $this->idUsuario;
+    }
+    
+    public function getUsNombre(){
+        return $this->usNombre;
+    }
+
+    public function getUsPass(){
+        return $this->usPass;
+    }
+    
+    public function getUsMail(){
+        return $this->usMail;
+    }
+
+    public function getUsDeshabilitado(){
+        return $this->usDeshabilitado;
+    }
+
+    public function getMensajeOperacion(){
+        return $this->mensajeOperacion;
+    }
+    
+    /**************************************/
+    /************** FUNCIONES *************/
+    /**************************************/
+    
 
     public function __construct(){
         $this->idUsuario = "";
@@ -19,67 +77,12 @@ class Usuario{
         $this->mensajeOperacion="";
     }
 
-    public function getIdUsuario(){
-        return $this->idUsuario;
-    }
-
-    public function setIdUsuario($idUsuario){
-        $this->idUsuario = $idUsuario;
-    }
-
-    public function getUsNombre(){
-        return $this->usNombre;
-    }
-
-    public function setUsNombre($usNombre){
-        $this->usNombre = $usNombre;
-    }
-
-    public function getUsPass(){
-        return $this->usPass;
-    }
-
-    public function setUsPass($usPass){
-        $this->usPass = $usPass;
-    }
-
-    public function getUsMail(){
-        return $this->usMail;
-    }
-
-    public function setUsMail($usMail){
-        $this->usMail = $usMail;
-    }
-
-    public function getUsDeshabilitado(){
-        return $this->usDeshabilitado;
-    }
-
-    public function setUsDeshabilitado($usDeshabilitado){
-        $this->usDeshabilitado = $usDeshabilitado;
-    }
-
-    public function getMensajeOperacion(){
-        return $this->mensajeOperacion;
-    }
-
-    public function setMensajeOperacion($mensajeOperacion){
-        $this->mensajeOperacion = $mensajeOperacion;
-    }
-
     public function setear($idUsuario,$usNombre, $usPass, $usMail){
         $this->setIdUsuario($idUsuario);
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
         $this->setUsMail($usMail);
     }
-
-    public function setearSinId($usNombre, $usPass, $usMail){
-        $this->setUsNombre($usNombre);
-        $this->setUsPass($usPass);
-        $this->setUsMail($usMail);
-    }
-
 
     public function cargar(){
         $resp = false;
@@ -93,7 +96,8 @@ class Usuario{
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setearSinId($row['usNombre'], $row['usPass'], $row['usMail']);
+                    $this->setear($row['idUsuario'], $row['usNombre'], $row['usPass'], $row['usMail']);
+					$resp = true;
                 }
             }
         } else {
@@ -101,7 +105,6 @@ class Usuario{
         }
         return $resp;
     }
-
 
     public function insertar(){
         $resp = false;
@@ -123,7 +126,6 @@ class Usuario{
         return $resp;
     }
 
-
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
@@ -143,7 +145,6 @@ class Usuario{
         return $resp;
     }
 
-
     public function eliminar(){
         $resp = false;
         $base = new BaseDatos();
@@ -160,9 +161,8 @@ class Usuario{
         return $resp;
     }
 
-
     public static function listar($parametro = ""){
-        $arreglo = array();
+        $arreglo = null;
         $base = new BaseDatos();
         $sql = "SELECT * FROM usuario ";
         if ($parametro != "") {
@@ -171,6 +171,7 @@ class Usuario{
         $res = $base->Ejecutar($sql);
         if ($res > -1) {
             if ($res > 0) {
+				$arreglo = array();
                 while ($row = $base->Registro()) {
                     $obj = new Usuario();
                     $obj->setear($row['idUsuario'],$row['usNombre'], $row['usPass'], $row['usMail']);
@@ -182,8 +183,4 @@ class Usuario{
         }
         return $arreglo;
     }
-
-
 }
-
-?>
