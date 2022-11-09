@@ -3,7 +3,9 @@ include_once('estructura/Cabecera.php');
 
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
+$objUsuarioRol=new C_UsuarioRol();
 $usuarioModificar=$objUsuario->buscar($datos);
+$descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
 
 <main class="form-signin w-25 m-auto mt-5 text-center ">
@@ -32,13 +34,22 @@ $usuarioModificar=$objUsuario->buscar($datos);
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="user" id="user" name="rol[]" checked>
             <label class="form-check-label" for="user">
-                ROLE_USER
+                USER
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="admin" name="rol[]" id="admin">
+            <input class="form-check-input" type="checkbox" value="admin" name="rol[]" id="admin"
+            <?php 
+            foreach($descRolesUsuario[0] as $rol){
+                if($rol=="ROLE_ADMIN"){
+                    ?>checked
+                    <?php
+                }
+            }
+            ?>
+            >
             <label class="form-check-label" for="admin">
-                ROLE_ADMIN
+                ADMIN
             </label>
         </div>
     </div>
