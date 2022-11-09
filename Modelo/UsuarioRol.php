@@ -25,8 +25,13 @@ class UsuarioRol{
         $this->setRol($rol);
     }
 
+    //VER SI HAY UNA FORMA MAS BONITA_
     public function setearConClave($idUsuario,$idRol){
+        $rol=new Rol();
+        $rol->setIdRol($idRol);
         $this->setRol($rol);
+        $usuario=new Usuario();
+        $usuario->setIdUsuario($idUsuario);
         $this->setUsuario($usuario);
     }
 
