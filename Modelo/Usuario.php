@@ -127,9 +127,6 @@ class Usuario{
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
-        $fecha = new DateTime();
-        $fechaStamp=$fecha->format('Y-m-d H:i:s');
-        $this->setUsDeshabilitado($fechaStamp);
         $sql = "UPDATE usuario SET usNombre='" . $this->getUsNombre() . "',
         usPass='" . $this->getUsPass() . "',
         usMail='" . $this->getUsMail() . "',

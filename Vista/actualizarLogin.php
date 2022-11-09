@@ -32,13 +32,13 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
     </div>
     <div class="col-8 mt-4">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="user" id="user" name="rol[]" checked>
+            <input class="form-check-input" type="checkbox" value="ROLE_USER" id="user" name="rol[]" checked>
             <label class="form-check-label" for="user">
                 USER
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="admin" name="rol[]" id="admin"
+            <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" name="rol[]" id="admin"
             <?php 
             foreach($descRolesUsuario[0] as $rol){
                 if($rol=="ROLE_ADMIN"){
