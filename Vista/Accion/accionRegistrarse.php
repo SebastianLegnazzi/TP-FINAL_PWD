@@ -1,10 +1,11 @@
 <?php
-include_once("../estructura/Cabecera.php");
+include_once("../../configuracion.php");
 $datos = data_submitted();
 $objPersona = new C_Usuario();
 $objCaptcha = new c_testCaptchas();
 if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
     if ($objPersona->alta($datos)) {
+        echo "cuenta creada correctamente";
 ?>
         <script>
             Swal.fire({
@@ -21,6 +22,7 @@ if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
         </script>
 <?php
     } else {
+        echo "la cuenta no pudo crearse";
         ?>
         <script>
             Swal.fire({
