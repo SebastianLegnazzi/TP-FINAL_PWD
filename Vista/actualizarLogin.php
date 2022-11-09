@@ -6,7 +6,7 @@ $objUsuario=new C_Usuario();
 $usuarioModificar=$objUsuario->buscar($datos);
 ?>
 
-<main class="form-signin w-25 m-auto mt-5 text-center">
+<main class="form-signin w-25 m-auto mt-5 text-center ">
     <form class="row gy-2 text-center justify-content-center" method="post" action="Accion/loginActualizado.php">
     <div class="col-10" style="display:none;">
         <label for="floatingInput" class="form-label mt-2">ID</label>
@@ -28,8 +28,22 @@ $usuarioModificar=$objUsuario->buscar($datos);
         <input type="password" class="form-control" placeholder="Password" 
                 name="usPass" id="usPass">
     </div>
+    <div class="col-8 mt-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="user" id="user" name="rol[]" checked>
+            <label class="form-check-label" for="user">
+                ROLE_USER
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="admin" name="rol[]" id="admin">
+            <label class="form-check-label" for="admin">
+                ROLE_ADMIN
+            </label>
+        </div>
+    </div>
 
-        <button class="btn btn-lg btn-success my-3 col-10 mt-4">MODIFY</button>
+    <button class="btn btn-lg btn-success my-3 col-10 mt-4">MODIFY</button>
 
     </form>
 </main>
