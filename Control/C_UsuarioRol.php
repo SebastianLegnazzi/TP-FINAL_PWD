@@ -129,7 +129,23 @@ class C_UsuarioRol {
             return $arreglo;
     }
 
-    public function darDescripcionRoles(){
-
+    //esta funcion me devuelve un array de descripcion de roles de un array de usuarios:
+    public function darDescripcionRoles($arrayUsuarios){
+        $rolesUs=[];
+        foreach($arrayUsuarios as $us){
+            $param['idUsuario']=$us->getIdUsuario();
+            array_push($rolesUs,$this->buscar($param));//esto me devuelve un array de objetos usuario +rol
+        }
+        $rolesDesc=[];
+        foreach($rolesUs as $rolUs){
+            $roles=[];
+            //aca me devuelve el array de roles de cada usuario:
+            foreach($rolUs as $rolU){
+                $rol=$rolU->getRol()->getRolDescripcion();
+                array_push($roles,$rol);
+            }
+            array_push($rolesDesc,$roles);
+        }
+        return $rolesDesc;
     }
 }

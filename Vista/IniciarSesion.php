@@ -1,5 +1,5 @@
 <?php
-include_once("../estructura/Cabecera.php");
+include_once("estructura/Cabecera.php");
 ?>
 <script>
     var mtcaptchaConfig = {
@@ -31,7 +31,7 @@ include_once("../estructura/Cabecera.php");
                 <h2 class="fw-bold mb-0">Iniciar Sesion</h2>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form class="col needs-validation" method="post" action="accionIniciarSesion.php" novalidate>
+                <form class="col needs-validation" method="post" action="Accion/accionIniciarSesion.php" novalidate>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Usuario">
                         <label for="floatingInput"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill text-dark" viewBox="0 0 16 16">
@@ -59,5 +59,5 @@ include_once("../estructura/Cabecera.php");
 </div>
 <script src="../js/validarCamposVacios.js"></script>
 <?php
-include_once("../estructura/Pie.php")
+include_once("estructura/Pie.php")
 ?>

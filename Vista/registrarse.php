@@ -1,11 +1,11 @@
 <?php
-include_once("../estructura/Cabecera.php");
+include_once("estructura/Cabecera.php");
 ?>
-<script src="../js/validarContraseñaIguales.js"></script>
+<script src="js/validarContraseñaIguales.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer> </script>
 <div class="container-fluid">
     <div class="container-md w-50">
-        <form action="accionRegistrarse.php" method="post" class="needs-validation row text-white my-4 justify-content-center" novalidate>
+        <form action="Accion/accionRegistrarse.php" method="post" class="needs-validation row text-white my-4 justify-content-center" novalidate>
             <div class="col-lg-7 col-12 mt-2">
                 <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text" required>
                 <div class="invalid-feedback">
@@ -59,7 +59,7 @@ include_once("../estructura/Cabecera.php");
         
     </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
+<script src="js/validarCamposVacios.js"></script>
 <?php
-include_once("../estructura/Pie.php")
+include_once("estructura/Pie.php")
 ?>
