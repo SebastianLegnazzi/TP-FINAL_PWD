@@ -91,7 +91,6 @@ class C_Usuario{
     }
 
     public function buscar($param){
-        //NO ME VA A BUSCAR POR PASSWORD
         $where = "true";
         if ($param<>NULL){
             if  (isset($param['idUsuario']))
@@ -107,6 +106,27 @@ class C_Usuario{
         $arreglo=$objUsuario->listar($where);  
         return $arreglo;
     }
+
+    
+    public function agregarRolAdmin($param){
+        $agregado=false;
+        $datos['idUsuario']=$param['idUsuario'];
+        $usuarios=$this->buscar($datos);
+        $objUsuarioRol=new C_UsuarioRol();
+        //aca obtengo los roles que tiene antes de modificar el usuario:
+        $rolesDesc=$objUsuarioRol->darDescripcionRoles($usuarios);
+        //ahora obtengo los roles que pase por POST
+        $roles=$param['rol'];
+        //controlar primero que el usuario solo tenga el rol_user
+        //y que se haya cliqueado la opcion admin
+        if(count($rolesDesc[0])<2 && in_array('ROLE_ADMIN',$roles)){
+            $idUsuario=$param['idUsuario'];
+            $modUsRol=new UsuarioRol();
+            $modUsRol->setearConClave($idUsuario,1);
+            $agregado=$modUsRol->insertar();
+        }
+        return $agregado;
+    } 
 
 }
 
