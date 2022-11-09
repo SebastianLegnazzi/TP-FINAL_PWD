@@ -5,22 +5,8 @@ $objUsuario=new C_Usuario;
 $objUsuarioRol=new C_UsuarioRol;
 $arrayUsers=$objUsuario->buscar(NULL);
 if ($arrayUsers != null) {
-    $cantUsers = count($arrayUsers);
-    $rolesUs=[];
-    foreach($arrayUsers as $us){
-        $param['idUsuario']=$us->getIdUsuario();
-        array_push($rolesUs,$objUsuarioRol->buscar($param));//esto me devuelve un array de objetos usuario +rol
-    }
-    $rolesDesc=[];
-    foreach($rolesUs as $rolUs){
-        $roles=[];
-        //aca me devuelve el array de roles de cada usuario:
-        foreach($rolUs as $rolU){
-            $rol=$rolU->getRol()->getRolDescripcion();
-            array_push($roles,$rol);
-        }
-        array_push($rolesDesc,$roles);
-    }
+    $cantUsers=count($arrayUsers);
+    $rolesDesc=$objUsuarioRol->darDescripcionRoles($arrayUsers);
 } else {
     $cantUsers = -1;
 }
