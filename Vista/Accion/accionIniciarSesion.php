@@ -1,24 +1,45 @@
-<script src="../js/iniciarSesion.js"></script>
 <?php
-include_once("../../configuracion.php");
-$datos= data_submitted();
+include_once("../estructura/Cabecera.php");
+$datos = data_submitted();
 $objCaptcha = new c_testCaptchas();
-$objSesion=new C_Session();
+$objSesion = new C_Session();
 if ($objCaptcha->mtCaptcha($datos["mtcaptcha-verifiedtoken"])) {
-        if($objSesion->valida($datos)){
-            $objSesion->iniciar();
-            //header('Location:paginaSegura.php');
-            echo "Iniciaste sesion correctamente!";
-        }else{
-        echo "Error al iniciar sesion!"; 
-        }
+    $datos["usPass"] = md5($datos["usPass"]);
+    if ($objSesion->valida($datos)) {
 ?>
-    <script>
-        comprobarCuenta();
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Se inicio sesion correctamente!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+            function redireccionarPagina() {
+                location.href = "../paginas/index.php"
+            }
+            setTimeout("redireccionarPagina()", 1450);
+        </script>
+    <?php
+    } else {
+        ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'La contraseña y/o el usuario no coinciden!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+            function redireccionarPagina() {
+                location.href = "../sesion/iniciarSesion.php"
+            }
+            setTimeout("redireccionarPagina()", 1450);
+        </script>
 <?php
+    }
 } else {
-?>
+    ?>
     <script>
         Swal.fire({
             icon: 'error',
@@ -27,10 +48,10 @@ if ($objCaptcha->mtCaptcha($datos["mtcaptcha-verifiedtoken"])) {
             timer: 1500
         })
 
-        /* function redireccionarPagina() {
-            location.href = "IniciarSesion.php"
+        function redireccionarPagina() {
+            location.href = "../sesion/iniciarSesion.php"
         }
-        setTimeout("redireccionarPagina()", 1450); */
+        setTimeout("redireccionarPagina()", 1450);
     </script>
 <?php
 }

@@ -108,9 +108,9 @@ class UsuarioRol{
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO usuariorol (idUsuario,idRol)  VALUES ('"
-            . $this->getUsuario()->getIdUsuario() . "','"
-            . $this->getRol()->getIdRol() . "')";
+        $sql = "INSERT INTO usuariorol (idUsuario,idRol)  VALUES ("
+            . $this->getUsuario()->getIdUsuario() . ","
+            . $this->getRol()->getIdRol() . ")";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;

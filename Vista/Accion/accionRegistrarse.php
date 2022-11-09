@@ -1,11 +1,11 @@
 <?php
-include_once("../../configuracion.php");
+include_once("../estructura/Cabecera.php");
 $datos = data_submitted();
 $objPersona = new C_Usuario();
 $objCaptcha = new c_testCaptchas();
 if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
+    $datos["usPass"] = md5($datos["usPass"]);
     if ($objPersona->alta($datos)) {
-        echo "cuenta creada correctamente";
 ?>
         <script>
             Swal.fire({
@@ -15,10 +15,10 @@ if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
                 timer: 1500
             })
 
-            /* function redireccionarPagina() {
-                location.href = "index.php"
+            function redireccionarPagina() {
+                location.href = "../paginas/index.php"
             }
-            setTimeout("redireccionarPagina()", 1450); */
+            setTimeout("redireccionarPagina()", 1450);
         </script>
 <?php
     } else {
@@ -32,10 +32,10 @@ if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
                 timer: 1500
             })
 
-            /* function redireccionarPagina() {
-                location.href = "registrarse.php"
+            function redireccionarPagina() {
+                location.href = "../sesion/registrarse.php"
             }
-            setTimeout("redireccionarPagina()", 1450); */
+            setTimeout("redireccionarPagina()", 1450);
         </script>
         <?php
     }
@@ -49,10 +49,10 @@ if ($objCaptcha->reCaptchav2($datos["g-recaptcha-response"])) {
             timer: 1500
         })
 
-        /* function redireccionarPagina() {
-            location.href = "registrarse.php"
+        function redireccionarPagina() {
+            location.href = "../sesion/registrarse.php"
         }
-        setTimeout("redireccionarPagina()", 1450); */
+        setTimeout("redireccionarPagina()", 1450);
     </script>
     <?php
 }

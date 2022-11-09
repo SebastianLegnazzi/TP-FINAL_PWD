@@ -9,7 +9,7 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
 
 <main class="form-signin w-25 m-auto mt-5 text-center ">
-    <form class="row gy-2 text-center justify-content-center" method="post" action="Accion/loginActualizado.php">
+    <form class="row gy-2 text-center justify-content-center" method="post" action="../Accion/loginActualizado.php">
     <div class="col-10" style="display:none;">
         <label for="floatingInput" class="form-label mt-2">ID</label>
         <input type="number" class="form-control" 

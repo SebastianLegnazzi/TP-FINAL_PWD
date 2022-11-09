@@ -1,15 +1,77 @@
 <?php
+class C_Rol
+{
 
-class C_Rol{
-    private function cargarObjeto($param){
-        $obj=null;
-        if(array_key_exists('idRol',$param) ){
+    private function cargarObjeto($param)
+    {
+        $obj = null;
+        if (array_key_exists('idRol', $param) and array_key_exists('rolDescripcion', $param)) {
 
-            $obj=new Rol();
-            $obj->cargar($param['idRol'], 
-            $param['idDescripcion'],
+            $obj = new Rol();
+            $obj->cargar(
+                $param['idRol'],
+                $param['rolDescripcion'],
             );
         }
         return $obj;
+    }
+
+    private function seteadosCamposClaves($param)
+    {
+        $resp = false;
+        if (isset($param['idRol'])) {
+            $resp = true;
+            return $resp;
+        }
+    }
+
+    public function alta($param)
+    {
+        $resp = false;
+        $param['idRol'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
+        $objRol = $this->cargarObjeto($param);
+        if ($objRol != null && $objRol->insertar()) {
+            $resp = true;
+        }
+        return $resp;
+    }
+
+    public function baja($param)
+    {
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)) {
+            $objRol = $this->cargarObjeto($param);
+            if ($objRol != null && $objRol->eliminar()) {
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
+
+    public function modificacion($param)
+    {
+        //echo "Estoy en modificacion";
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)) {
+            $objRol = $this->cargarObjeto($param);
+            if ($objRol != null and $objRol->modificar()) {
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
+
+    public function buscar($param)
+    {
+        $where = "true";
+        if ($param <> NULL) {
+            if (isset($param['idRol']))
+                $where .= " and idRol=" . $param['idRol'];
+            if (isset($param['rolDescripcion']))
+                $where .= " and rolDescripcion='" . $param['rolDescripcion'] . "'";
+        }
+        $objRol = new Usuario();
+        $arreglo = $objRol->listar($where);
+        return $arreglo;
     }
 }

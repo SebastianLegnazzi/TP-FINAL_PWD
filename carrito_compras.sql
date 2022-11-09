@@ -172,6 +172,15 @@ CREATE TABLE IF NOT EXISTS `rol` (
   UNIQUE KEY `idrol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idRol`, `rolDescripcion`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER');
+
 -- --------------------------------------------------------
 
 --
@@ -182,7 +191,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `usNombre` varchar(50) NOT NULL,
-  `usPass` int(11) NOT NULL,
+  `usPass` varchar(150) NOT NULL,
   `usMail` varchar(50) NOT NULL,
   `usDeshabilitado` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),

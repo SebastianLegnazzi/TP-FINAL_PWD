@@ -77,11 +77,12 @@ class Usuario{
         $this->mensajeOperacion="";
     }
 
-    public function setear($idUsuario,$usNombre, $usPass, $usMail){
+    public function setear($idUsuario,$usNombre, $usPass, $usMail, $usDeshabilitado){
         $this->setIdUsuario($idUsuario);
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
         $this->setUsMail($usMail);
+        $this->setUsMail($usDeshabilitado);
     }
 
     public function cargar(){
@@ -96,7 +97,7 @@ class Usuario{
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['idUsuario'], $row['usNombre'], $row['usPass'], $row['usMail']);
+                    $this->setear($row['idUsuario'], $row['usNombre'], $row['usPass'], $row['usMail'], $row['usDeshabilitado']);
 					$resp = true;
                 }
             }
@@ -174,7 +175,7 @@ class Usuario{
 				$arreglo = array();
                 while ($row = $base->Registro()) {
                     $obj = new Usuario();
-                    $obj->setear($row['idUsuario'],$row['usNombre'], $row['usPass'], $row['usMail']);
+                    $obj->setear($row['idUsuario'],$row['usNombre'], $row['usPass'], $row['usMail'], $row['usDeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }

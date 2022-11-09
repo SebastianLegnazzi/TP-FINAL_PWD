@@ -6,34 +6,16 @@ class C_Usuario{
     private function cargarObjeto($param){
         //print_r($param);
         $obj=null;
-        if(array_key_exists('usNombre',$param) && array_key_exists('usPass',$param)){
-            $obj=new Usuario();
-            $obj->setearSinId(
-            $param['usNombre'],
-            $param['usPass'],
-            $param['usMail']
-            );
-
+        if(array_key_exists('idUsuario',$param) and array_key_exists('usNombre',$param) and array_key_exists('usPass',$param) and array_key_exists('usMail',$param)){
+            $buscarNombre["usNombre"] = $param["usNombre"];
+            if($this->buscar($buscarNombre) == null){
+                $obj=new Usuario();
+                $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], null);
+            }
         }
         return $obj;
     }
 
-    //este es para modificar un objeto usuario
-    private function cargarObjetoConId($param){
-        //print_r($param);
-        $obj=null;
-        if(array_key_exists('usNombre',$param) && array_key_exists('usPass',$param)){
-
-            $obj=new Usuario();
-            $obj->setear(
-            $param['idUsuario'],
-            $param['usNombre'],
-            $param['usPass'],
-            $param['usMail']
-            );
-        }
-        return $obj;
-    }
     private function seteadosCamposClaves($param){
         $resp = false;
         if (isset($param['idUsuario'])){
@@ -44,9 +26,8 @@ class C_Usuario{
 
     public function alta($param){
         $resp=false;
+        $param['idUsuario'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
         $objUsuario=$this->cargarObjeto($param);
-        //print_r($objUsuario);
-//        verEstructura($elObjtTabla);
         if ($objUsuario!=null && $objUsuario->insertar()){
             if($this->altaRol($objUsuario)){
                 $resp=true;

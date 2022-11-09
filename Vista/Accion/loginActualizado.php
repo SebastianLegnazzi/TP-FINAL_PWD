@@ -1,6 +1,5 @@
 <?php
-include_once('../../configuracion.php');
-
+include_once("../estructura/Cabecera.php");
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
 $usuarioModificado=$objUsuario->modificacion($datos);
