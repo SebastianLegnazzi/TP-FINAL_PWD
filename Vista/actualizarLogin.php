@@ -1,13 +1,15 @@
 <?php
-include_once('../estructura/Cabecera.php');
+include_once('estructura/Cabecera.php');
 
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
+$objUsuarioRol=new C_UsuarioRol();
 $usuarioModificar=$objUsuario->buscar($datos);
+$descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
 
-<main class="form-signin w-25 m-auto mt-5 text-center">
-    <form class="row gy-2 text-center justify-content-center" method="post" action="loginActualizado.php">
+<main class="form-signin w-25 m-auto mt-5 text-center ">
+    <form class="row gy-2 text-center justify-content-center" method="post" action="Accion/loginActualizado.php">
     <div class="col-10" style="display:none;">
         <label for="floatingInput" class="form-label mt-2">ID</label>
         <input type="number" class="form-control" 
@@ -28,8 +30,31 @@ $usuarioModificar=$objUsuario->buscar($datos);
         <input type="password" class="form-control" placeholder="Password" 
                 name="usPass" id="usPass">
     </div>
+    <div class="col-8 mt-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="ROLE_USER" id="user" name="rol[]" checked>
+            <label class="form-check-label" for="user">
+                USER
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" name="rol[]" id="admin"
+            <?php 
+            foreach($descRolesUsuario[0] as $rol){
+                if($rol=="ROLE_ADMIN"){
+                    ?>checked
+                    <?php
+                }
+            }
+            ?>
+            >
+            <label class="form-check-label" for="admin">
+                ADMIN
+            </label>
+        </div>
+    </div>
 
-        <button class="btn btn-lg btn-success my-3 col-10 mt-4">MODIFY</button>
+    <button class="btn btn-lg btn-success my-3 col-10 mt-4">MODIFY</button>
 
     </form>
 </main>

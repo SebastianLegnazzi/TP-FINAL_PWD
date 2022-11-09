@@ -2,30 +2,24 @@
 
 include_once('Conector/BaseDatos.php');
 
-class UsuarioRol
-{
+class UsuarioRol{
     private $rol;
     private $usuario;
     private $mensajeOperacion;
-
-
 
     /**************************************/
     /**************** SET *****************/
     /**************************************/
 
-    public function setRol($rol)
-    {
+    public function setRol($rol){
         $this->rol = $rol;
     }
 
-    public function setUsuario($usuario)
-    {
+    public function setUsuario($usuario){
         $this->usuario = $usuario;
     }
 
-    public function setMensajeOperacion($mensajeOperacion)
-    {
+    public function setMensajeOperacion($mensajeOperacion){
         $this->mensajeOperacion = $mensajeOperacion;
     }
 
@@ -34,18 +28,15 @@ class UsuarioRol
     /**************** GET *****************/
     /**************************************/
 
-    public function getRol()
-    {
+    public function getRol(){
         return $this->rol;
     }
 
-    public function getUsuario()
-    {
+    public function getUsuario(){
         return $this->usuario;
     }
 
-    public function getMensajeOperacion()
-    {
+    public function getMensajeOperacion(){
         return $this->mensajeOperacion;
     }
 
@@ -68,16 +59,21 @@ class UsuarioRol
 
     //ver de agregar funcion setearConClave
 
-    public function setearRol($rol)
-    {
+    public function setearRol($rol){
         $this->setRol($rol);
     }
 
-    public function setearConClave($idUsuario, $idRol)
-    {
-        $this->setRol($idRol);
-        $this->setUsuario($idUsuario);
+    //VER SI HAY UNA FORMA MAS BONITA_
+    public function setearConClave($idUsuario,$idRol){
+        $rol=new Rol();
+        $rol->setIdRol($idRol);
+        $this->setRol($rol);
+        $usuario=new Usuario();
+        $usuario->setIdUsuario($idUsuario);
+        $this->setUsuario($usuario);
     }
+
+    
 
     //carga info de bd (idUsuario+IdRol+rolDescripcion) a objeto php
     public function cargar()
