@@ -6,7 +6,6 @@ class CompraEstadoTipo{
     private $cetDetalle;
     private $mensajeOperacion;
 
-
     public function __construct(){
         $this->idCompraEstadoTipo = "";
         $this->cetDescripcion = "";
