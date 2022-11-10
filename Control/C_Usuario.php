@@ -10,7 +10,11 @@ class C_Usuario{
             $buscarNombre["usNombre"] = $param["usNombre"];
             if($this->buscar($buscarNombre) == null){
                 $obj=new Usuario();
-                $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], null);
+                if(array_key_exists('usDeshabilitado',$param)){
+                    $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], $param["usDeshabilitado"]);
+                }else{
+                    $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], null);
+                }
             }
         }
         return $obj;
@@ -63,7 +67,7 @@ class C_Usuario{
         //echo "Estoy en modificacion";
         $resp=false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjetoConId($param);
+            $objUsuario=$this->cargarObjeto($param);
             if($objUsuario!=null and $objUsuario->modificar()){
                 $resp=true;
             }
@@ -108,6 +112,21 @@ class C_Usuario{
         }
         return $agregado;
     } 
+
+    function deshabilitar($param){
+        $resp=false;
+        $objUsuario=$this->buscar($param);
+        $fecha = new DateTime();
+        $fechaStamp=$fecha->format('Y-m-d H:i:s');
+        $param['usDeshabilitado']=$fechaStamp;
+        if ($this->seteadosCamposClaves($param)){
+            $objUsuario=$this->cargarObjeto($param);
+            if($objUsuario!=null and $objUsuario->modificar()){
+                $resp=true;
+            }
+        }
+        return $resp;
+    }
 
 }
 
