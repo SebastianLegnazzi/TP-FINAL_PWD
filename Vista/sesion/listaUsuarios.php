@@ -46,7 +46,7 @@ $i = 0;
                         <form method='post' action='actualizarLogin.php'>
                         <input style="display:none;" name='idUsuario' id='idUsuario' value='<?php echo $arrayUsers[$i]->getIdUsuario()?>'>
                         <button type="submit" class="text-decoration-none btn btn-outline-warning"> EDITAR </button>
-                        <button onclick="eliminar(<?php echo $arrayUsers[$i]->getIdUsuario()?>)" href="eliminarUsuario.php" class="text-decoration-none btn btn-outline-danger">
+                        <button onclick="deshabilitar(<?php echo $arrayUsers[$i]->getIdUsuario()?>)" class="text-decoration-none btn btn-outline-danger">
                         DESHABILITAR
                         </button>
                         </form>
@@ -67,3 +67,8 @@ $i = 0;
         <?php
     }
     ?>
+
+<script src="../js/mainUsuarios.js"></script>
+<?php
+include_once("../estructura/Pie.php")
+?>
