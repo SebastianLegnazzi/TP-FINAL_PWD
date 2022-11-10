@@ -58,6 +58,7 @@ include_once("../estructura/Cabecera.php");
     </div>
 </div>
 <script src="../js/validarCamposVacios.js"></script>
+<script src="../js/mainIniciarSesion.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
