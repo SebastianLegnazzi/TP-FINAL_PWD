@@ -73,7 +73,7 @@ class Usuario{
         $this->usNombre = "";
         $this->usPass = "";
         $this->usMail = "";
-        $this->usDeshabilitado = NULL;
+        $this->usDeshabilitado = "";
         $this->mensajeOperacion="";
     }
 
