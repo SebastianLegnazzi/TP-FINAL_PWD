@@ -225,7 +225,7 @@ hr {
 }
 
 /* Detalle */
-
+/* 
 #detalle img {
     width: 100%;
     height: 100%;
@@ -238,13 +238,13 @@ hr {
     font-size: 20px;
     box-shadow: 1px 2px 5px #111;
 }
-
+/*  */
 #detalle h3 {
     margin: 0 0 20px 50px;
     color: #e285d9;
     font-size: 50px;
 }
-
+/*
 #content__foto__detalle {
     width: 450px;
     height: 500px;
@@ -275,7 +275,7 @@ hr {
     box-shadow: 1px 2px 8px #111;
     text-align: center;
     margin-bottom: 30px;
-}
+} */
 
 /* Footer */
 

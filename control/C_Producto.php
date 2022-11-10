@@ -103,7 +103,7 @@ class C_Producto
                 $where.=" and idproducto ='".$param["idproducto"]."'";
             }
         }
-        $objProducto= new UsuarioRol();
+        $objProducto= new Producto();
         $arregloProductos = $objProducto->listar($where);
         return $arregloProductos;
     }

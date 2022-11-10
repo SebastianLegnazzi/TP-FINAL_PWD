@@ -99,19 +99,19 @@ class Producto
     }
 
     /**
-     * Obtiene el valor de mensajeFuncion
-     */
-    public function getMensajeFuncion()
-    {
-        return $this->mensajeFuncion;
-    }
-
-    /**
      * Obtiene el valor de urlImagen
      */
     public function getUrlImagen()
     {
         return $this->urlImagen;
+    }
+
+    /**
+     * Obtiene el valor de mensajeFuncion
+     */
+    public function getMensajeFuncion()
+    {
+        return $this->mensajeFuncion;
     }
 
     /**************************************/
@@ -139,11 +139,12 @@ class Producto
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "INSERT INTO producto (idproducto, pronombre, prodetalle, procantstock) VALUES (
+        $consulta = "INSERT INTO producto (idproducto, pronombre, prodetalle, procantstock, urlImagen) VALUES (
 		'" . $this->getIdProducto() . "',
 		'" . $this->getNombre() . "',
 		'" . $this->getDetalle() . "',
-		'" . $this->getCantStock() . "')";
+		'" . $this->getCantStock() . "'.
+		'" . $this->getUrlImagen() . "')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
@@ -165,6 +166,7 @@ class Producto
         pronombre = '{$this->getNombre()}',
         prodetalle = '{$this->getDetalle()}',
         procantstock = '{$this->getCantStock()}',
+        urlImagen = '{$this->getUrlImagen()}',
         WHERE idproducto = '{$this->getIdProducto()}'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
