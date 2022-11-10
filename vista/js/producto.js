@@ -67,7 +67,7 @@ function sumCompra() {
 /**************************************/
 var arrayDatosProducto = [];
 
-function verDetalle(datos) {
+/* function verDetalle(datos) {
     let detallePopUp, imagen, nombre, descripcion, precio;
     detallePopUp = document.getElementById("detalle");
     imagen = detallePopUp.children[0].children[0].children[0];
@@ -78,18 +78,11 @@ function verDetalle(datos) {
     nombre.innerHTML = datos.childNodes[3].childNodes[1].childNodes[0].nodeValue;
     descripcion.innerHTML = datos.childNodes[3].childNodes[3].childNodes[0].nodeValue;
     precio.innerHTML = "Precio: $ " + datos.childNodes[3].childNodes[5].childNodes[0].nodeValue;
-    detallePopUp.style = "display: flex;";
     arrayDatosProducto = [datos.children[0].children[0].src,
     datos.childNodes[3].childNodes[1].childNodes[0].nodeValue,
     datos.childNodes[3].childNodes[3].childNodes[0].nodeValue,
     datos.childNodes[3].childNodes[5].childNodes[0].nodeValue]
-}
-
-function cerrarDetalle() {
-    let detallePopUp;
-    detallePopUp = document.getElementById("detalle");
-    detallePopUp.style = "display: none;"
-}
+} */
 
 /**************************************/
 /************* FILTER *****************/
