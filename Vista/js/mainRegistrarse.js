@@ -45,13 +45,15 @@ function registerFailure(){
         showConfirmButton: false,
         timer: 1500
     })
+    location.reload();
 }
 
 function captchaFailure(){
     Swal.fire({
         icon: 'error',
-        title: 'Debe confirmar que usted no es un robot',
+        title: 'El captcha no se realizo correctamente!',
         showConfirmButton: false,
         timer: 1500
     })
+    location.reload();
 }
