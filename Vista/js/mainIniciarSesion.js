@@ -30,7 +30,9 @@ function registerSuccess(){
         showConfirmButton: false,
         timer: 1500
     })
-    setTimeout("redireccionarIndex()", 1450);
+    setTimeout(function(){
+        redireccionarIndex();
+    },1500);
 }
 
 
@@ -45,7 +47,9 @@ function registerFailure(){
         showConfirmButton: false,
         timer: 1500
     })
-    location.reload();
+    setTimeout(function(){
+        recargarPagina();
+    },1500);
 }
 
 function captchaFailure(){
@@ -55,5 +59,8 @@ function captchaFailure(){
         showConfirmButton: false,
         timer: 1500
     })
+}
+
+function recargarPagina(){
     location.reload();
 }
