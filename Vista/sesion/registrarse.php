@@ -66,7 +66,10 @@ include_once("../estructura/Cabecera.php");
     </div>
 </div>
 <script src="../js/validarCamposVacios.js"></script>
+<<<<<<< Updated upstream
 <script src="../js/mainRegistrarse.js"></script>
+=======
+>>>>>>> Stashed changes
 <?php
 include_once("../estructura/Pie.php")
 ?>

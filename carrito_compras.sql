@@ -179,7 +179,8 @@ CREATE TABLE IF NOT EXISTS `rol` (
 
 INSERT INTO `rol` (`idRol`, `rolDescripcion`) VALUES
 (1, 'ROLE_ADMIN'),
-(2, 'ROLE_USER');
+(2, 'ROLE_USER'),
+(3, 'ROLE_DEPOSITO');
 
 -- --------------------------------------------------------
 
