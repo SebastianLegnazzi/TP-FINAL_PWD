@@ -26,9 +26,9 @@ include_once("../estructura/Cabecera.php");
 </script>
 <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h2 class="fw-bold mb-0">Iniciar Sesion</h2>
+        <div class="modal-content rounded-4 shadow rounded p-3 mb-2 bg-dark">
+            <div class="modal-header p-5 pb-4 border-bottom-0 text-center">
+                <h2 class="mb-0 text-white ms-5 ps-3">INICIAR SESION</h2>
             </div>
             <div class="modal-body p-5 pt-0">
                 <form class="col needs-validation" method="post" action="../Accion/accionIniciarSesion.php" novalidate>
@@ -51,13 +51,14 @@ include_once("../estructura/Cabecera.php");
                         </div>
                     </div>
                     <div class="mtcaptcha"></div>
-                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" onclick="cargarDatos()" type="submit">Iniciar</button>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" onclick="cargarDatos()" type="submit">INICIAR</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <script src="../js/validarCamposVacios.js"></script>
+<script src="../js/mainIniciarSesion.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
