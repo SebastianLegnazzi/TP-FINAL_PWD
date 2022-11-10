@@ -115,16 +115,15 @@ class C_Usuario{
 
     function deshabilitar($param){
         $resp=false;
-        $objUsuario=$this->buscar($param);
+        $arrayObjUsuarios=$this->buscar($param);
         $fecha = new DateTime();
         $fechaStamp=$fecha->format('Y-m-d H:i:s');
-        $param['usDeshabilitado']=$fechaStamp;
-        if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjeto($param);
+        $objUsuario=$arrayObjUsuarios[0];
+        $objUsuario->setUsDeshabilitado($fechaStamp);
+        print_r($objUsuario);
             if($objUsuario!=null and $objUsuario->modificar()){
                 $resp=true;
             }
-        }
         return $resp;
     }
 
