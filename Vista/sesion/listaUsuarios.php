@@ -46,8 +46,7 @@ $i = 0;
                         <form method='post' action='actualizarLogin.php'>
                         <input style="display:none;" name='idUsuario' id='idUsuario' value='<?php echo $arrayUsers[$i]->getIdUsuario()?>'>
                         <button class="text-decoration-none btn btn-outline-warning"> EDITAR </button>
-                        <button id="deshabilitar" type="button" onclick="deshabilitar(<?php echo $arrayUsers[$i]->getIdUsuario()?>)" 
-                                class="text-decoration-none btn btn-outline-danger">
+                        <button type="submit" class="text-decoration-none btn btn-outline-danger deshabilitar">
                         DESHABILITAR
                         </button>
                         </form>
