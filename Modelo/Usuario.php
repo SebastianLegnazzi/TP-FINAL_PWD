@@ -82,7 +82,7 @@ class Usuario{
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
         $this->setUsMail($usMail);
-        $this->setUsMail($usDeshabilitado);
+        $this->setUsDeshabilitado($usDeshabilitado);
     }
 
     public function cargar(){
@@ -113,7 +113,7 @@ class Usuario{
         $sql = "INSERT INTO usuario(usNombre,usPass,usMail) 
                 VALUES('" .$this->getUsNombre(). "','" 
                 .$this->getUsPass(). "','" 
-                .$this->getusmail(). "');";
+                .$this->getUsMail(). "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdUsuario($elid);
@@ -132,7 +132,8 @@ class Usuario{
         $base = new BaseDatos();
         $sql = "UPDATE usuario SET usNombre='" . $this->getUsNombre() . "',
         usPass='" . $this->getUsPass() . "',
-        usMail='" . $this->getUsMail() . "'
+        usMail='" . $this->getUsMail() . "',
+        usDeshabilitado='" . $this->getUsDeshabilitado() . "'
         WHERE idUsuario=" . $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
