@@ -120,7 +120,6 @@ class C_Usuario{
         $fechaStamp=$fecha->format('Y-m-d H:i:s');
         $objUsuario=$arrayObjUsuarios[0];
         $objUsuario->setUsDeshabilitado($fechaStamp);
-        print_r($objUsuario);
             if($objUsuario!=null and $objUsuario->modificar()){
                 $resp=true;
             }
