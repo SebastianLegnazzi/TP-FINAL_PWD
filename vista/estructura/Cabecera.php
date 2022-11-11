@@ -1,8 +1,17 @@
 <?php
 include "../../configuracion.php";
 $objSession=new C_Session();
-print_r($_SESSION);
-echo $objSession->activa()?"ACTIVA":"NO-ACTIVA";
+$idRoles=$_SESSION['roles'];
+$objMenuRol=new C_MenuRol();
+foreach($idRoles as $idRol){
+  $param['idRol']=$idRol;
+  $arreglo=$objMenuRol->buscar($param);
+}
+$menues=[];
+foreach($arreglo as $objMenuRol){
+  array_push($menues,$objMenuRol->getMenu());
+}
+print_r($menues);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +40,12 @@ echo $objSession->activa()?"ACTIVA":"NO-ACTIVA";
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="../../index.php" role="button" class="px-2 btn btn-lg btn-outline-light">Home</a></li>
-          
+          <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
+          <li><a href="../Cliente/productos.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Productos</a></li>
+          <li><a href="../Cliente/compras.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Mis compras</a></li>
+          <li><a href="../Admin/listaUsuarios.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Usuarios</a></li>
+          <li><a href="../Admin/gestionarPermisos.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Permisos</a></li>
+          <li><a href="../Deposito/gestionarCompras.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Estado de Compras</a></li>
         </ul>
 
 
