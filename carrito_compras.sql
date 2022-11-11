@@ -141,6 +141,16 @@ CREATE TABLE IF NOT EXISTS `menurol` (
   KEY `fkmenurol_2` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `menurol`
+--
+
+INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
+(9, 1),
+(10, 1),
+(7, 2),
+(8, 2),
+(11, 3);
 -- --------------------------------------------------------
 
 --
