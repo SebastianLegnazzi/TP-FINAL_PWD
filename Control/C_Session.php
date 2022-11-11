@@ -60,10 +60,7 @@ class C_Session{
     }
 
     public function activa(){
-        $resp = false;
-        if($this->getObjUsuario() != null){                      
-            $resp = true;
-        }
+        $resp=isset($_SESSION["nombreUsuario"])? TRUE : FALSE;
         return $resp;
     }
 
