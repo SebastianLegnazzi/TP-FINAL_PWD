@@ -130,10 +130,11 @@ class Usuario{
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
+        $deshabilitado = $this->getUsDeshabilitado();
+        $deshabilitado==null ? '': $deshabilitado=",usDeshabilitado='".$this->getUsDeshabilitado()."' ";
         $sql = "UPDATE usuario SET usNombre='" . $this->getUsNombre() . "',
         usPass='" . $this->getUsPass() . "',
-        usMail='" . $this->getUsMail() . "',
-        usDeshabilitado='" . $this->getUsDeshabilitado() . "'
+        usMail='" . $this->getUsMail()."' $deshabilitado
         WHERE idUsuario=" . $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
