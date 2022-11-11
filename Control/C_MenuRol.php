@@ -118,5 +118,18 @@ class C_MenuRol{
         $arreglo = $objMenuRol->listar($where);  
         return $arreglo; 
     }
+
+    //obtengo los objetos menu a partir del array de idRoles
+    public function menuesByIdRol($idRoles){
+        foreach($idRoles as $idRol){
+            $param['idRol']=$idRol;
+            $arreglo=$this->buscar($param);
+        }
+        $menues=[];
+        foreach($arreglo as $objMenuRol){
+            array_push($menues,$objMenuRol->getMenu());
+        }
+        return $menues;
+    }
 }
 ?>
