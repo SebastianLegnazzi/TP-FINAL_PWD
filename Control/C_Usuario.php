@@ -126,6 +126,17 @@ class C_Usuario{
         return $resp;
     }
 
+    function habilitar($param){
+        $resp=false;
+        $arrayObjUsuarios=$this->buscar($param);
+        $objUsuario=$arrayObjUsuarios[0];
+        $objUsuario->setUsDeshabilitado(null);
+            if($objUsuario!=null and $objUsuario->modificar()){
+                $resp=true;
+            }
+        return $resp;
+    }
+
 }
 
 
