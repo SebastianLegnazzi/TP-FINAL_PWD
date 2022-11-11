@@ -34,7 +34,7 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="ROLE_USER" id="user" name="rol[]" checked>
             <label class="form-check-label" for="user">
-                USER
+                CLIENTE
             </label>
         </div>
         <div class="form-check">

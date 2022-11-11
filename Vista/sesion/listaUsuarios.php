@@ -68,7 +68,7 @@ $i = 0;
         <?php
     }
     ?>
-
+</div>
 <script src="../js/deshabilitarUsuarios.js"></script>
 <?php
 include_once("../estructura/Pie.php")
