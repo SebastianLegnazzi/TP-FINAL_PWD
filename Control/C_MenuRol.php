@@ -121,13 +121,24 @@ class C_MenuRol{
 
     //obtengo los objetos menu a partir del array de idRoles
     public function menuesByIdRol($idRoles){
+        $objMenuObjRol=[];
         foreach($idRoles as $idRol){
             $param['idRol']=$idRol;
-            $arreglo=$this->buscar($param);
+            array_push($objMenuObjRol,$this->buscar($param));
+        }
+        $menuesRoles=[];
+        foreach($objMenuObjRol as $objMenuRol){
+            if(is_array($objMenuRol)){
+                foreach($objMenuRol as $objMR){
+                    array_push($menuesRoles,$objMR);
+                }
+            }else{
+                array_push($menuesRoles,$objMenuRol);
+            }
         }
         $menues=[];
-        foreach($arreglo as $objMenuRol){
-            array_push($menues,$objMenuRol->getMenu());
+        foreach($menuesRoles as $objetos){
+            array_push($menues,$objetos->getMenu());
         }
         return $menues;
     }
