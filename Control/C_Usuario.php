@@ -7,14 +7,11 @@ class C_Usuario{
         //print_r($param);
         $obj=null;
         if(array_key_exists('idUsuario',$param) and array_key_exists('usNombre',$param) and array_key_exists('usPass',$param) and array_key_exists('usMail',$param)){
-            $buscarNombre["usNombre"] = $param["usNombre"];
-            if($this->buscar($buscarNombre) == null){
-                $obj=new Usuario();
-                if(array_key_exists('usDeshabilitado',$param)){
-                    $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], $param["usDeshabilitado"]);
-                }else{
-                    $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], null);
-                }
+            $obj=new Usuario();
+            if(array_key_exists('usDeshabilitado',$param)){
+                $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], $param["usDeshabilitado"]);
+            }else{
+                $obj->setear($param["idUsuario"],$param["usNombre"],$param["usPass"],$param["usMail"], NULL);
             }
         }
         return $obj;
@@ -24,8 +21,8 @@ class C_Usuario{
         $resp = false;
         if (isset($param['idUsuario'])){
             $resp = true;
-            return $resp;
         }
+        return $resp;
     }
 
     public function alta($param){
