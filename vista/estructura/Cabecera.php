@@ -1,17 +1,12 @@
 <?php
 include "../../configuracion.php";
 $objSession=new C_Session();
-$idRoles=$_SESSION['roles'];
-$objMenuRol=new C_MenuRol();
-foreach($idRoles as $idRol){
-  $param['idRol']=$idRol;
-  $arreglo=$objMenuRol->buscar($param);
+if ($objSession->activa()){
+  $idRoles=$_SESSION['roles'];
+  $objMenuRol=new C_MenuRol();
+  $menues=$objMenuRol->menuesByIdRol($idRoles);
+  print_r($menues);
 }
-$menues=[];
-foreach($arreglo as $objMenuRol){
-  array_push($menues,$objMenuRol->getMenu());
-}
-print_r($menues);
 ?>
 <!DOCTYPE html>
 <html lang="en">
