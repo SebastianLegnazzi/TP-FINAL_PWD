@@ -60,14 +60,7 @@ class C_Session{
     }
 
     public function activa(){
-        $resp = false;
-        if ( php_sapi_name() !== 'cli' ) {
-            if ( version_compare(phpversion(), '5.4.0', '>=') ) {
-                $resp = session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
-            } else {
-                $resp = session_id() === '' ? FALSE : TRUE;
-            }
-        }
+        $resp=isset($_SESSION["nombreUsuario"])? TRUE : FALSE;
         return $resp;
     }
 
