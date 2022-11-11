@@ -52,7 +52,11 @@ class C_Session{
                 foreach($arrayObjUsuarioRol as $rol){
                     array_push($arrayRol, $rol->getRol());
                 }
-                $this->iniciar($param["usNombre"], $arrayRol);
+                $idRoles=[];
+                foreach($arrayRol as $objRol){
+                    array_push($idRoles,$objRol->getIdRol());
+                }
+                $this->iniciar($param["usNombre"], $idRoles);
                 $resp = true;
             }
         }
