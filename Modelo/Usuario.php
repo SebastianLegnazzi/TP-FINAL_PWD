@@ -73,7 +73,7 @@ class Usuario{
         $this->usNombre = "";
         $this->usPass = "";
         $this->usMail = "";
-        $this->usDeshabilitado = NULL;
+        $this->usDeshabilitado = "";
         $this->mensajeOperacion="";
     }
 
@@ -82,7 +82,7 @@ class Usuario{
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
         $this->setUsMail($usMail);
-        $this->setUsMail($usDeshabilitado);
+        $this->setUsDeshabilitado($usDeshabilitado);
     }
 
     public function cargar(){
@@ -113,7 +113,7 @@ class Usuario{
         $sql = "INSERT INTO usuario(usNombre,usPass,usMail) 
                 VALUES('" .$this->getUsNombre(). "','" 
                 .$this->getUsPass(). "','" 
-                .$this->getusmail(). "');";
+                .$this->getUsMail(). "');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setIdUsuario($elid);
@@ -130,9 +130,11 @@ class Usuario{
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
+        $deshabilitado = $this->getUsDeshabilitado();
+        $deshabilitado==null ? '': $deshabilitado=",usDeshabilitado='".$this->getUsDeshabilitado()."' ";
         $sql = "UPDATE usuario SET usNombre='" . $this->getUsNombre() . "',
         usPass='" . $this->getUsPass() . "',
-        usMail='" . $this->getUsMail() . "'
+        usMail='" . $this->getUsMail()."' $deshabilitado
         WHERE idUsuario=" . $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
