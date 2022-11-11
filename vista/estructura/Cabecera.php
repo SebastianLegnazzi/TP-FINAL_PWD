@@ -1,6 +1,8 @@
 <?php
 include "../../configuracion.php";
 $objSession=new C_Session();
+print_r($_SESSION);
+echo $objSession->activa()?"ACTIVA":"NO-ACTIVA";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +19,7 @@ $objSession=new C_Session();
   <script src="../js/producto.js"></script>
   <script src="../alertas/dist/sweetalert2.all.min.js"></script>
   <script src="../jQuery/jquery-3.6.1.min.js"></script>
+  <script src="../js/cerrarSesion.js"></script>
 </head>
 
 <body>
@@ -35,9 +38,13 @@ $objSession=new C_Session();
 
         <div class="text-end">
           <?php if ($objSession->activa()){
-            echo "<button class='btn btn-lg btn-outline-light me-2'>SALIR</button>";
+            ?>
+            <button type='button' class='btn btn-lg btn-outline-light me-2' onclick="cerrarSesion()">SALIR</button>
+            <?php
             }else{
-            echo "<a href='../sesion/IniciarSesion.php' class='btn btn-lg btn-outline-light me-2'>INGRESAR</a>";
+              ?>
+            <a href='../sesion/IniciarSesion.php' class='btn btn-lg btn-outline-light me-2'>INGRESAR</a>
+              <?php
             }?>
         </div>
       </div>
