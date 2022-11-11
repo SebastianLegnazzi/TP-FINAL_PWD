@@ -121,11 +121,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabilitado`) VALUES
-(7, 'nuevo', 'kkkkk', NULL, NULL),
-(8, 'nuevo', 'kkkkk', NULL, NULL),
-(9, 'nuevo', 'kkkkk', 7, NULL),
-(10, 'nuevo', 'kkkkk', NULL, NULL),
-(11, 'nuevo', 'kkkkk', NULL, NULL);
+(7, 'Productos', '../Cliente/productos.php', NULL, NULL),
+(8, 'Mis Compras', '../Cliente/compras.php', NULL, NULL),
+(9, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
+(10, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
+(11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
