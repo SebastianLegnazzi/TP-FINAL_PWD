@@ -1,11 +1,11 @@
 <?php
 include "../../configuracion.php";
 $objSession=new C_Session();
+$menues=[];
 if ($objSession->activa()){
   $idRoles=$_SESSION['roles'];
   $objMenuRol=new C_MenuRol();
   $menues=$objMenuRol->menuesByIdRol($idRoles);
-  print_r($menues);
 }
 ?>
 <!DOCTYPE html>
@@ -36,11 +36,13 @@ if ($objSession->activa()){
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
-          <li><a href="../Cliente/productos.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Productos</a></li>
-          <li><a href="../Cliente/compras.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Mis compras</a></li>
-          <li><a href="../Admin/listaUsuarios.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Usuarios</a></li>
-          <li><a href="../Admin/gestionarPermisos.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Permisos</a></li>
-          <li><a href="../Deposito/gestionarCompras.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Estado de Compras</a></li>
+          <?php
+          foreach($menues as $objMenu){
+            ?>
+            <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
 
 
