@@ -17,7 +17,7 @@ $i = 0;
     <?php
     if ($cantUsers > -1) {
     ?>
-        <div class="border rounded p-3 mb-2 bg-dark text-white">
+        <div class="rounded p-3 mb-2 bg-dark text-white">
         <table class="table table-dark table-hover p-5">
             <thead class="text-center">
             <tr>
@@ -45,9 +45,9 @@ $i = 0;
                     </td>
                     <td class="text-center"> <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?"NO":"SI";?> </td>
                     <td>
-                        <form method='post'>
+                        <form method='post' action='actualizarLogin.php'>
                         <input style="display:none;" name='idUsuario' id='idUsuario' value='<?php echo $arrayUsers[$i]->getIdUsuario()?>'>
-                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-warning"> EDITAR </button>
+                        <button type="submit" class="ms-3 text-decoration-none btn btn-outline-warning"> EDITAR </button>
                         <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?
                         "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger deshabilitar'>
                         DESHABILITAR
