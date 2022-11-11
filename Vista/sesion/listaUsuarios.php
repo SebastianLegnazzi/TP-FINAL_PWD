@@ -45,14 +45,14 @@ $i = 0;
                     </td>
                     <td class="text-center"> <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?"NO":"SI";?> </td>
                     <td>
-                        <form method='post' action='actualizarLogin.php'>
+                        <form method='post' action='actualizarLogin.php' id="'<?php echo $arrayUsers[$i]->getIdUsuario()?>">
                         <input style="display:none;" name='idUsuario' id='idUsuario' value='<?php echo $arrayUsers[$i]->getIdUsuario()?>'>
                         <button type="submit" class="ms-3 text-decoration-none btn btn-outline-warning"> EDITAR </button>
                         <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?
                         "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger deshabilitar'>
                         DESHABILITAR
                         </button>":
-                        "<button style='display:none;'type='button' class='mx-2 text-decoration-none btn btn-outline-danger habilitar'>
+                        "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger habilitar'>
                         HABILITAR
                         </button>";
                         ?>

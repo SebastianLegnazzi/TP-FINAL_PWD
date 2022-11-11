@@ -1,5 +1,6 @@
 $(document).on('click', '.deshabilitar', function() {
-    const form=$('form');
+    const form=$(this.parentNode);
+    console.log(form);
     mostrarAdvertencia(form);
 }
 )
@@ -61,7 +62,7 @@ function deshabilitarFailure(){
 }
 
 $(document).on('click', '.habilitar', function() {
-    const form=$('form');
+    const form=$(this.parentNode);
     mostrarAdvertenciaHabilitar(form);
 }
 )
