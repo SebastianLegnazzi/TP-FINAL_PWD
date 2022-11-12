@@ -51,7 +51,7 @@ class C_Usuario{
     public function baja($param){
         $resp=false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjetoConId($param);
+            $objUsuario=$this->cargarObjeto($param);
             if ($objUsuario!=null && $objUsuario->eliminar()){
                 $resp = true;
             }
@@ -63,7 +63,7 @@ class C_Usuario{
         //echo "Estoy en modificacion";
         $resp=false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjetoConId($param);
+            $objUsuario=$this->cargarObjeto($param);
             if($objUsuario!=null and $objUsuario->modificar()){
                 $resp=true;
             }
