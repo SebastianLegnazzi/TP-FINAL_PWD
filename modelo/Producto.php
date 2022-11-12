@@ -158,7 +158,7 @@ class Producto
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "INSERT INTO producto (idProducto, proNombre, proDetalle, proCantStock, proPrecio urlImagen) VALUES (
+        $consulta = "INSERT INTO producto (idProducto, proNombre, proDetalle, proCantStock, proPrecio, urlImagen) VALUES (
 		'" . $this->getIdProducto() . "',
 		'" . $this->getNombre() . "',
 		'" . $this->getDetalle() . "',
@@ -215,6 +215,7 @@ class Producto
                 if ($res > 0) {
                     $row = $base->Registro();
                     $this->setear($row['idProducto'], $row['proNombre'], $row['proDetalle'], $row['proCantStock'], $row['proPrecio'], $row['urlImagen']);
+                    $resp = true;
                 }
             }
         } else {

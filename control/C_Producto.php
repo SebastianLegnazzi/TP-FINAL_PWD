@@ -13,12 +13,10 @@ class C_Producto
     {
         $objProducto = null;
 
-        if (array_key_exists('idproducto', $param) and array_key_exists('pronombre', $param) and array_key_exists('prodetalle', $param) and array_key_exists('procantstock', $param) and array_key_exists('urlImagen', $param)) {
-            $objProducto = new UsuarioRol();
-            if(!$objProducto->cargar($param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['urlImagen'])){
-                $objProducto = null;
+        if (array_key_exists('idProducto', $param) and array_key_exists('proNombre', $param) and array_key_exists('proDetalle', $param) and array_key_exists('proCantStock', $param) and  array_key_exists('proPrecio', $param) and array_key_exists('urlImagen', $param)) {
+            $objProducto = new Producto();
+            $objProducto->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock'], $param['proPrecio'], $param['urlImagen']);
             }
-        }
         return $objProducto;
     }
 
@@ -31,7 +29,7 @@ class C_Producto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idproducto'])) {
+        if (isset($param['idProducto'])) {
             $resp = true;
         }
         return $resp;
@@ -45,7 +43,7 @@ class C_Producto
     public function alta($param)
     {
         $resp = false;
-        $param['idproducto'] = null;
+        $param['idProducto'] = null;
         $objProducto = $this->cargarObjeto($param);
         if ($objProducto!=null) {
             if($objProducto->insertar()){
@@ -100,7 +98,7 @@ class C_Producto
         $where = " true ";
         if ($param<>null) {
             if (isset($param)) {
-                $where.=" and idproducto ='".$param["idproducto"]."'";
+                $where.=" and idProducto ='".$param["idProducto"]."'";
             }
         }
         $objProducto= new Producto();
@@ -108,4 +106,3 @@ class C_Producto
         return $arregloProductos;
     }
 }
-?>

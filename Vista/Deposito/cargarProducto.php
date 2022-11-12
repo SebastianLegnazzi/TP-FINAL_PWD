@@ -24,9 +24,18 @@ include_once("../estructura/Cabecera.php");
                 </div>
             </div>
             <div class="col-lg-7 col-12 mt-2">
-                <label>Stock del Producto: </label><input type="number" min='0' max='10' name="proCantStock" id="input_stock" class="form-control" required>
+                <label>Stock del Producto: </label><input type="number" min='0' name="proCantStock" id="input_stock" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una cantidad válida!
+                </div>
+                <div class="valid-feedback password-correcta">
+                    Correcto!
+                </div>
+            </div>
+            <div class="col-lg-7 col-12 mt-2">
+                <label>Precio del Producto: </label><input type="number" min='0' name="proPrecio" id="input_precio" class="form-control" required>
+                <div class="invalid-feedback">
+                    Ingrese un precio valido válida!
                 </div>
                 <div class="valid-feedback password-correcta">
                     Correcto!

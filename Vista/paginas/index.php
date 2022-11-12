@@ -70,6 +70,8 @@ include_once("../estructura/Cabecera.php");
                             }else{
                                 echo "<h2 class='text-warning text-center'> No tiene ningun producto agregado al carrito!</h2>";
                             }
+                        }else{
+                            echo "<h2 class='text-warning text-center'> Debes crear una sesion para poder comprar productos! </h2>";
                         }
                         ?>
                     </div>

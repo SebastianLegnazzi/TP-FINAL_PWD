@@ -160,7 +160,7 @@ INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
 DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `idProducto` bigint(20) NOT NULL AUTO_INCREMENT,
-  `proNombre` int(11) NOT NULL,
+  `proNombre` char(30) NOT NULL,
   `proDetalle` varchar(512) NOT NULL,
   `proCantStock` int(11) NOT NULL,
   `proPrecio` int(11) NOT NULL,
