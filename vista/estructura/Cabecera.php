@@ -1,5 +1,12 @@
 <?php
 include "../../configuracion.php";
+$objSession=new C_Session();
+$menues=[];
+if ($objSession->activa()){
+  $idRoles=$_SESSION['roles'];
+  $objMenuRol=new C_MenuRol();
+  $menues=$objMenuRol->menuesByIdRol($idRoles);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,26 +22,41 @@ include "../../configuracion.php";
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../js/producto.js"></script>
   <script src="../alertas/dist/sweetalert2.all.min.js"></script>
+  <script src="../jQuery/jquery-3.6.1.min.js"></script>
+  <script src="../js/cerrarSesion.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example" id="header">
-    <div class="container-fluid">
-      <span class="navbar-brand text-white" style="font-family: 'Chivo', sans-serif;">| De Todo Un Poco |</span>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<header class="p-3 bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="../../index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none pe-3">
+          LOSEDIF
+        </a>
 
-      <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav me-auto mb-2 m-2 mb-sm-0">
-          <li class="nav-item">
-            <a class="nav-link text-white btn btn-primary m-2" href="../paginas/index.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
-          </li>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
+          <?php
+          foreach($menues as $objMenu){
+            ?>
+            <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
-        <div id="content__login" class="d-flex align-self-center">
-            <a class="nav-link text-white btn btn-secondary m-2" href="../sesion/registrarse.php" style="font-family: 'Chivo', sans-serif;">Registrarse</a>
-            <a class="nav-link text-white btn btn-secondary m-2" href="../sesion/IniciarSesion.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
+
+
+        <div class="text-end">
+          <?php if ($objSession->activa()){
+            ?>
+            <button type='button' class='btn btn-lg btn-outline-light me-2' onclick="cerrarSesion()">SALIR</button>
+            <?php
+            }else{
+              ?>
+            <a href='../sesion/IniciarSesion.php' class='btn btn-lg btn-outline-light me-2'>INGRESAR</a>
+              <?php
+            }?>
         </div>
       </div>
     </div>
-  </nav>
+  </header>
