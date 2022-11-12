@@ -111,7 +111,7 @@ class C_MenuRol{
             if  (isset($param['idMenu']))
                 $where.=" and idMenu =".$param['idMenu'];
             if  (isset($param['idRol']))
-                 $where.=" and idRol ='".$param['idRol']."'";
+                 $where.=" and idRol =".$param['idRol'];
         }
 
         $objMenuRol = new MenuRol();

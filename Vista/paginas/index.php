@@ -56,7 +56,7 @@ include_once("../estructura/Cabecera.php");
                             </tbody>
                         </table>
                     </div>
-                    <span id="total-Compra"></span>
+                    <span id="total-Compra" ></span>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success me-2" id="detalle__comprar__carrito" onclick="confirmarCompra()">Comprar</button>
