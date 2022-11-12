@@ -33,25 +33,22 @@ include_once("../estructura/Cabecera.php");
                 </div>
             </div>
             <div class="col-lg-7 col-12 mt-2">
-                <label>Repetir la Contraseña: </label><input type="password" id="input_contraseñaRep" class="form-control" required>
+                <label>Ingrese url de la imagen: </label><input type="url" name="urlImagen" id="input_urlImagen" class="form-control" required>
                 <div class="invalid-feedback">
-                    Ingrese una contraseña!
-                </div>
-                <div class="invalid-password" style="display: none; color: red;">
-                    Las contraseñas no coinciden
+                    Ingrese un url válido!
                 </div>
                 <div class="valid-feedback password-correcta">
                     Correcto!
                 </div>
             </div>
-            <input class="btn btn-dark mt-2 col-8" type="submit" name="boton_enviar"  id="boton_enviar" value="REGISTRARSE">
-            <a href="IniciarSesion.php" class="link-warning mt-4">Ya tengo cuenta</a>
+
+            <input class="btn btn-dark mt-4 col-7" type="submit" name="boton_enviar"  id="boton_enviar" value="SUBIR PRODUCTO">
             </div>
         </form>
         
     </div>
 </div>
-<script src="js/validarCamposVacios.js"></script>
+<script src="../js/validarCamposVacios.js"></script>
 
 <?php
 include_once("../estructura/Pie.php");
