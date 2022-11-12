@@ -127,7 +127,7 @@ class C_Usuario{
         $resp=false;
         $arrayObjUsuarios=$this->buscar($param);
         $objUsuario=$arrayObjUsuarios[0];
-        $objUsuario->setUsDeshabilitado(null);
+        $objUsuario->setUsDeshabilitado('habilitar');
             if($objUsuario!=null and $objUsuario->modificar()){
                 $resp=true;
             }

@@ -131,7 +131,16 @@ class Usuario{
         $resp = false;
         $base = new BaseDatos();
         $deshabilitado = $this->getUsDeshabilitado();
-        $deshabilitado==null ? '': $deshabilitado=",usDeshabilitado='".$this->getUsDeshabilitado()."' ";
+        if($deshabilitado==null){
+            //PARA EL CASO QUE QUIERA MODIFICAR OBJETO SIN TOCAR USDESHABILITADO
+            $deshabilitado=='';
+        }else if($deshabilitado=='habilitar'){
+            //PARA EL CASO QUE QUIERA HABILITARLO
+            $deshabilitado=",usDeshabilitado=NULL";
+        }else {
+            //PARA EL CASO QUE QUIERA DESHABILITARLO
+            $deshabilitado=",usDeshabilitado='".$this->getUsDeshabilitado()."' ";
+        }
         $sql = "UPDATE usuario SET usNombre='" . $this->getUsNombre() . "',
         usPass='" . $this->getUsPass() . "',
         usMail='" . $this->getUsMail()."' $deshabilitado
