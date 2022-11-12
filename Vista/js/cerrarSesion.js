@@ -26,7 +26,7 @@ function sesionCerrada(){
         timer: 1500
     })
     setTimeout(function(){
-        location.reload();
+        location.href = "../paginas/index.php";
     },1500);
 }
 
