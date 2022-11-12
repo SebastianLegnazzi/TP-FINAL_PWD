@@ -163,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `proNombre` int(11) NOT NULL,
   `proDetalle` varchar(512) NOT NULL,
   `proCantStock` int(11) NOT NULL,
+  `proPrecio` int(11) NOT NULL,
   `urlImagen` varchar(200) NOT NULL,
   PRIMARY KEY (`idProducto`),
   UNIQUE KEY `idproducto` (`idProducto`)

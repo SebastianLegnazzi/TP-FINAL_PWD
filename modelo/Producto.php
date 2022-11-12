@@ -5,6 +5,7 @@ class Producto
     private $nombre;
     private $detalle;
     private $cantStock;
+    private $proPrecio;
     private $urlImagen;
     private $mensajeFuncion;
 
@@ -62,6 +63,14 @@ class Producto
         $this->urlImagen = $urlImagen;
     }
 
+    /**
+     * Establece el valor de proPrecio
+     */
+    public function setProPrecio($proPrecio)
+    {
+        $this->proPrecio = $proPrecio;
+    }
+
     /**************************************/
     /**************** GET *****************/
     /**************************************/
@@ -114,6 +123,14 @@ class Producto
         return $this->mensajeFuncion;
     }
 
+    /**
+     * Obtiene el valor de proPrecio
+     */
+    public function getProPrecio()
+    {
+        return $this->proPrecio;
+    }
+
     /**************************************/
     /************** FUNCIONES *************/
     /**************************************/
@@ -123,15 +140,17 @@ class Producto
         $this->idProducto = "";
         $this->nombre = "";
         $this->detalle = "";
+        $this->proPrecio = "";
         $this->cantStock = "";
     }
 
-    public function setear($idProducto, $nombre, $detalle, $cantStock, $ulrImagen)
+    public function setear($idProducto, $nombre, $detalle, $cantStock, $proPrecio, $ulrImagen)
     {
         $this->setIdProducto($idProducto);
         $this->setNombre($nombre);
         $this->setDetalle($detalle);
         $this->setCantStock($cantStock);
+        $this->setProPrecio($proPrecio);
         $this->setUrlImagen($ulrImagen);
     }
 
@@ -139,11 +158,12 @@ class Producto
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "INSERT INTO producto (idproducto, pronombre, prodetalle, procantstock, urlImagen) VALUES (
+        $consulta = "INSERT INTO producto (idProducto, proNombre, proDetalle, proCantStock, proPrecio urlImagen) VALUES (
 		'" . $this->getIdProducto() . "',
 		'" . $this->getNombre() . "',
 		'" . $this->getDetalle() . "',
-		'" . $this->getCantStock() . "'.
+		'" . $this->getCantStock() . "',
+		'" . $this->getProPrecio() . "',
 		'" . $this->getUrlImagen() . "')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -166,6 +186,7 @@ class Producto
         pronombre = '{$this->getNombre()}',
         prodetalle = '{$this->getDetalle()}',
         procantstock = '{$this->getCantStock()}',
+        proPrecio = '{$this->getProPrecio()}',
         urlImagen = '{$this->getUrlImagen()}',
         WHERE idproducto = '{$this->getIdProducto()}'";
         if ($base->Iniciar()) {
@@ -193,7 +214,7 @@ class Producto
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $base->Registro();
-                    $this->setear($row['idProducto'], $row['proNombre'], $row['proDetalle'], $row['proCantStock'], $row['urlImagen']);
+                    $this->setear($row['idProducto'], $row['proNombre'], $row['proDetalle'], $row['proCantStock'], $row['proPrecio'], $row['urlImagen']);
                 }
             }
         } else {
@@ -216,7 +237,7 @@ class Producto
                 $arregloProductos = array();
                 while ($Producto = $base->Registro()) {
                     $objProducto = new Producto();
-                    $objProducto->setear($Producto['idProducto'], $Producto['proNombre'], $Producto['proDetalle'], $Producto['proCantStock'], $Producto['urlImagen']);
+                    $objProducto->setear($Producto['idProducto'], $Producto['proNombre'], $Producto['proDetalle'], $Producto['proCantStock'], $Producto['proPrecio'], $Producto['urlImagen']);
                     array_push($arregloProductos, $objProducto);
                 }
             } else {

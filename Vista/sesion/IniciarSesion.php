@@ -18,12 +18,7 @@ include_once("../estructura/Cabecera.php");
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mt_service2);
     })();
 </script>
-<script>
-    function cargarDatos() {
-        localStorage.setItem("usuarioIngresado", document.getElementById("nombre").value)
-        localStorage.setItem("contraseniaIngresada", document.getElementById("contraseña").value)
-    }
-</script>
+<script src="../js/md5.js"></script>
 <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow rounded p-3 mb-2 bg-dark">
@@ -51,13 +46,12 @@ include_once("../estructura/Cabecera.php");
                         </div>
                     </div>
                     <div class="mtcaptcha"></div>
-                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" onclick="cargarDatos()" type="submit">INICIAR</button>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">INICIAR</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
 <script src="../js/mainIniciarSesion.js"></script>
 <?php
 include_once("../estructura/Pie.php")

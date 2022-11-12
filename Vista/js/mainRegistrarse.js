@@ -1,9 +1,11 @@
 $(document).ready(function () {
     $('form').submit(function (e) {
         e.preventDefault();
-        const forms = document.querySelectorAll('.needs-validation')
-        console.log(forms);
+        const forms = document.querySelectorAll('.needs-validation');
         if (verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep')) && forms[0].checkValidity()) {
+            var password = document.getElementById("uspass").value;
+            var passhash = hex_md5(password).toString();
+            document.getElementById("uspass").value = passhash;
             $.ajax({
                 type: "POST",
                 url: '../Accion/accionRegistrarse.php',
@@ -23,7 +25,7 @@ $(document).ready(function () {
                     }
                 }
             });
-        }else{
+        } else {
             forms[0].classList.add('was-validated');
         }
     });

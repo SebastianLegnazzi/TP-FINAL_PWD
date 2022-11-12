@@ -71,7 +71,7 @@ class C_Session{
     public function getUsuario(){
         $resp = null;
         if($this->getObjUsuario() != null){
-            $resp = $this->getObjUsuario()->getNombre();
+            $resp = $this->getObjUsuario();
         }
         return $resp;
     }

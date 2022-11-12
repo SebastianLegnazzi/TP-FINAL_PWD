@@ -99,8 +99,14 @@ class C_CompraItem
     {
         $where = " true ";
         if ($param<>null) {
-            if (isset($param)) {
-                $where.=" and idCompraItem ='".$param["idCompraItem"]."'";
+            if (isset($param["idCompraItem"])) {
+                $where.=" and idCompraItem =".$param["idCompraItem"];
+            }
+            if (isset($param["idCompra"])) {
+                $where.=" and idCompra =".$param["idCompra"];
+            }
+            if (isset($param["idProducto"])) {
+                $where.=" and idProducto =".$param["idProducto"];
             }
         }
         $objCompraItem= new Compra();
