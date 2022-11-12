@@ -67,22 +67,17 @@ function sumCompra() {
 /**************************************/
 var arrayDatosProducto = [];
 
-/* function verDetalle(datos) {
-    let detallePopUp, imagen, nombre, descripcion, precio;
-    detallePopUp = document.getElementById("detalle");
-    imagen = detallePopUp.children[0].children[0].children[0];
-    nombre = detallePopUp.children[0].children[1].children[0];
-    descripcion = detallePopUp.children[0].children[1].children[1];
-    precio = detallePopUp.children[1].children[0];
-    imagen.src = datos.children[0].children[0].src;
-    nombre.innerHTML = datos.childNodes[3].childNodes[1].childNodes[0].nodeValue;
-    descripcion.innerHTML = datos.childNodes[3].childNodes[3].childNodes[0].nodeValue;
-    precio.innerHTML = "Precio: $ " + datos.childNodes[3].childNodes[5].childNodes[0].nodeValue;
-    arrayDatosProducto = [datos.children[0].children[0].src,
-    datos.childNodes[3].childNodes[1].childNodes[0].nodeValue,
-    datos.childNodes[3].childNodes[3].childNodes[0].nodeValue,
-    datos.childNodes[3].childNodes[5].childNodes[0].nodeValue]
-} */
+function verDetalle(datos) {
+    let imagenInput, nombreInput, descripcionInput, precioInput;
+    imagenInput = document.getElementById("foto__detalle");
+    nombreInput = document.getElementById("nombre__detalle");
+    descripcionInput = document.getElementById("descripcion__detalle");
+    precioInput = document.getElementById("precio__detalle");
+    imagenInput.src = datos.children[1].children[0].children[0].children[0].src;
+    nombreInput.innerHTML = datos.children[1].children[0].children[1].childNodes[1].childNodes[0].nodeValue;
+    descripcionInput.innerHTML = datos.children[1].children[0].children[1].childNodes[3].childNodes[0].nodeValue;
+    precioInput.innerHTML = "Precio: $ " + datos.children[1].children[0].children[1].childNodes[5].childNodes[0].nodeValue;
+}
 
 /**************************************/
 /************* FILTER *****************/

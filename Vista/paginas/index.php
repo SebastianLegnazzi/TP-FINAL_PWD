@@ -6,49 +6,28 @@ include_once("../estructura/Cabecera.php");
         <h1 class="text-center text-white">Productos</h1>
         <hr>
     </div>
-    <div id="detalle" class="text-white">
-        <div id="detalle__content" class="row">
-            <div id="content__foto__detalle" class="col-md-3">
-                <img id="foto__detalle" class="img-thumbnail" src="" alt="">
-            </div>
-            <div id="content__info__detalle" class="col">
-                <h3 id="nombre__detalle"></h3>
-                <p id="descripcion__detalle"></p>
-            </div>
-        </div>
-        <div id="content__precio__detalle">
-            <p id="precio__detalle"></p>
-        </div>
-        <div class="content__botones mb-4">
-            <button class="btn btn-success me-2" id="detalle__agregar__carrito" onclick="sumarCarrito(); contadorCarrito()">Agregar al Carrito</button>
-            <button class="btn btn-danger" id="detalle__cerrar" onclick="cerrarDetalle()">Cerrar</button>
-        </div>
-    </div>
-
-
-
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Detalle</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title text-white" id="exampleModalToggleLabel">Detalle del Producto</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="detalle">
-                    <div id="detalle__content" class="row">
-                        <div id="content__foto__detalle" class="col-md-3">
-                            <img id="foto__detalle" class="img-thumbnail" src="" alt="">
-                        </div>
-                        <div id="content__info__detalle" class="col">
-                            <h3 id="nombre__detalle"></h3>
-                            <p id="descripcion__detalle"></p>
-                        </div>
+                <div class="modal-body row">
+                    <div id="content__foto__detalle" class="col-md-4">
+                        <img id="foto__detalle" class="img-thumbnail" src="" alt="">
                     </div>
-                    <div id="content__precio__detalle">
-                        <p id="precio__detalle"></p>
+                    <div id="content__info__detalle" class="col">
+                        <h3 id="nombre__detalle"></h3>
+                        <p id="descripcion__detalle"></p>
                     </div>
+                </div>
+                <div id="content__precio__detalle">
+                    <p id="precio__detalle"></p>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-success me-2" id="detalle__agregar__carrito" onclick="sumarCarrito(); contadorCarrito()">Agregar al Carrito</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -93,7 +72,8 @@ include_once("../estructura/Cabecera.php");
     if ($arrayProdcutos != null) {
         foreach ($arrayProdcutos as $producto) {
             echo '
-        <div id="content__productos">
+        <div id="content__productos" onclick="verDetalle(this)">
+            <input type="text" name="idProducto" id="idProducto' . $producto->getIdProducto() . '" value=".' . $producto->getIdProducto() . '" class="d-none">
             <div class="tarjetas-productos">
                 <a class="link-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
                     <div class="tarjeta-producto__imagen">
@@ -109,7 +89,7 @@ include_once("../estructura/Cabecera.php");
         </div>
         ';
         }
-    }else{
+    } else {
         echo "<h2 class='text-warning text-center'> No se encuentran productos cargados!</h2>";
     }
     ?>
