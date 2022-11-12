@@ -4,7 +4,7 @@ include_once("../estructura/Cabecera.php");
 
 <div class="container-fluid">
     <div class="container-md w-50">
-        <form action="../Accion/accionCargarProducto.php" method="post" class="needs-validation row text-white my-4 justify-content-center" novalidate>
+        <form  method="post" action="../Accion/accionCargarProducto.php"class="needs-validation row text-white my-4 justify-content-center" novalidate>
             <div class="col-lg-7 col-12 mt-2">
                 <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="proNombre" minlength="3" id="input_nombre" class="form-control text" required>
                 <div class="invalid-feedback">
@@ -24,7 +24,7 @@ include_once("../estructura/Cabecera.php");
                 </div>
             </div>
             <div class="col-lg-7 col-12 mt-2">
-                <label>Stock del Producto: </label><input type="number" name="proCantStock" id="input_stock" class="form-control" required>
+                <label>Stock del Producto: </label><input type="number" min='0' max='10' name="proCantStock" id="input_stock" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una cantidad válida!
                 </div>
@@ -48,7 +48,7 @@ include_once("../estructura/Cabecera.php");
         
     </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
+<script src="../js/cargarProducto.js"></script>
 
 <?php
 include_once("../estructura/Pie.php");
