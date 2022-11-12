@@ -38,18 +38,6 @@ function borrarProducto(numero) {
     sumCompra();
 }
 
-function abrirCarrito() {
-    let carritoPopUp;
-    carritoPopUp = document.getElementById("carrito");
-    carritoPopUp.style = "display: flex;"
-}
-
-function cerrarCarrito() {
-    let carritoPopUp;
-    carritoPopUp = document.getElementById("carrito");
-    carritoPopUp.style = "display: none;"
-}
-
 function sumCompra() {
     let totalCompra, sumaTot, tabla
     tabla = document.getElementById("lista__carrito");

@@ -58,14 +58,13 @@ include_once("../estructura/Cabecera.php");
                 <div class="col-7 text-center mx-auto mx-5">
                 <div class="g-recaptcha m-4" data-sitekey="6Lf95XwiAAAAANd2Ey0ue87QCWiiD6_A17eONhTX"></div>
                 </div>
-            <input class="btn btn-lg btn-success my-3 col-8 mt-4" type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep'))"  id="boton_enviar" value="REGISTRARSE">
+            <input class="btn btn-lg btn-success my-3 col-8 mt-4" type="submit" name="boton_enviar" id="boton_enviar" value="REGISTRARSE">
             <a href="IniciarSesion.php" class="link-info mt-4">YA TENGO CUENTA</a>
             </div>
         </form>
         
     </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
 <script src="../js/mainRegistrarse.js"></script>
 <?php
 include_once("../estructura/Pie.php")
