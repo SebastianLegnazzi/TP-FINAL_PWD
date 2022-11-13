@@ -142,6 +142,7 @@ class Producto
         $this->detalle = "";
         $this->proPrecio = "";
         $this->cantStock = "";
+        $this->urlImagen = "";
     }
 
     public function setear($idProducto, $nombre, $detalle, $cantStock, $proPrecio, $ulrImagen)
@@ -160,7 +161,7 @@ class Producto
         $resp = false;
         $consulta = "INSERT INTO producto (idProducto, proNombre, proDetalle, proCantStock, proPrecio, urlImagen) VALUES (
 		'" . $this->getIdProducto() . "',
-		'" . $this->getNombre() . "',
+        '" . $this->getNombre() . "',
 		'" . $this->getDetalle() . "',
 		'" . $this->getCantStock() . "',
 		'" . $this->getProPrecio() . "',
