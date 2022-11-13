@@ -22,6 +22,20 @@ class C_Producto
     }
 
     /**
+     * @param array $param
+     * @return Producto
+     */
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idProducto'])) {
+            $obj = new Producto();
+            $obj->setear($param['idProducto'], null, null, null, null,null);
+        }
+        return $obj;
+    }
+
+    /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
@@ -30,6 +44,7 @@ class C_Producto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
+        
         if (isset($param['idProducto'])) {
             $resp = true;
         }
@@ -58,12 +73,12 @@ class C_Producto
      * @param array $param
      * @return boolean
      */
-    public function baja($param)
-    {
+    public function baja($param){
         $resp = false;
+
         if ($this->seteadosCamposClaves($param)) {
-            $objProducto = $this->cargarObjeto($param);
-            if ($objProducto!=null and $objProducto->eliminar()) {
+            $objProducto = $this->cargarObjetoConClave($param);
+            if ($objProducto!=null and $objProducto->eliminar()){
                 $resp = true;
             }
         }
