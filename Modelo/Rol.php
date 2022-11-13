@@ -73,6 +73,7 @@ class Rol
                 if ($res > 0) {
                     $row = $base->Registro();
                     $this->setear($row['idRol'], $row['rolDescripcion']);
+                    $resp = true;
                 }
             }
         } else {

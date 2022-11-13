@@ -14,11 +14,9 @@ class C_CompraItem
         $objCompraItem = null;
 
         if (array_key_exists('idCompraItem', $param) and array_key_exists('idProducto', $param) and array_key_exists('idCompra', $param) and array_key_exists('ciCantidad', $param)) {
-            $objCompraItem = new Compra();
-            if(!$objCompraItem->cargar($param['idCompraItem'], $param['idProducto'], $param['idCompra'], $param['ciCantidad'])){
-                $objCompraItem = null;
+            $objCompraItem = new CompraItem();
+            $objCompraItem->setear($param['idCompraItem'], $param['idProducto'], $param['idCompra'], $param['ciCantidad']);
             }
-        }
         return $objCompraItem;
     }
 
@@ -109,7 +107,7 @@ class C_CompraItem
                 $where.=" and idProducto =".$param["idProducto"];
             }
         }
-        $objCompraItem= new Compra();
+        $objCompraItem= new CompraItem();
         $arregloCompraItem = $objCompraItem->listar($where);
         return $arregloCompraItem;
     }

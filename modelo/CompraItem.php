@@ -146,11 +146,11 @@ class CompraItem
         $resp = false;
         $base = new BaseDatos();
         $consulta = "UPDATE compraitem
-        SET idCompraItem = '{$this->getIdCompraItem()}',
-        idProducto = '{$this->getObjProducto()->getIdProducto()}',
-        idCompra = '{$this->getObjCompra()->getIdCompra()}',
-        ciCantidad = '{$this->getCantidad()}',
-        WHERE idCompraItem = '{$this->getIdCompraItem()}'";
+        SET idCompraItem = {$this->getIdCompraItem()},
+        idProducto = {$this->getObjProducto()->getIdProducto()},
+        idCompra = {$this->getObjCompra()->getIdCompra()},
+        ciCantidad = {$this->getCantidad()}
+        WHERE idCompraItem = {$this->getIdCompraItem()}";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
@@ -176,6 +176,7 @@ class CompraItem
                 if ($res > 0) {
                     $row = $base->Registro();
                     $this->setear($row['idCompraItem'], $row['idProducto'], $row['idCompra'], $row['ciCantidad']);
+                    $resp = true;
                 }
             }
         } else {

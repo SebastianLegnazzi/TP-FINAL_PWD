@@ -8,33 +8,29 @@ $objCompraItem = new C_CompraItem();
 $ObjUsuario = $objSesion->getUsuario();
 if($ObjUsuario != null){
     $idUsuario["idUsuario"] = $ObjUsuario->getIdUsuario();
-    $arrayCompra = $objCompra->buscar($idUsuarioBuscar);
+    $arrayCompra = $objCompra->buscar($idUsuario);
     if($arrayCompra == null){
         $objCompra->alta($idUsuario);
-        $arrayCompra = $objCompra->buscar($idUsuarioBuscar);
+        $arrayCompra = $objCompra->buscar($idUsuario);
     }
     $arrayCompraItem = $objCompraItem->buscar($datos);
     if($arrayCompraItem == null){
         $datos["idCompra"] = $arrayCompra[0]->getIdCompra();
-        $objCompraItem->alta($datos);
+        if(!$objCompraItem->alta($datos)){
+            echo json_encode(array('success'=>0));
+        }
     }else{
         $cantStockDisp = $arrayCompraItem[0]->getObjProducto()->getCantStock();
-        $cantTot = $datos["ciCantidad"] + $cantStockDisp;
+        $cantTot = $datos["ciCantidad"] + $arrayCompraItem[0]->getCantidad();
         if($cantTot > $cantStockDisp){
             echo json_encode(array('success'=>0));
         }else{
-            $arrayCompraItem[0]->setear($arrayCompraItem[0]->getIdCompraItem(), $arrayCompraItem[0]->getObjProducto(), $arrayCompraItem[0]->getObjCompra(), $cantTot, $arrayCompraItem[0]->getMensajeFuncion());
-            $arrayCompraItem[0]->modificar();
+            $param = ["idCompraItem" => $arrayCompraItem[0]->getIdCompraItem(),
+            "idProducto" => $arrayCompraItem[0]->getObjProducto()->getIdProducto(),
+            "idCompra" => $arrayCompraItem[0]->getObjCompra()->getIdCompra(),
+            "ciCantidad" => $cantTot];
+            $objCompraItem->modificacion($param);
             echo json_encode(array('success'=>1));
         }
     }
 }
-
-
-
-/* 
-    if ($objProducto->alta($datos)) {
-        echo json_encode(array('success'=>1));
-    } else {
-        echo json_encode(array('success'=>0));
-    } */

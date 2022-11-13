@@ -13,12 +13,10 @@ $(document).ready(function () {
                     // user is logged in successfully in the back-end
                     // let's redirect
                     if (jsonData.success == "1") {
-                        registerSuccess();
+                        cargaExitosa();
                     }
                     else if (jsonData.success == "0") {
-                        registerFailure();
-                    } else if (jsonData.success == "-1") {
-                        captchaFailure();
+                        cargaFallida();
                     }
                 }
             });
@@ -29,26 +27,10 @@ $(document).ready(function () {
 });
 
 
-function registerSuccess() {
+function cargaExitosa() {
     Swal.fire({
         icon: 'success',
-        title: 'La cuenta se creo correctamente!',
-        showConfirmButton: false,
-        timer: 1500
-    })
-    setTimeout(function () {
-        redireccionarIndexUser();
-    }, 1500);
-}
-
-function redireccionarIndexUser() {
-    //location.href = "../paginas/index.php"
-}
-
-function registerFailure() {
-    Swal.fire({
-        icon: 'error',
-        title: 'La cuenta no se pudo crear en la base de datos!',
+        title: 'El producto se cargo exitosamente al carrito!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -57,10 +39,10 @@ function registerFailure() {
     }, 1500);
 }
 
-function captchaFailure() {
+function cargaFallida() {
     Swal.fire({
         icon: 'error',
-        title: 'El captcha no se realizo correctamente!',
+        title: 'El producto no se ha podido cargar al carrito ya que no hay stock suficiente!',
         showConfirmButton: false,
         timer: 1500
     })

@@ -15,7 +15,7 @@ class C_Compra
 
         if (array_key_exists('idCompra', $param) and array_key_exists('coFecha', $param) and array_key_exists('idUsuario', $param)) {
             $objCompra = new Compra();
-            if(!$objCompra->cargar($param['idCompra'], $param['coFecha'], $param['idUsuario'])){
+            if(!$objCompra->setear($param['idCompra'], $param['coFecha'], $param['idUsuario'])){
                 $objCompra = null;
             }
         }
