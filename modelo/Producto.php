@@ -159,8 +159,7 @@ class Producto
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "INSERT INTO producto (idProducto, proNombre, proDetalle, proCantStock, proPrecio, urlImagen) VALUES (
-		'" . $this->getIdProducto() . "',
+        $consulta = "INSERT INTO producto (proNombre, proDetalle, proCantStock, proPrecio, urlImagen) VALUES (
         '" . $this->getNombre() . "',
 		'" . $this->getDetalle() . "',
 		'" . $this->getCantStock() . "',
