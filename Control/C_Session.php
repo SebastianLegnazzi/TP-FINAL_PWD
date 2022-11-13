@@ -32,7 +32,11 @@ class C_Session{
 
     public function __construct(){
         session_start();
-       $this->objUsuario = null;
+        $this->objUsuario = new C_Usuario();
+        if(isset($_SESSION["nombreUsuario"])){
+            $usuario = $this->getObjUsuario()->buscar($_SESSION["nombreUsuario"]);
+            $this->setObjUsuario($usuario[0]);
+        }
     }
 
     private function iniciar($nombreUsuario, $arrayRoles){
@@ -41,8 +45,7 @@ class C_Session{
     }
 
     public function valida($param){
-        $objUsuarios = new c_usuario();
-        $arrayUsuario = $objUsuarios->buscar($param);
+        $arrayUsuario = $this->getObjUsuario()->buscar($param);
         $resp = false;
         if($arrayUsuario != null){
             if($param["usPass"] == $arrayUsuario[0]->getUsPass()){

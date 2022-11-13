@@ -167,17 +167,17 @@ class Compra
     {
         $arregloCompra = null;
         $base = new BaseDatos();
-        $consultaCompra = "SELECT * FROM compraitem ";
+        $consultaCompra = "SELECT * FROM compra ";
         if ($condicion != "") {
             $consultaCompra = $consultaCompra . ' WHERE ' . $condicion;
         }
-        $consultaCompra .= " ORDER BY idCompraItem ";
+        $consultaCompra .= " ORDER BY idCompra ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaCompra)) {
                 $arregloCompra = array();
                 while ($compra = $base->Registro()) {
                     $objcompra = new Compra();
-                    $objcompra->setear($compra['idCompraItem'], $compra['coFecha'], $compra['idUsuario']);
+                    $objcompra->setear($compra['idCompra'], $compra['coFecha'], $compra['idUsuario']);
                     array_push($arregloCompra, $objcompra);
                 }
             } else {
