@@ -88,7 +88,7 @@ class CompraEstado{
                     $compraEstadoTipo = null;
                     if ($row['idCompraEstadoTipo'] != null) {
                         $compraEstadoTipo = new CompraEstadoTipo();
-                        $compraEstadoTipo->setIdCompraEstado($row['idCompraEstadoTipo']);
+                        $compraEstadoTipo->setIdCompraEstadoTipo($row['idCompraEstadoTipo']);
                         $compraEstadoTipo->cargar();
                     }
                 

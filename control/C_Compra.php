@@ -46,6 +46,7 @@ class C_Compra
     {
         $resp = false;
         $param['idCompra'] = null;
+        $param['coFecha'] = "CURRENT_TIMESTAMP";
         $objCompra = $this->cargarObjeto($param);
         if ($objCompra!=null) {
             if($objCompra->insertar()){
