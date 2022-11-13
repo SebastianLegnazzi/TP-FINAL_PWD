@@ -95,6 +95,7 @@ class UsuarioRol{
                         $objRol->setIdRol($row['idRol']);
                         $objRol->setRolDescripcion($row['idDescripcion']);
                     }
+                    $resp = true;
                     $this->setear($objUsuario, $objRol);
                 }
             }

@@ -105,10 +105,9 @@ class Compra
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "INSERT INTO compra (idCompra, coFecha, idUsuario) VALUES (
-		'" . $this->getIdCompra() . "',
-		'" . $this->getFecha() . "',
-		'" . $this->getObjUsuario()->getIdUsuario(). "')";
+        $consulta = "INSERT INTO compra (coFecha, idUsuario) VALUES (
+		" . $this->getFecha() . ",
+		" . $this->getObjUsuario()->getIdUsuario(). ")";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
@@ -155,6 +154,7 @@ class Compra
                 if ($res > 0) {
                     $row = $base->Registro();
                     $this->setear($row['idCompra'], $row['coFecha'], $row['idUsuario']);
+                    $resp = true;
                 }
             }
         } else {
