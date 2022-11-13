@@ -20,14 +20,28 @@ include_once("../estructura/Cabecera.php");
                     <div id="content__info__detalle" class="col">
                         <h3 id="nombre__detalle"></h3>
                         <p id="descripcion__detalle"></p>
+                        <p id="cantidad_detalle"></p>
                     </div>
                 </div>
                 <div id="content__precio__detalle">
                     <p id="precio__detalle"></p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success me-2" id="detalle__agregar__carrito" onclick="sumarCarrito(); contadorCarrito()">Agregar al Carrito</button>
-                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                    <form method="post" action="../Accion/accionRegistrarse.php" class="needs-validation" novalidate>
+                        <input type="text" name="idProducto" id="idProducto" class="d-none">
+                        <div>
+                            <input type="number" name="ciCantidad" id="cantidad_input" min="1" class="form-control" placeholder="Ingrese la cantidad que desea comprar" required>
+                            <div class="invalid-feedback mb-1">
+                                Porfavor ingrese una cantidad valida del producto que desea adquirir!
+                            </div>
+                            <div class="valid-feedback">
+                                Correcto!
+                            </div>
+                        </div>
+                        <input class="btn btn-success me-2" type="submit" name="boton_enviar" id="boton_enviar" value="Agregar al Carrito">
+                        <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                    </form>
+                    <script src="../js/mainAgregarProductoCarrito.js"></script>
                 </div>
             </div>
         </div>
@@ -87,7 +101,7 @@ include_once("../estructura/Cabecera.php");
         </div>
     </div>
     <div id="head__productos" class="container align-items-center justify-content-center">
-        <div id="content__filter" class="col-md-6 text-center">
+        <div id="content__filter" class="col-md-8 text-center">
             <input type="text" name="filtrador" id="filtrador" class="col-md-6" placeholder="Buscador" onkeyup="filtrar(this.value)">
         </div>
         <div id="content__carrito" class="row justify-content-end">
@@ -97,15 +111,14 @@ include_once("../estructura/Cabecera.php");
             </a>
         </div>
     </div>
-    <?php
-    $objProducto = new C_Producto;
-    $arrayProdcutos = $objProducto->buscar();
-    if ($arrayProdcutos != null) {
-        foreach ($arrayProdcutos as $producto) {
-            echo '
-        <div id="content__productos" onclick="verDetalle(this)">
-            <input type="text" name="idProducto" id="idProducto' . $producto->getIdProducto() . '" value=".' . $producto->getIdProducto() . '" class="d-none">
-            <div class="tarjetas-productos">
+    <div id="content__productos">
+        <?php
+        $objProducto = new C_Producto;
+        $arrayProdcutos = $objProducto->buscar();
+        if ($arrayProdcutos != null) {
+            foreach ($arrayProdcutos as $producto) {
+                echo '
+            <div class="tarjetas-productos" onclick="verDetalle(this)">
                 <a class="link-light" data-bs-toggle="modal" href="#exampleModalToggle1" role="button">
                     <div class="tarjeta-producto__imagen">
                         <img class="foto__producto" src="' . $producto->getUrlImagen() . '" alt="">
@@ -114,16 +127,18 @@ include_once("../estructura/Cabecera.php");
                         <p class="nombre__producto">' . $producto->getNombre() . '</p>
                         <span class="descripcion__producto">' . $producto->getDetalle() . '</span>
                         <span class="precio__producto">' . $producto->getProPrecio() . '</span>
+                        <span class="stock">' . $producto->getCantStock() . '</span>
+                        <span class="idProducto_Producto d-none">' . $producto->getIdProducto() . '</span>
                     </div>
                 </a>
             </div>
-        </div>
         ';
+            }
+        } else {
+            echo "<h2 class='text-warning text-center'> No se encuentran productos cargados!</h2>";
         }
-    } else {
-        echo "<h2 class='text-warning text-center'> No se encuentran productos cargados!</h2>";
-    }
-    ?>
+        ?>
+    </div>
 </div>
 <?php
 include_once("../estructura/Pie.php")

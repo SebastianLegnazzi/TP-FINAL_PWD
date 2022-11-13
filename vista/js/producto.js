@@ -56,15 +56,21 @@ function sumCompra() {
 var arrayDatosProducto = [];
 
 function verDetalle(datos) {
-    let imagenInput, nombreInput, descripcionInput, precioInput;
-    imagenInput = document.getElementById("foto__detalle");
-    nombreInput = document.getElementById("nombre__detalle");
-    descripcionInput = document.getElementById("descripcion__detalle");
-    precioInput = document.getElementById("precio__detalle");
-    imagenInput.src = datos.children[1].children[0].children[0].children[0].src;
-    nombreInput.innerHTML = datos.children[1].children[0].children[1].childNodes[1].childNodes[0].nodeValue;
-    descripcionInput.innerHTML = datos.children[1].children[0].children[1].childNodes[3].childNodes[0].nodeValue;
-    precioInput.innerHTML = "Precio: $ " + datos.children[1].children[0].children[1].childNodes[5].childNodes[0].nodeValue;
+    let imagenInfo, nombreInfo, descripcionInfo, precioInfo, cantidadInfo, cantidadInput, idProductoInput;
+    imagenInfo = document.getElementById("foto__detalle");
+    nombreInfo = document.getElementById("nombre__detalle");
+    descripcionInfo = document.getElementById("descripcion__detalle");
+    precioInfo = document.getElementById("precio__detalle");
+    cantidadInfo = document.getElementById("cantidad_detalle");
+    cantidadInput = document.getElementById("cantidad_input");
+    idProductoInput = document.getElementById("idProducto");
+    imagenInfo.src = datos.children[0].children[0].children[0].src;
+    nombreInfo.innerHTML = datos.children[0].children[1].children[0].childNodes[0].nodeValue;
+    descripcionInfo.innerHTML = datos.children[0].children[1].children[1].childNodes[0].nodeValue;
+    precioInfo.innerHTML = "Precio: $ " + datos.children[0].children[1].children[2].childNodes[0].nodeValue;
+    cantidadInfo.innerHTML = "Cantidad de Stock: " + datos.children[0].children[1].children[3].childNodes[0].nodeValue;
+    cantidadInput.setAttribute("max", datos.children[0].children[1].children[3].childNodes[0].nodeValue);
+    idProductoInput.value = datos.children[0].children[1].children[4].childNodes[0].nodeValue;
 }
 
 /**************************************/
