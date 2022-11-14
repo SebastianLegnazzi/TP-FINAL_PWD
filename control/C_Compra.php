@@ -22,6 +22,17 @@ class C_Compra
         return $objCompra;
     }
 
+    
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idCompra'])) {
+            $obj = new Compra();
+            $obj->setear($param['idCompra'], null, null);
+        }
+        return $obj;
+    }
+
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
@@ -64,7 +75,7 @@ class C_Compra
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objCompra = $this->cargarObjeto($param);
+            $objCompra = $this->cargarObjetoConClave($param);
             if ($objCompra!=null and $objCompra->eliminar()) {
                 $resp = true;
             }

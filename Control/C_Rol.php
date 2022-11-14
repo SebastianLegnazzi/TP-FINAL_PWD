@@ -16,6 +16,17 @@ class C_Rol
         return $obj;
     }
 
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idRol'])) {
+            $obj = new Rol();
+            $obj->setear($param['idRol'], null);
+        }
+        return $obj;
+    }
+
+
     private function seteadosCamposClaves($param)
     {
         $resp = false;
@@ -40,7 +51,7 @@ class C_Rol
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objRol = $this->cargarObjeto($param);
+            $objRol = $this->cargarObjetoConClave($param);
             if ($objRol != null && $objRol->eliminar()) {
                 $resp = true;
             }

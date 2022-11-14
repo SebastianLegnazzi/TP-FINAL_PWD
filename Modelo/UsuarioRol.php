@@ -67,8 +67,6 @@ class UsuarioRol{
         $this->setUsuario($usuario);
     }
 
-    
-
     //carga info de bd (idUsuario+IdRol+rolDescripcion) a objeto php
     public function cargar()
     {

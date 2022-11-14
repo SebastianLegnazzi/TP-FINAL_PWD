@@ -18,6 +18,8 @@ if($ObjUsuario != null){
         $datos["idCompra"] = $arrayCompra[0]->getIdCompra();
         if(!$objCompraItem->alta($datos)){
             echo json_encode(array('success'=>0));
+        }else{
+            echo json_encode(array('success'=>1));
         }
     }else{
         $cantStockDisp = $arrayCompraItem[0]->getObjProducto()->getCantStock();

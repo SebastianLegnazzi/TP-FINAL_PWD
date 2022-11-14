@@ -1,5 +1,3 @@
-
-
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
@@ -28,10 +26,10 @@ function recargarPagina() {
     location.reload();
 }
 
-$(document).on('click', '.remove', function() {
+$(document).on('click', '.eliminar_producto_carrito', function() {
 
     var fila = $(this).closest('tr');
-    var img = fila[0].children[4].innerHTML;
+    var img = fila[0].children[0].children[0].src;
 
     Swal.fire({
         title: '¿Estás seguro de que desea eliminar este producto?',
@@ -44,7 +42,7 @@ $(document).on('click', '.remove', function() {
        
         if (result.isConfirmed) {
             
-            eliminar(fila);
+            eliminar(fila[0].children[5].childNodes[0].nodeValue);
         
         } else if (result.isDenied) {
         
@@ -55,13 +53,12 @@ $(document).on('click', '.remove', function() {
 
 });
 
-function eliminar(fila){
+function eliminar(id){
     
-    var idProducto = fila[0].children[0].innerHTML;    
     $.ajax({
         type: "POST",
-        url: '../Accion/accionEliminarProducto.php',
-        data: {idProducto:idProducto},
+        url: '../Accion/accionEliminarProductoCarrito.php',
+        data: {idCompraItem:id},
         
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);

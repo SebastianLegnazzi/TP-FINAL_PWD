@@ -109,15 +109,12 @@ class CompraItem
 
     public function setear($idCompraItem, $idProducto, $idCompra, $cantidad)
     {
-        $resp = false;
         $this->objProducto->setIdProducto($idProducto);
         $this->objCompra->setIdCompra($idCompra);
-        if($this->objProducto->cargar() && $this->objCompra->cargar()){
-            $this->setIdCompraItem($idCompraItem);
-            $this->setCantidad($cantidad);
-            $resp = true;
-        }
-        return $resp;
+        $this->setIdCompraItem($idCompraItem);
+        $this->setCantidad($cantidad);
+        $this->objProducto->cargar();
+        $this->objCompra->cargar();
     }
 
     public function insertar()
@@ -187,7 +184,7 @@ class CompraItem
 
     public function listar($condicion = "")
     {
-        $consultaCompraItem = null;
+        $arregloCompraitem = null;
         $base = new BaseDatos();
         $consultaCompraItem = "SELECT * FROM compraitem ";
         if ($condicion != "") {
@@ -196,11 +193,11 @@ class CompraItem
         $consultaCompraItem .= " ORDER BY idCompraItem ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaCompraItem)) {
-                $arregloComraitem = array();
+                $arregloCompraitem = array();
                 while ($compraItem = $base->Registro()) {
                     $objCompraItem = new CompraItem();
                     $objCompraItem->setear($compraItem["idCompraItem"], $compraItem["idProducto"], $compraItem["idCompra"], $compraItem["ciCantidad"],);
-                    array_push($arregloComraitem, $objCompraItem);
+                    array_push($arregloCompraitem, $objCompraItem);
                 }
             } else {
                 $this->setMensajeFuncion($base->getError());
@@ -208,7 +205,7 @@ class CompraItem
         } else {
             $this->setMensajeFuncion($base->getError());
         }
-        return $arregloComraitem;
+        return $arregloCompraitem;
     }
 
     public function eliminar()
@@ -216,7 +213,7 @@ class CompraItem
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM compraitem WHERE idCompraItem = '" . $this->getIdCompraItem() . "'";
+            $consulta = "DELETE FROM compraitem WHERE idCompraItem = " . $this->getIdCompraItem();
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
             } else {
