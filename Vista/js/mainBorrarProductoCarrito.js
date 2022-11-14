@@ -53,12 +53,12 @@ $(document).on('click', '.eliminar_producto_carrito', function() {
 
 });
 
-function eliminar(id){
+function eliminar(idCompraItem){
     
     $.ajax({
         type: "POST",
         url: '../Accion/accionEliminarProductoCarrito.php',
-        data: {idCompraItem:id},
+        data: {idCompraItem:idCompraItem},
         
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);

@@ -9,7 +9,6 @@ $(document).on('click', '#logo_carrito', function() {
     sumaTot = 0;
     for (i = 1; i < tabla.rows.length; i++) {
         sumaTot += parseInt(tabla.rows[i].cells[3].innerHTML);
-        console.log(tabla.rows[i].cells[3].innerHTML)
     }
     totalCompra.innerHTML = "Precio Total: $ " + sumaTot;
 });

@@ -104,7 +104,7 @@ include_once("../estructura/Cabecera.php");
                     <span id="total-Compra"></span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success me-2" id="detalle__comprar__carrito" onclick="confirmarCompra()">Comprar</button>
+                    <button class="btn btn-success me-2" id="detalle__comprar__carrito">Comprar</button>
                     <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>

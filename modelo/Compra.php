@@ -144,6 +144,7 @@ class Compra
     public function cargar(){
         $resp = false;
         $base = new BaseDatos();
+        $sql = null;
         if($this->getIdCompra()!=''){
             $sql = "SELECT * FROM compra WHERE idCompra = " . $this->getIdCompra();
         }
