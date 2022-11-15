@@ -34,6 +34,16 @@ class C_MenuRol{
         }
         return $obj;
     }
+    
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idMenu'])) {
+            $obj = new MenuRol();
+            $obj->setear($param['idMenu'], null);
+        }
+        return $obj;
+    }
 
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
@@ -73,7 +83,7 @@ class C_MenuRol{
         $resp = false;
       
         if ($this->seteadosCamposClaves($param)){
-            $objMenuRol = $this->cargarObjeto($param);
+            $objMenuRol = $this->cargarObjetoConClave($param);
             if ($objMenuRol!=null and $objMenuRol->eliminar()){
                 $resp = true;
             }

@@ -17,6 +17,17 @@ class C_Usuario{
         return $obj;
     }
 
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idUsuario'])) {
+            $obj = new Usuario();
+            $obj->setear($param['idUsuario'], null , null, null, null);
+        }
+        return $obj;
+    }
+
+
     private function seteadosCamposClaves($param){
         $resp = false;
         if (isset($param['idUsuario'])){
@@ -52,7 +63,7 @@ class C_Usuario{
     public function baja($param){
         $resp=false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario=$this->cargarObjeto($param);
+            $objUsuario=$this->cargarObjetoConClave($param);
             if ($objUsuario!=null && $objUsuario->eliminar()){
                 $resp = true;
             }

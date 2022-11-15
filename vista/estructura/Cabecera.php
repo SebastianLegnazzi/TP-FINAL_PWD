@@ -20,7 +20,6 @@ if ($objSession->activa()) {
   <link rel="stylesheet" href="../css/producto.css">
   <link rel="stylesheet" href="../alertas/dist/sweetalert2.min.css">
   <script src="../bootstrap/js/bootstrap.min.js"></script>
-  <script src="../js/producto.js"></script>
   <script src="../alertas/dist/sweetalert2.all.min.js"></script>
   <script src="../jQuery/jquery-3.6.1.min.js"></script>
   <script src="../js/cerrarSesion.js"></script>

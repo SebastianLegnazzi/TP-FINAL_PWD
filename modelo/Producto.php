@@ -205,6 +205,7 @@ class Producto
     {
         $resp = false;
         $base = new BaseDatos();
+        $sql = null;
         if ($this->getIdProducto() != '') {
             $sql = "SELECT * FROM producto WHERE idProducto = " . $this->getIdProducto();
         }

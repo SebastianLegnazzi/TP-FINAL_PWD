@@ -39,7 +39,7 @@ class C_UsuarioRol
         //print_R ($param);
         if (isset($param['idUsuario']) && isset($param['idRol'])) {
             $objUsuarioRol = new UsuarioRol();
-            $objUsuarioRol->setear($objUsuario, $objRol);
+            $objUsuarioRol->setear($param['idUsuario'], $$param['idRol']);
         }
         return $objUsuarioRol;
     }
@@ -90,7 +90,7 @@ class C_UsuarioRol
         //verEstructura($param);
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objUsuarioRol = $this->cargarObjeto($param);
+            $objUsuarioRol = $this->cargarObjetoConClave($param);
             if ($objUsuarioRol != null and $objUsuarioRol->eliminar()) {
                 $resp = true;
             }

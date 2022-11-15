@@ -2,43 +2,7 @@
 /************* CARRITO ****************/
 /**************************************/
 
-function sumarCarrito() {
-    let tabla, fila, celda0, celda1, celda2, celda3, celda4;
-    tabla = document.getElementById("lista__carrito");
-    fila = tabla.insertRow(tabla.rows.length);
-    celda0 = fila.insertCell(0);
-    celda1 = fila.insertCell(1);
-    celda2 = fila.insertCell(2);
-    celda3 = fila.insertCell(3);
-    celda4 = fila.insertCell(4);
-    celda0.innerHTML = "<img src='" + arrayDatosProducto[0] + "'>";
-    celda1.innerHTML = arrayDatosProducto[1];
-    celda2.innerHTML = arrayDatosProducto[2];
-    celda3.innerHTML = arrayDatosProducto[3];
-    celda4.innerHTML = "<a href='#' onclick='borrarProducto(this.parentNode.parentNode.rowIndex); contadorCarrito()'>Eliminar</a>";
-    Swal.fire({
-        icon: 'success',
-        title: 'El producto se agrego al carrito correctamente!',
-        showConfirmButton: false,
-        timer: 1000
-    })
-    cerrarDetalle();
-    sumCompra();
-}
-
-function borrarProducto(numero) {
-    let tabla = document.getElementById("lista__carrito");
-    tabla.deleteRow(numero);
-    Swal.fire({
-        icon: 'success',
-        title: 'Producto eliminado!',
-        showConfirmButton: false,
-        timer: 1000
-    })
-    sumCompra();
-}
-
-function sumCompra() {
+$(document).on('click', '#logo_carrito', function() {
     let totalCompra, sumaTot, tabla
     tabla = document.getElementById("lista__carrito");
     totalCompra = document.getElementById("total-Compra");
@@ -47,8 +11,7 @@ function sumCompra() {
         sumaTot += parseInt(tabla.rows[i].cells[3].innerHTML);
     }
     totalCompra.innerHTML = "Precio Total: $ " + sumaTot;
-}
-
+});
 
 /**************************************/
 /************* DETALLE ****************/

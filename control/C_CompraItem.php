@@ -16,8 +16,18 @@ class C_CompraItem
         if (array_key_exists('idCompraItem', $param) and array_key_exists('idProducto', $param) and array_key_exists('idCompra', $param) and array_key_exists('ciCantidad', $param)) {
             $objCompraItem = new CompraItem();
             $objCompraItem->setear($param['idCompraItem'], $param['idProducto'], $param['idCompra'], $param['ciCantidad']);
-            }
+        }
         return $objCompraItem;
+    }
+
+    private function cargarObjetoConClave($param)
+    {
+        $obj = null;
+        if (isset($param['idCompraItem'])) {
+            $obj = new CompraItem();
+            $obj->setear($param['idCompraItem'], null, null, null);
+        }
+        return $obj;
     }
 
     /**
@@ -45,8 +55,8 @@ class C_CompraItem
         $resp = false;
         $param['idCompraItem'] = null;
         $objCompraItem = $this->cargarObjeto($param);
-        if ($objCompraItem!=null) {
-            if($objCompraItem->insertar()){
+        if ($objCompraItem != null) {
+            if ($objCompraItem->insertar()) {
                 $resp = true;
             }
         }
@@ -61,8 +71,8 @@ class C_CompraItem
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $objCompraItem = $this->cargarObjeto($param);
-            if ($objCompraItem!=null and $objCompraItem->eliminar()) {
+            $objCompraItem = $this->cargarObjetoConClave($param);
+            if ($objCompraItem != null and $objCompraItem->eliminar()) {
                 $resp = true;
             }
         }
@@ -81,7 +91,7 @@ class C_CompraItem
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $objCompraItem = $this->cargarObjeto($param);
-            if ($objCompraItem!=null and $objCompraItem->modificar()) {
+            if ($objCompraItem != null and $objCompraItem->modificar()) {
                 $resp = true;
             }
         }
@@ -96,20 +106,19 @@ class C_CompraItem
     public function buscar($param = "")
     {
         $where = " true ";
-        if ($param<>null) {
+        if ($param <> null) {
             if (isset($param["idCompraItem"])) {
-                $where.=" and idCompraItem =".$param["idCompraItem"];
+                $where .= " and idCompraItem =" . $param["idCompraItem"];
             }
             if (isset($param["idCompra"])) {
-                $where.=" and idCompra =".$param["idCompra"];
+                $where .= " and idCompra =" . $param["idCompra"];
             }
             if (isset($param["idProducto"])) {
-                $where.=" and idProducto =".$param["idProducto"];
+                $where .= " and idProducto =" . $param["idProducto"];
             }
         }
-        $objCompraItem= new CompraItem();
+        $objCompraItem = new CompraItem();
         $arregloCompraItem = $objCompraItem->listar($where);
         return $arregloCompraItem;
     }
 }
-?>

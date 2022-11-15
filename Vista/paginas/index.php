@@ -41,7 +41,6 @@ include_once("../estructura/Cabecera.php");
                         <input class="btn btn-success me-2" type="submit" name="boton_enviar" id="boton_enviar" value="Agregar al Carrito">
                         <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                     </form>
-                    <script src="../js/mainAgregarProductoCarrito.js"></script>
                 </div>
             </div>
         </div>
@@ -55,46 +54,57 @@ include_once("../estructura/Cabecera.php");
                 </div>
                 <div class="modal-body row">
                     <div>
-                        <?php
-                        if ($objSession->activa()) {
-                            $objUsuario = $objSession->getUsuario();
-                            if ($objUsuario != null) {
-                                $objCompra = new C_Compra();
-                                $param["idUsuario"] = $objUsuario->getIdUsuario();
-                                if ($objCompra->buscar($param) != null) {
-                        ?>
-                                    <table class="table table-dark">
-                                        <tr>
-                                            <th>Imagen</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Precio</th>
-                                            <th>Eliminar</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-md-2"><img src="" class="img-thumbnail"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3 text-white" viewBox="0 0 16 16">
-                                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                                    </svg></a></td>
-                                        </tr>
-                                    </table>
-                        <?php
-                                } else {
-                                    echo "<h2 class='text-warning text-center'> No tiene ningun producto agregado al carrito!</h2>";
+                        <table id="lista__carrito" class="table table-dark">
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Eliminar</th>
+                            </tr>
+                            <?php
+                            if ($objSession->activa()) {
+                                $objUsuario = $objSession->getUsuario();
+                                if ($objUsuario != null) {
+                                    $objCompra = new C_Compra();
+                                    $idUsuario["idUsuario"] = $objUsuario->getIdUsuario();
+                                    $arrayCompra = $objCompra->buscar($idUsuario);
+                                    if ($arrayCompra != null) {
+                                        $objCompraItem = new C_CompraItem();
+                                        $idCompra["idCompra"] = $arrayCompra[0]->getIdCompra();
+                                        $arrayCompraItem = $objCompraItem->buscar($idCompra);
+                                        if ($arrayCompraItem != null) {
+                                            foreach ($arrayCompraItem as $compraItem) {
+                                                echo '
+                                                    <tr>
+                                                        <td class="col-md-2"><img src="' . $compraItem->getObjProducto()->getUrlImagen() . '" class="img-thumbnail"></td>
+                                                        <td>' . $compraItem->getObjProducto()->getNombre() . '</td>
+                                                        <td>' . $compraItem->getObjProducto()->getDetalle() . '</td>
+                                                        <td>' . $compraItem->getObjProducto()->getProPrecio() . '</td>
+                                                        <td>' . $compraItem->getCantidad() . '</td>
+                                                        <td class="d-none">' . $compraItem->getIdCompraItem() . '</td>
+                                                        <td><a href="#" class="eliminar_producto_carrito"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3 text-white" viewBox="0 0 16 16">
+                                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                                                </svg></a></td>
+                                                    </tr>
+                                                ';
+                                            }
+                                        }
+                                    } else {
+                                        echo "<h2 class='text-warning text-center'> No tiene ningun producto agregado al carrito!</h2>";
+                                    }
                                 }
+                            } else {
+                                echo "<h2 class='text-warning text-center'> Debes crear una sesion para poder comprar productos! </h2>";
                             }
-                        } else {
-                            echo "<h2 class='text-warning text-center'> Debes crear una sesion para poder comprar productos! </h2>";
-                        }
-                        ?>
+                            ?>
+                        </table>
                     </div>
                     <span id="total-Compra"></span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success me-2" id="detalle__comprar__carrito" onclick="confirmarCompra()">Comprar</button>
+                    <button class="btn btn-success me-2" id="detalle__comprar__carrito">Comprar</button>
                     <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>
@@ -107,7 +117,7 @@ include_once("../estructura/Cabecera.php");
         <div id="content__carrito" class="row justify-content-end">
             <a class="link-light col-md-3" data-bs-toggle="modal" href="#exampleModalToggle2" role="button">
                 <p id="contador__carrito"></p>
-                <img id="logo-carrito" src="../img/carritoCompra.png" class="img-fluid" alt="Logo de Carrito">
+                <img id="logo_carrito" src="../img/carritoCompra.png" class="img-fluid" alt="Logo de Carrito">
             </a>
         </div>
     </div>
@@ -140,6 +150,9 @@ include_once("../estructura/Cabecera.php");
         ?>
     </div>
 </div>
+<script src="../js/producto.js"></script>
+<script src="../js/mainAgregarProductoCarrito.js"></script>
+<script src="../js/mainBorrarProductoCarrito.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
