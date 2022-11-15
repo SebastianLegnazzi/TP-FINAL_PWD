@@ -2,9 +2,9 @@
 include_once('../estructura/Cabecera.php');
 
 $objMenuRol=new C_MenuRol();
-$objRol=new Rol();
+$objRol=new C_Rol();
 $permisos=$objMenuRol->buscar(null);
-$roles=$objRol->listar();
+$roles=$objRol->buscar(null);
 if ($permisos != null) {
     $cantPermisos=count($permisos);
 } else{
@@ -39,7 +39,8 @@ $i = 0;
                     <td class="text-center"> <?php echo $permiso->getRol()->getRolDescripcion()  ?> 
                     </td>
                     <td class="text-center">
-                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-warning"> QUITAR PERMISO </button>
+                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
+                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-danger"> ELIMINAR</button>
                     </td>
                 </tr>
                 <?php
@@ -60,10 +61,10 @@ $i = 0;
 </div>
 <div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white mt-5">
     <div class="row justify-content-center">
-    <div class="col-10">
-        <h5>Agregar Nuevo Permiso</h5>
-    </div>
-    <div class="col-lg-7 col-12 mt-2">
+        <div class="col-10">
+            <h5>Agregar Nuevo Permiso</h5>
+        </div>
+            <div class="col-lg-7 col-12 mt-2">
                 <label>Nombre Menú </label>
                 <input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" 
                 name="" minlength="3" class="form-control text mt-2" required>
@@ -91,14 +92,23 @@ $i = 0;
                 <select class="form-select mb-3" aria-label=".form-select example">
                 <option selected>Seleccionar</option>
                 <?php
-                foreach($permisos as $permiso){
+                foreach($roles as $rol){
                     ?>
-                    <option value="rol[]"><?php echo $permiso->getRol()->getRolDescripcion() ?> </option>
+                    <option value="rol[]"><?php echo $rol->getRolDescripcion() ?> </option>
                     <?php
                 }
                 ?>
                 </select>
                 
             </div>
+            <div class="col-10">
+            <button class="btn btn-lg btn-success my-3 mt-4" type="button" 
+                id="nuevoPermiso">AGREGAR
+            </button>
+            </div>
     </div>
-<div>
+</div>
+<script src=""></script>
+<?php
+include_once("../estructura/Pie.php")
+?>
