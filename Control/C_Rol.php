@@ -81,7 +81,7 @@ class C_Rol
             if (isset($param['rolDescripcion']))
                 $where .= " and rolDescripcion='" . $param['rolDescripcion'] . "'";
         }
-        $objRol = new Usuario();
+        $objRol = new Rol();
         $arreglo = $objRol->listar($where);
         return $arreglo;
     }
