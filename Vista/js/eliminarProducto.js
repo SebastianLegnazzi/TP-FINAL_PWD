@@ -73,7 +73,6 @@ $(document).on('click', '.remove', function() {
         }
       })
     
-
 });
 
 function eliminar(fila){

@@ -37,7 +37,7 @@ include_once("../estructura/Cabecera.php");
                 <div class="invalid-feedback">
                     Ingrese un precio valido válida!
                 </div>
-                <div class="valid-feedback password-correcta">
+                <div class="valid-feedback">
                     Correcto!
                 </div>
             </div>
@@ -46,7 +46,7 @@ include_once("../estructura/Cabecera.php");
                 <div class="invalid-feedback">
                     Ingrese un url válido!
                 </div>
-                <div class="valid-feedback password-correcta">
+                <div class="valid-feedback">
                     Correcto!
                 </div>
             </div>

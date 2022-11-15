@@ -182,13 +182,13 @@ class Producto
         $resp = false;
         $base = new BaseDatos();
         $consulta = "UPDATE producto
-        SET idproducto = '{$this->getIdProducto()}',
-        pronombre = '{$this->getNombre()}',
-        prodetalle = '{$this->getDetalle()}',
-        procantstock = '{$this->getCantStock()}',
+        SET idProducto = '{$this->getIdProducto()}',
+        proNombre = '{$this->getNombre()}',
+        proDetalle = '{$this->getDetalle()}',
+        proCantStock = '{$this->getCantStock()}',
         proPrecio = '{$this->getProPrecio()}',
         urlImagen = '{$this->getUrlImagen()}',
-        WHERE idproducto = '{$this->getIdProducto()}'";
+        WHERE idProducto = '{$this->getIdProducto()}'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;

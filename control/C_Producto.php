@@ -16,7 +16,7 @@ class C_Producto
         if (array_key_exists('idProducto', $param) and array_key_exists('proNombre', $param) and array_key_exists('proDetalle', $param) and array_key_exists('proCantStock', $param) and  array_key_exists('proPrecio', $param) and array_key_exists('urlImagen', $param)) {
             $objProducto = new Producto();
             $objProducto->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock'], $param['proPrecio'], $param['urlImagen']);
-            $objProducto;
+
             }
         return $objProducto;
     }
