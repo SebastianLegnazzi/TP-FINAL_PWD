@@ -224,7 +224,7 @@ class Menu {
                     $objMenu = new Menu();
                     $objPadre =null;
                     
-                    if ($row['idpadre']!=null){
+                    if ($row['idPadre']!=null){
                         $objPadre = new Menu();
                         $objPadre->setIdMenu($row['idPadre']);
                         $objPadre->cargar();
