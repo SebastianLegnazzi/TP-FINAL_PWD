@@ -2,7 +2,9 @@
 include_once('../estructura/Cabecera.php');
 
 $objMenuRol=new C_MenuRol();
+$objRol=new Rol();
 $permisos=$objMenuRol->buscar(null);
+$roles=$objRol->listar();
 if ($permisos != null) {
     $cantPermisos=count($permisos);
 } else{
@@ -56,3 +58,47 @@ $i = 0;
     }
     ?>
 </div>
+<div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white mt-5">
+    <div class="row justify-content-center">
+    <div class="col-10">
+        <h5>Agregar Nuevo Permiso</h5>
+    </div>
+    <div class="col-lg-7 col-12 mt-2">
+                <label>Nombre Menú </label>
+                <input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" 
+                name="" minlength="3" class="form-control text mt-2" required>
+                <div class="invalid-feedback">
+                    Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+            </div>
+            <div class="col-lg-7 col-12 mt-2">
+                <label>Ruta Relativa </label>
+                <input type="text" pattern="" name="" minlength="3" 
+                class="form-control text mt-2" required>
+                <div class="invalid-feedback">
+                    Porfavor ingrese una ruta válida.
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+            </div>
+            <div class="col-lg-7 col-12 mt-2">
+                
+                <label>Rol que puede acceder </label>
+                <select class="form-select mb-3" aria-label=".form-select example">
+                <option selected>Seleccionar</option>
+                <?php
+                foreach($permisos as $permiso){
+                    ?>
+                    <option value="rol[]"><?php echo $permiso->getRol()->getRolDescripcion() ?> </option>
+                    <?php
+                }
+                ?>
+                </select>
+                
+            </div>
+    </div>
+<div>
