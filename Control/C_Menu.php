@@ -12,12 +12,12 @@ class C_Menu{
         
         $obj = null;
            
-        if( array_key_exists('idMenu',$param) and array_key_exists('meNombre',$param) and array_key_exists('meDescripcion',$param)  ){
+        if(array_key_exists('meNombre',$param) and array_key_exists('meDescripcion',$param)){
             
             $obj = new Menu();
             
             $objMenu = null;
-            if (isset($param['idPadre'])){
+            if ($param['idPadre']!=''){
                 $objMenu = new Menu();
                 $objMenu->setIdMenu($param['idPadre']);
                 $objMenu->cargar();
@@ -28,7 +28,7 @@ class C_Menu{
             }else{
                 $param['meDeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->setear($param['idMenu'], $param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
+            $obj->setear('',$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
         }
         return $obj;
     }
@@ -68,8 +68,6 @@ class C_Menu{
      */
     public function alta($param){
         $resp=false;
-        $param['idMenu']=null;
-        $param['meDeshabilitado']=null;
         $objMenu=$this->cargarObjeto($param);
         if($objMenu!=null and $objMenu->insertar()){
             if($this->altaRol($objMenu,$param)){
@@ -83,8 +81,8 @@ class C_Menu{
         $resp=false;
         $param['idMenu']=$objMenu->getIdMenu();
         $objMenuRol=new C_MenuRol();
-        $objMenuRol->cargarObjeto($param);
-        if($objMenuRol!=null && $objMenuRol->insertar()){
+        $menuRol=$objMenuRol->cargarObjeto($param);
+        if($menuRol!=null && $menuRol->insertar()){
             $resp=true;
         }
         return $resp;
