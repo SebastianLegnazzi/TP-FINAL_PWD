@@ -68,6 +68,7 @@ class C_Menu{
      */
     public function alta($param){
         $resp=false;
+        $param['idMenu'] = null; 
         $objMenu=$this->cargarObjeto($param);
         if($objMenu!=null and $objMenu->insertar()){
             if($this->altaRol($objMenu,$param)){
