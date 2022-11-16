@@ -9,7 +9,7 @@ $menuModificar=$objMenu->buscar($datos);
 $rolModificar=$objMenuRol->buscar($datos);
 $roles=$objRol->buscar(null);
 $permisos=$objMenuRol->buscar(null);
-//$descRolesUsuario=$objMenuRol->darDescripcionRoles($usuarioModificar);
+
 ?>
 
 
@@ -43,7 +43,7 @@ $permisos=$objMenuRol->buscar(null);
                 
             </div>
     <div class="col-10 col-lg-7">
-    <label for="meDescripcion" class="form-label mt-2">RUTA RELATIVA</label>
+    <label for="meDescripcion" class="form-label mt-2">Ruta Relativa</label>
         <input type="text" class="form-control" pattern="(..\/)([a-zA-Z0-9_\-]+)(\/[a-zA-Z0-9_\-]+)\.php"
                 name="meDescripcion" value="<?php echo $menuModificar[0]->getMeDescripcion()?>" required>
     </div>

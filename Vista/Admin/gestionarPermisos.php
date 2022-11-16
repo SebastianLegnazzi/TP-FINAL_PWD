@@ -95,7 +95,7 @@ $i = 0;
             <div class="col-lg-7 col-12 mt-2">
                 
                 <label>Menu Padre Si Posee</label>
-                <select name="idPadre" class="form-select mb-3" aria-label=".form-select example">
+                <select name="idPadre" class="form-select mt-2" aria-label=".form-select example">
                 <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($permisos as $permiso){
@@ -111,7 +111,7 @@ $i = 0;
             <div class="col-lg-7 col-12 mt-2">
                 
                 <label>Rol que puede acceder</label>
-                <select name="idRol" class="form-select mb-3" aria-label=".form-select example" required>
+                <select name="idRol" class="form-select mt-2" aria-label=".form-select example" required>
                 <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($roles as $rol){
