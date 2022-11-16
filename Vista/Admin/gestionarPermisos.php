@@ -60,14 +60,14 @@ $i = 0;
     ?>
 </div>
 <div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white mt-5">
-    <div class="row justify-content-center">
+    <form class="row justify-content-center needs-validation" method="POST" action="../Accion/nuevoPermiso.php" novalidate>
         <div class="col-10">
             <h5>Agregar Nuevo Permiso</h5>
         </div>
             <div class="col-lg-7 col-12 mt-2">
                 <label>Nombre Menú </label>
                 <input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" 
-                name="" minlength="3" class="form-control text mt-2" required>
+                name="meNombre" minlength="3" class="form-control text mt-2" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
                 </div>
@@ -77,7 +77,7 @@ $i = 0;
             </div>
             <div class="col-lg-7 col-12 mt-2">
                 <label>Ruta Relativa </label>
-                <input type="text" pattern="" name="" minlength="3" 
+                <input type="text" pattern="" name="meDescripcion" minlength="10" 
                 class="form-control text mt-2" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese una ruta válida.
@@ -88,13 +88,29 @@ $i = 0;
             </div>
             <div class="col-lg-7 col-12 mt-2">
                 
-                <label>Rol que puede acceder </label>
-                <select class="form-select mb-3" aria-label=".form-select example">
+                <label>Menu Padre Si Posee</label>
+                <select name="idPadre[]" class="form-select mb-3" aria-label=".form-select example">
+                <option selected>Seleccionar</option>
+                <?php
+                foreach($permisos as $permiso){
+                    ?>
+                    <option value="<?php echo $permiso->getMenu()->getIdMenu()?>"> <?php echo $permiso->getMenu()->getMeNombre()?></option>
+                    <?php
+                }
+                ?>
+                </select>
+                
+            </div>
+
+            <div class="col-lg-7 col-12 mt-2">
+                
+                <label>Rol que puede acceder</label>
+                <select name="rol[]" class="form-select mb-3" aria-label=".form-select example" required>
                 <option selected>Seleccionar</option>
                 <?php
                 foreach($roles as $rol){
                     ?>
-                    <option value="rol[]"><?php echo $rol->getRolDescripcion() ?> </option>
+                    <option value="<?php echo $rol->getIdRol() ?>"> <?php echo $rol->getRolDescripcion() ?> </option>
                     <?php
                 }
                 ?>
@@ -102,13 +118,14 @@ $i = 0;
                 
             </div>
             <div class="col-10">
-            <button class="btn btn-lg btn-success my-3 mt-4" type="button" 
+            <button class="btn btn-lg btn-success my-3 mt-4" type="submit" 
                 id="nuevoPermiso">AGREGAR
             </button>
             </div>
-    </div>
+    </form>
 </div>
-<script src=""></script>
+
+<script src="../js/mainPermisos.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
