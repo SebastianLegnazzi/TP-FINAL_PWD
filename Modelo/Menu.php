@@ -123,11 +123,15 @@ class Menu {
         $idPadre = $this->getPadre();
         if($idPadre != null){
             $idPadre = "'".$idPadre->getIdMenu()."'";
+        }else{
+            $idPadre='NULL';
         }
 
         $deshabilitado = $this->getMeDeshabilitado();
         if($deshabilitado != null){
             $deshabilitado = "'".$deshabilitado."'"; 
+        }else{
+            $deshabilitado='NULL';
         }
 
         $sql = "INSERT INTO menu (meNombre, meDescripcion, idPadre, meDeshabilitado)  VALUES (
