@@ -30,8 +30,8 @@ if ($objSession->activa()) {
 <body>
   <header class="navbar navbar-expand-lg navbar-dark bg-dark" >
     <div class="container-fluid">
-        <a href="../../index.php" class="navbar-brand text-white">
-          LOSADEF ❤
+        <a href="../../index.php" class="navbar-brand losadef text-white">
+          Losadef
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

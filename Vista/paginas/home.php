@@ -14,7 +14,7 @@ include_once("../estructura/Cabecera.php");
         <img src="multimedia/imgTexto1.jpg" class="d-block mx-lg-auto img-fluid rounded imagen" width="400" alt="Maquina de Coser" width="700" height="500" loading="lazy">
       </div>
       <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3 índigo-300 text-light">¿Quienes Somos?</h1>
+        <h1 class="display-5 fw-bold lh-1 mb-3 índigo-300 text-light fst-italic">¿Quienes Somos?</h1>
         <p class="lead"><p class="text-light">De todo un poco nace en 2022 con la idea de renovar el mercado y la forma de realizar trajes.
                             La propuesta es la siguiente; que cada persona que desea realizar algun tipo de vestimenta no tenga la necesidad de salir de su casa y 
                             pueda de una forma rapida y eficaz llevar a cabo la prenda deseada.
