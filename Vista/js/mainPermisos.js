@@ -47,7 +47,3 @@ function permisoFailure() {
         timer: 1500
     })
 }
-
-function deshabilitar(){
-    
-}
