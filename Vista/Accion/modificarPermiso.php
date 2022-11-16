@@ -10,7 +10,7 @@ if($menuModificado && $rolModificado){
     //Roles y datos modificados con exito!
     echo json_encode(array('success'=>3));
 }else if($menuModificado && !$rolModificado){
-    //solo modifico el usuario: Datos modificados con exito!
+    //solo modifico el menu: Datos modificados con exito!
     echo json_encode(array('success'=>2));
 }else if(!$menuModificado && $rolModificado){
     //solo modifico roles: Rol agregado con exito!
