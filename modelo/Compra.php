@@ -106,7 +106,7 @@ class Compra
         $base = new BaseDatos();
         $resp = false;
         $consulta = "INSERT INTO compra (coFecha, idUsuario) VALUES (
-		" . $this->getFecha() . ",
+		'" . $this->getFecha() . "',
 		" . $this->getObjUsuario()->getIdUsuario(). ")";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -125,10 +125,10 @@ class Compra
         $resp = false;
         $base = new BaseDatos();
         $consulta = "UPDATE compra
-        SET idCompra = '{$this->getIdCompra()}',
+        SET idCompra = {$this->getIdCompra()},
         coFecha = '{$this->getFecha()}',
-        idUsuario = '{$this->getObjUsuario()->getIdUsuario()}',
-        WHERE idCompra = '{$this->getIdCompra()}'";
+        idUsuario = {$this->getObjUsuario()->getIdUsuario()},
+        WHERE idCompra = {$this->getIdCompra()}";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;

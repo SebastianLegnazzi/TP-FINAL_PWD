@@ -59,7 +59,6 @@ class C_CompraEstado{
     public function alta($param){
         $resp = false;
         $param['idCompraEstado'] = null;
-        $param['ceFechaIni'] = "CURRENT_TIMESTAMP";
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
