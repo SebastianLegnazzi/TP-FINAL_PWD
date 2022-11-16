@@ -138,6 +138,19 @@ class C_Menu{
         $arreglo = $objMenu->listar($where);  
         return $arreglo; 
     }
+
+    public function deshabilitar($param){
+        $resp = false;
+        $arrayMenues = $this->buscar($param);
+        $fecha = new DateTime();
+        $fechaStamp = $fecha->format('Y-m-d H:i:s');
+        $objMenu = $arrayMenues[0];
+        $objMenu->setMeDeshabilitado($fechaStamp);
+        if ($objMenu != null and $objMenu->modificar()) {
+            $resp = true;
+        }
+        return $resp;
+    }
    
 }
 ?>
