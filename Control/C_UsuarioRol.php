@@ -140,8 +140,7 @@ class C_UsuarioRol
     }
 
     //esta funcion me devuelve un array de descripcion de roles de un array de usuarios:
-    public function darDescripcionRoles($arrayUsuarios)
-    {
+    public function darDescripcionRoles($arrayUsuarios){
         $rolesUs = [];
         foreach ($arrayUsuarios as $us) {
             $param['idUsuario'] = $us->getIdUsuario();
