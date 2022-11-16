@@ -82,7 +82,7 @@ $i = 0;
             </div>
             <div class="col-lg-7 col-12 mt-2">
                 <label>Ruta Relativa </label>
-                <input type="text" pattern="" name="meDescripcion" minlength="10" 
+                <input type="text" pattern="(..\/)([a-zA-Z0-9_\-]+)(\/[a-zA-Z0-9_\-]+)\.php" name="meDescripcion" minlength="10" 
                 class="form-control text mt-2" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese una ruta válida.
@@ -95,7 +95,7 @@ $i = 0;
                 
                 <label>Menu Padre Si Posee</label>
                 <select name="idPadre[]" class="form-select mb-3" aria-label=".form-select example">
-                <option selected>Seleccionar</option>
+                <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($permisos as $permiso){
                     ?>
@@ -111,7 +111,7 @@ $i = 0;
                 
                 <label>Rol que puede acceder</label>
                 <select name="rol[]" class="form-select mb-3" aria-label=".form-select example" required>
-                <option selected>Seleccionar</option>
+                <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($roles as $rol){
                     ?>
