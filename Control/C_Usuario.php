@@ -110,9 +110,8 @@ class C_Usuario
     }
 
 
-    public function agregarRolAdmin($param)
-    {
-        $agregado = false;
+    public function cambiarRoles($param){
+        $cambiado = false;
         $datos['idUsuario'] = $param['idUsuario'];
         $usuarios = $this->buscar($datos);
         $objUsuarioRol = new C_UsuarioRol();
@@ -120,15 +119,28 @@ class C_Usuario
         $rolesDesc = $objUsuarioRol->darDescripcionRoles($usuarios);
         //ahora obtengo los roles que pase por POST
         $roles = $param['rol'];
-        //controlar primero que el usuario solo tenga el rol_user
-        //y que se haya cliqueado la opcion admin
-        if (count($rolesDesc[0]) < 2 && in_array('ROLE_ADMIN', $roles)) {
-            $idUsuario = $param['idUsuario'];
-            $modUsRol = new UsuarioRol();
-            $modUsRol->setearConClave($idUsuario, 1);
-            $agregado = $modUsRol->insertar();
+        if (count($rolesDesc[0])<count($roles)) {
+            //si lo que hace es agregarRoles
+            foreach($roles as $rolAgregar){
+                if(!in_array($rolAgregar,$rolesDesc[0])){
+                    $idUsuario = $param['idUsuario'];
+                    $modUsRol = new UsuarioRol();
+                    $modUsRol->setearConClave($idUsuario, $rolAgregar);
+                    $cambiado = $modUsRol->insertar(); 
+                }
+            }
+        }else if(count($rolesDesc[0])>count($roles)){
+            //si le quita roles
+            foreach($rolesDesc[0] as $rolEliminar){
+                if(!in_array($rolEliminar,$roles)){
+                    $idUsuario = $param['idUsuario'];
+                    $modUsRol = new UsuarioRol();
+                    $modUsRol->setearConClave($idUsuario, $rolEliminar);
+                    $cambiado = $modUsRol->eliminar(); 
+                }
+            }
         }
-        return $agregado;
+        return $cambiado;
     }
 
     function deshabilitar($param)
