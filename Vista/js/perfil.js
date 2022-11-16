@@ -32,10 +32,10 @@ $(document).ready(function () {
                     var jsonData = JSON.parse(response);
 
                     if (jsonData.success == "1") {
-                        registerSuccess();
+                        success();
                     }
                     else if (jsonData.success == "0") {
-                        registerFailure();
+                        failure();
                     } 
                 }
             });
@@ -44,3 +44,30 @@ $(document).ready(function () {
         }
     });
 });
+
+
+function success() {
+    Swal.fire({
+        icon: 'success',
+        title: 'Tu email se ha modificado! 😉',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    setTimeout(function () {
+        location.reload();
+    }, 1500);
+}
+
+function failure() {
+    Swal.fire({
+        icon: 'error',
+        title: 'No se ha podido modificar el email! 😥',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    setTimeout(function () {
+        location.reload();
+    }, 1500);
+}
+
+

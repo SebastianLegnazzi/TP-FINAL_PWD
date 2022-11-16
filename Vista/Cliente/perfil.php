@@ -31,7 +31,7 @@ $usuario = $usuario->buscar($datos)[0];
                 ?>
                 </table>
 
-                <input class="btn btn-secondary mt-2 col-3" type="button" name="boton_editarDatos"  id="boton_editarDatos" value="EDITAR">
+                <input class="btn btn-secondary mt-2 col-3" type="button" name="boton_editarDatos"  id="boton_editarDatos" value="EDITAR EMAIL">
                 <input class="btn btn-secondary mt-2 mx-3 col-5" type="button" name="boton_contra"  id="boton_contra" value="CAMBIAR MI CONTRASEÑA">
         </div>
     </div>
@@ -50,10 +50,8 @@ $usuario = $usuario->buscar($datos)[0];
  
                     <tr>
 
-                    <td><div class="col-lg-7 col-12 "><input value = '<?php echo $usuario->getUsNombre()?>' type="text" style="width: 150px;" pattern="[a-zA-Z]+\s?[0-9]*" name="usNombre" required></input><div class="invalid-feedback">
-                    Ingrese un nombre valido!</div>
-                    <div class="valid-feedback">
-                    Correcto!</div></div><div class="col-lg-7 col-12 d-none"><input value = '<?php echo $usuario->getUsPass()?>' type="text" name="usPass" required></input></div></td>
+                    <td><div class="col-lg-7 col-12"><?php echo $usuario->getUsNombre()?></div><div class="col-lg-7 col-12 d-none"><input value = '<?php echo $usuario->getUsNombre()?>' type="text" style="width: 150px;" pattern="[a-zA-Z]+\s?[0-9]*" name="usNombre"></input>
+                    </div><div class="col-lg-7 col-12 d-none"><input value = '<?php echo $usuario->getUsPass()?>' type="text" name="usPass"></input></div></td>
 
                     <td><div class="col-lg-7 col-12 "><input value = '<?php echo $usuario->getUsMail()?>' type="email" style="width: 250px;" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*\.([a-z]{3})(\.[a-z]{2})*$" name="usMail" required></input><div class="invalid-feedback">
                     Ingrese un email valido!</div>
