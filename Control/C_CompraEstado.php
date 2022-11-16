@@ -59,6 +59,7 @@ class C_CompraEstado{
     public function alta($param){
         $resp = false;
         $param['idCompraEstado'] = null;
+        $param['ceFechaIni'] = "CURRENT_TIMESTAMP";
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -115,6 +116,22 @@ class C_CompraEstado{
         return $arreglo;
     }
 
+    public function buscarCompraBorrador($arrayCompra)
+    {
+        $objCompraEstadoInciada = null;
+        $i = 0;
+        /* Busca en el arraycompra si hay alguna que este con el estado "iniciada" */
+        while (($objCompraEstadoInciada == null) && ($i < count($arrayCompra))) {
+            $idCompra["idCompra"] = $arrayCompra[$i]->getIdCompra();
+            $arrayCompraEstado = $this->buscar($idCompra);
+            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador") {
+                $objCompraEstadoInciada = $arrayCompraEstado[0];
+            } else {
+                $i++;
+            }
+        }
+        return $objCompraEstadoInciada;
+    }
 }
 
 ?>

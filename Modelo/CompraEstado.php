@@ -109,7 +109,7 @@ class CompraEstado{
                 ".$this->getCompra()->getIdCompra().",
                 ".$this->getCompraEstadoTipo()->getIdCompraEstadoTipo().",
                 '".$this->getCeFechaIni()."',
-                '".$this->getCeFechaFin()."' 
+                '".$this->getCeFechaFin()."'
                 )";
 
         if ($base->Iniciar()) {
@@ -128,12 +128,12 @@ class CompraEstado{
         $resp = false;
         $base = new BaseDatos();
         $sql = "UPDATE compraestado SET 
-                idCompraEstado='".$this->getIdCompraEstado()."', 
-                idCompra='".$this->getCompra()->getIdCompra()."', 
-                idCompraEstadoTipo='".$this->getCompraEstadoTipo()->getIdCompraEstadoTipo()."', 
-                ceFechaIni='".$this->getCeFechaIni()."', 
-                ceFechaFin='".$this->getCeFechaFin()."' 
-                WHERE idCompraEstado='".$this->getIdCompraEstado()."'";
+                idCompraEstado=".$this->getIdCompraEstado().", 
+                idCompra=".$this->getCompra()->getIdCompra().", 
+                idCompraEstadoTipo=".$this->getCompraEstadoTipo()->getIdCompraEstadoTipo().", 
+                ceFechaFin='".$this->getCeFechaFin()."', 
+                ceFechaIni='".$this->getCeFechaIni()."'
+                WHERE idCompraEstado=".$this->getIdCompraEstado();
         
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
