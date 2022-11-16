@@ -19,14 +19,14 @@ class C_Menu{
             $objMenu = null;
             if (isset($param['idPadre'])){
                 $objMenu = new Menu();
-                $objMenu->setIdmenu($param['idpadre']);
+                $objMenu->setIdMenu($param['idPadre']);
                 $objMenu->cargar();
             }
             
-            if(!isset($param['medeshabilitado'])){
-                $param['medeshabilitado']=null;
+            if(!isset($param['meDeshabilitado'])){
+                $param['meDeshabilitado']=null;
             }else{
-                $param['medeshabilitado']= date("Y-m-d H:i:s");
+                $param['meDeshabilitado']= date("Y-m-d H:i:s");
             }
             $obj->setear($param['idMenu'], $param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
         }
@@ -41,9 +41,9 @@ class C_Menu{
     private function cargarObjetoConClave($param){
         $obj = null;
         
-        if( isset($param['idmenu']) ){
+        if( isset($param['idMenu']) ){
             $obj = new Menu();
-            $obj->setIdmenu($param['idmenu']);
+            $obj->setIdmenu($param['idMenu']);
         }
         return $obj;
     }
@@ -57,7 +57,7 @@ class C_Menu{
     
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idmenu']))
+        if (isset($param['idMenu']))
             $resp = true;
         return $resp;
     }
@@ -68,8 +68,8 @@ class C_Menu{
      */
     public function alta($param){
         $resp = false;
-        $param['idmenu'] =null;
-        $param['medeshabilitado'] = null;
+        $param['idMenu'] =null;
+        $param['meDeshabilitado'] = null;
         $objMenu = $this->cargarObjeto($param);
        
         if($objMenu!=null and $objMenu->insertar()){
