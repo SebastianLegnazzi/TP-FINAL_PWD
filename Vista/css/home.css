@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "mifuente";
+    src: url(../fuente/Alcattraz\ Zone.ttf);
+}
+
+.losadef{
+    font-family: "mifuente"; 
+    font-size:4.5ch;
+}
 .imagen{
     border: 2px solid rgb(255, 0, 149);
     box-shadow: 8px 2px 5px  rgb(255, 0, 149); 

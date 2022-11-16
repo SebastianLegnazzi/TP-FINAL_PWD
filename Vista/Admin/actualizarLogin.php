@@ -7,7 +7,7 @@ $objUsuarioRol=new C_UsuarioRol();
 $usuarioModificar=$objUsuario->buscar($datos);
 $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
-<div class="container-md">
+<div class="container-md mb-5">
 <main class="w-50 m-auto mt-5 text-center">
     <form class="row gy-2 text-center justify-content-center rounded bg-dark text-white needs-validation" novalidate>
     <div class="col-10" style="display:none;">
