@@ -157,32 +157,32 @@ class Menu {
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-
-        $idPadre = $this->getPadre();
-        if($idPadre != null){
-            $idPadre = "'".$idPadre->getIdMenu()."'";
-        }
-
         $deshabilitado = $this->getMeDeshabilitado();
-        if($deshabilitado != null){
-            $deshabilitado = "'".$deshabilitado."'"; 
+        if($deshabilitado==null){
+            //PARA EL CASO QUE QUIERA MODIFICAR OBJETO SIN TOCAR USDESHABILITADO
+            $deshabilitado=='';
+        }else if($deshabilitado=='habilitar'){
+            //PARA EL CASO QUE QUIERA HABILITARLO
+            $deshabilitado=",meDeshabilitado=NULL";
+        }else {
+            //PARA EL CASO QUE QUIERA DESHABILITARLO
+            $deshabilitado=",meDeshabilitado='".$this->getMeDeshabilitado()."' ";
         }
 
-        $sql="UPDATE menu SET 
-              meNombre='".$this->getMenombre()."',
-              meDescripcion='".$this->getMedescripcion()."',
-              idPadre=".$idPadre.",
-              meDeshabilitado=".$deshabilitado.",
-              ";
-        
+        $idPadre=$this->getPadre();
+        $idPadre!=null?$idPadre=",idPadre=".$idPadre->getIdMenu():$idPadre='';
+
+        $sql="UPDATE menu SET meNombre='".$this->getMenombre()."',
+              meDescripcion='".$this->getMedescripcion()."'"
+              .$idPadre.$deshabilitado;
         $sql.= " WHERE idMenu = ".$this->getIdMenu();
         
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
-                
             } else {
                 $this->setmensajeoperacion("menu->modificar: ".$base->getError());
+                $resp=false;
             }
         } else {
             $this->setmensajeoperacion("menu->modificar: ".$base->getError());

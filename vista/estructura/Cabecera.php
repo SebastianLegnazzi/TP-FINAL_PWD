@@ -42,9 +42,11 @@ if ($objSession->activa()) {
             <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
             <?php
             foreach ($menues as $objMenu) {
-            ?>
-              <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
-            <?php
+              if($objMenu->getMeDeshabilitado()==NULL){
+                ?>
+                <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+                <?php
+              }
             }
             ?>
           </ul>

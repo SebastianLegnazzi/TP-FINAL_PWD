@@ -28,7 +28,7 @@ class C_Menu{
             }else{
                 $param['meDeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->setear('',$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
+            $obj->setear($param['idMenu'],$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
         }
         return $obj;
     }
@@ -68,6 +68,7 @@ class C_Menu{
      */
     public function alta($param){
         $resp=false;
+        $param['idMenu'] = null; 
         $objMenu=$this->cargarObjeto($param);
         if($objMenu!=null and $objMenu->insertar()){
             if($this->altaRol($objMenu,$param)){
@@ -111,7 +112,6 @@ class C_Menu{
      * @return boolean
      */
     public function modificacion($param){
-       
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objMenu = $this->cargarObjeto($param);
@@ -137,6 +137,30 @@ class C_Menu{
         $objMenu = new Menu();
         $arreglo = $objMenu->listar($where);  
         return $arreglo; 
+    }
+
+    public function deshabilitar($param){
+        $resp = false;
+        $arrayMenues = $this->buscar($param);
+        $fecha = new DateTime();
+        $fechaStamp = $fecha->format('Y-m-d H:i:s');
+        $objMenu = $arrayMenues[0];
+        $objMenu->setMeDeshabilitado($fechaStamp);
+        if ($objMenu != null and $objMenu->modificar()) {
+            $resp = true;
+        }
+        return $resp;
+    }
+
+    public function habilitar($param){
+        $resp = false;
+        $arrayObjMenues = $this->buscar($param);
+        $objMenu = $arrayObjMenues[0];
+        $objMenu->setMeDeshabilitado('habilitar');
+        if ($objMenu!= null and $objMenu->modificar()) {
+            $resp = true;
+        }
+        return $resp;
     }
    
 }
