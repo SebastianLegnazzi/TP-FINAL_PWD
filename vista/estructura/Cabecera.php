@@ -18,6 +18,7 @@ if ($objSession->activa()) {
   <title>Trabajo Practico Final PWD</title>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/producto.css">
+  <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../alertas/dist/sweetalert2.min.css">
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../alertas/dist/sweetalert2.all.min.js"></script>
