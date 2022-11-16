@@ -83,9 +83,12 @@ function crearCompra($idUsuario)
     $arrayObjCompraEstado = null;
     if ($objCompra->alta($idUsuario)) {
         $arrayCompra = $objCompra->buscar($idUsuario);
+        $fecha = new DateTime();
+        $fechaStamp=$fecha->format('Y-m-d H:i:s');
         $paramCompraEstado = [
             "idCompra" => end($arrayCompra)->getIdCompra(),
             "idCompraEstadoTipo" => 1,
+            "ceFechaIni" => $fechaStamp,
             "ceFechaFin" => null
         ];
         if ($objCompraEstado->alta($paramCompraEstado)) {
