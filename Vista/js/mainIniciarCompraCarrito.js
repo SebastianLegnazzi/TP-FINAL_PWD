@@ -1,9 +1,7 @@
-
-
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
-        title: 'El producto se ha eliminado correctamente!',
+        title: 'El producto se ha comprado correctamente!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -15,7 +13,19 @@ function registerSuccess() {
 function registerFailure() {
     Swal.fire({
         icon: 'error',
-        title: 'No se ha podido eliminar el producto!',
+        title: 'No se ha podido realizar la compra el producto!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    setTimeout(function () {
+        recargarPagina();
+    }, 1500);
+}
+
+function noexisteproducto() {
+    Swal.fire({
+        icon: 'error',
+        title: 'No tienes productos en el carrito todavia!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -28,39 +38,12 @@ function recargarPagina() {
     location.reload();
 }
 
-$(document).on('click', '.remove', function() {
-
-    var fila = $(this).closest('tr');
-    var img = fila[0].children[4].innerHTML;
-
-    Swal.fire({
-        title: '¿Estás seguro de que desea eliminar este producto?',
-        imageUrl: img,
-        showDenyButton: true,
-        confirmButtonText: 'Eliminar',
-        denyButtonText: 'Cancelar',
-        
-    }).then((result) => {
-       
-        if (result.isConfirmed) {
-            
-            eliminar(fila);
-        
-        } else if (result.isDenied) {
-        
-            
-        }
-      })
-    
-});
-
-function eliminar(fila){
-    
-    var idProducto = fila[0].children[0].innerHTML;    
+$(document).on('click', '#iniciar_compra', function() {
+    let idCompraEstado = document.getElementById("idCompraEstado").childNodes[0].nodeValue
     $.ajax({
         type: "POST",
-        url: '../Accion/accionEliminarProducto.php',
-        data: {idProducto:idProducto},
+        url: '../Accion/accionRealizarCompraCarrito.php',
+        data: {idCompraEstado:idCompraEstado},
         
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);
@@ -73,7 +56,9 @@ function eliminar(fila){
             else if (jsonData.success == "0") {
                 registerFailure();
             } 
+            else if (jsonData.success == "2") {
+                noexisteproducto();
+            } 
         }
     });
-
-};
+});

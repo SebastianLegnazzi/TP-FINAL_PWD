@@ -181,22 +181,15 @@ class Producto
     {
         $resp = false;
         $base = new BaseDatos();
-        $consulta = "UPDATE producto
-        SET idproducto = '{$this->getIdProducto()}',
-        pronombre = '{$this->getNombre()}',
-        prodetalle = '{$this->getDetalle()}',
-        procantstock = '{$this->getCantStock()}',
-        proPrecio = '{$this->getProPrecio()}',
-        urlImagen = '{$this->getUrlImagen()}',
-        WHERE idproducto = '{$this->getIdProducto()}'";
+        $sql = "UPDATE producto SET idproducto='" . $this->getIdProducto() . "', pronombre='" . $this->getNombre() . "', prodetalle='" . $this->getDetalle() . "', procantstock='" . $this->getCantStock() . "', proprecio='" . $this->getProPrecio() . "', urlimagen='" . $this->getUrlImagen() . "' WHERE idproducto='" . $this->getIdProducto() . "'";
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($consulta)) {
-                $resp =  true;
+            if ($base->Ejecutar($sql)) {
+                $resp = true;
             } else {
-                $this->setMensajeFuncion($base->getError());
+                $this->setMensajeFuncion("Producto->modificar: " . $base->getError());
             }
         } else {
-            $this->setMensajeFuncion($base->getError());
+            $this->setMensajeFuncion("Producto->modificar: " . $base->getError());
         }
         return $resp;
     }
@@ -256,7 +249,7 @@ class Producto
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM producto WHERE idproducto = '" . $this->getIdProducto() . "'";
+            $consulta = "DELETE FROM producto WHERE idProducto = '" . $this->getIdProducto() . "'";
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
             } else {

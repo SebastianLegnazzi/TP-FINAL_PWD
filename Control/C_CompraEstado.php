@@ -8,12 +8,12 @@ class C_CompraEstado{
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idcompraestado', $param) and array_key_exists('idcompra', $param)
-            and array_key_exists('idcompraestadotipo', $param) and array_key_exists('cefechaini', $param)
-            and array_key_exists('cefechafin', $param)){
+        if (array_key_exists('idCompraEstado', $param) and array_key_exists('idCompra', $param)
+            and array_key_exists('idCompraEstadoTipo', $param) and array_key_exists('ceFechaIni', $param)
+            and array_key_exists('ceFechaFin', $param)){
 
             $objCompra = new Compra();
-            $objCompra->setIdCompra($param['idcompra']);
+            $objCompra->setIdCompra($param['idCompra']);
             $objCompra->cargar();
 
             $objCompraEstadoTipo = new CompraEstadoTipo();
@@ -59,6 +59,7 @@ class C_CompraEstado{
     public function alta($param){
         $resp = false;
         $param['idCompraEstado'] = null;
+        $param['ceFechaIni'] = "CURRENT_TIMESTAMP";
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -115,6 +116,22 @@ class C_CompraEstado{
         return $arreglo;
     }
 
+    public function buscarCompraBorrador($arrayCompra)
+    {
+        $objCompraEstadoInciada = null;
+        $i = 0;
+        /* Busca en el arraycompra si hay alguna que este con el estado "iniciada" */
+        while (($objCompraEstadoInciada == null) && ($i < count($arrayCompra))) {
+            $idCompra["idCompra"] = $arrayCompra[$i]->getIdCompra();
+            $arrayCompraEstado = $this->buscar($idCompra);
+            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador") {
+                $objCompraEstadoInciada = $arrayCompraEstado[0];
+            } else {
+                $i++;
+            }
+        }
+        return $objCompraEstadoInciada;
+    }
 }
 
 ?>

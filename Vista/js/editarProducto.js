@@ -1,14 +1,43 @@
+$(document).on('click', '.edit', function() {
+
+    document.getElementById('editarProducto').classList.remove('d-none');
+
+    var fila = $(this).closest('tr');
+
+    var id = fila[0].children[0].innerHTML;
+    var nombre = fila[0].children[1].innerHTML;
+    var detalle = fila[0].children[2].innerHTML;
+    var stock = fila[0].children[3].innerHTML;
+    var urlImg = fila[0].children[4].innerHTML;
+    var precio = fila[0].children[5].innerHTML;
+
+    var form = document.getElementById('form-editar');
+    var inputs = form.getElementsByTagName('input');
+
+    document.getElementById('mostrarId').innerHTML = id;
+
+    inputs[0].value = id;
+    inputs[1].value = nombre;
+    inputs[2].value = detalle;
+    inputs[3].value = stock;
+    inputs[4].value = urlImg;
+    inputs[5].value = precio;
+});
+
+$(document).on('click', '#boton_cancelar', function() {
+    document.getElementById('editarProducto').classList.add('d-none');
+});
+
 $(document).ready(function () {
     $('form').submit(function (e) {
         e.preventDefault();
         const forms = document.querySelectorAll('.needs-validation');
-        if (verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep')) && forms[0].checkValidity()) {
-            var password = document.getElementById("input_contraseña").value;
-            var passhash = hex_md5(password).toString();
-            document.getElementById("contraseñaEnviada").value = passhash;
+        if (forms[0].checkValidity()) {
+            
+            
             $.ajax({
                 type: "POST",
-                url: '../Accion/accionRegistrarse.php',
+                url: '../Accion/accionActualizarProductos.php',
                 data: $(this).serialize(),
                 success: function (response) {
                     var jsonData = JSON.parse(response);
@@ -20,9 +49,7 @@ $(document).ready(function () {
                     }
                     else if (jsonData.success == "0") {
                         registerFailure();
-                    } else if (jsonData.success == "-1") {
-                        captchaFailure();
-                    }
+                    } 
                 }
             });
         } else {
@@ -35,23 +62,7 @@ $(document).ready(function () {
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
-        title: 'La cuenta se creo correctamente!',
-        showConfirmButton: false,
-        timer: 1500
-    })
-    setTimeout(function () {
-        redireccionarIndexUser();
-    }, 1500);
-}
-
-function redireccionarIndexUser() {
-    //location.href = "../paginas/index.php"
-}
-
-function registerFailure() {
-    Swal.fire({
-        icon: 'error',
-        title: 'La cuenta no se pudo crear en la base de datos!',
+        title: 'El producto se ha modificado con exito!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -60,10 +71,10 @@ function registerFailure() {
     }, 1500);
 }
 
-function captchaFailure() {
+function registerFailure() {
     Swal.fire({
         icon: 'error',
-        title: 'El captcha no se realizo correctamente!',
+        title: 'No se ha podido modificar el producto!',
         showConfirmButton: false,
         timer: 1500
     })
