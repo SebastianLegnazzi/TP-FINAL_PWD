@@ -28,7 +28,7 @@ class C_Menu{
             }else{
                 $param['meDeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->setear('',$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
+            $obj->setear($param['idMenu'],$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
         }
         return $obj;
     }
@@ -111,7 +111,6 @@ class C_Menu{
      * @return boolean
      */
     public function modificacion($param){
-       
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $objMenu = $this->cargarObjeto($param);
