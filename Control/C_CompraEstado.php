@@ -8,12 +8,12 @@ class C_CompraEstado{
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idcompraestado', $param) and array_key_exists('idcompra', $param)
-            and array_key_exists('idcompraestadotipo', $param) and array_key_exists('cefechaini', $param)
-            and array_key_exists('cefechafin', $param)){
+        if (array_key_exists('idCompraEstado', $param) and array_key_exists('idCompra', $param)
+            and array_key_exists('idCompraEstadoTipo', $param) and array_key_exists('ceFechaIni', $param)
+            and array_key_exists('ceFechaFin', $param)){
 
             $objCompra = new Compra();
-            $objCompra->setIdCompra($param['idcompra']);
+            $objCompra->setIdCompra($param['idCompra']);
             $objCompra->cargar();
 
             $objCompraEstadoTipo = new CompraEstadoTipo();

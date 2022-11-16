@@ -54,26 +54,28 @@ include_once("../estructura/Cabecera.php");
                 </div>
                 <div class="modal-body row">
                     <div>
-                        <table id="lista__carrito" class="table table-dark">
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            <?php
-                            if ($objSession->activa()) {
-                                $objUsuario = $objSession->getUsuario();
-                                if ($objUsuario != null) {
-                                    $objCompra = new C_Compra();
-                                    $idUsuario["idUsuario"] = $objUsuario->getIdUsuario();
-                                    $arrayCompra = $objCompra->buscar($idUsuario);
-                                    if ($arrayCompra != null) {
-                                        $objCompraItem = new C_CompraItem();
-                                        $idCompra["idCompra"] = $arrayCompra[0]->getIdCompra();
-                                        $arrayCompraItem = $objCompraItem->buscar($idCompra);
+                        <?php
+                        if ($objSession->activa()) {
+                            $objUsuario = $objSession->getUsuario();
+                            if ($objUsuario != null) {
+                                $objCompra = new C_Compra();
+                                $idUsuario["idUsuario"] = $objUsuario->getIdUsuario();
+                                $arrayCompra = $objCompra->buscar($idUsuario);
+                                if ($arrayCompra != null) {
+                                    $objCompraItem = new C_CompraItem();
+                                    $idCompra["idCompra"] = $arrayCompra[0]->getIdCompra();
+                                    $arrayCompraItem = $objCompraItem->buscar($idCompra);
+                        ?>
+                                    <table id="lista__carrito" class="table table-dark">
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                        <?php
                                         if ($arrayCompraItem != null) {
                                             foreach ($arrayCompraItem as $compraItem) {
                                                 echo '
@@ -91,15 +93,18 @@ include_once("../estructura/Cabecera.php");
                                                 ';
                                             }
                                         }
-                                    } else {
-                                        echo "<h2 class='text-warning text-center'> No tiene ningun producto agregado al carrito!</h2>";
-                                    }
+                                        ?>
+                                    </table>
+
+                        <?php
+                                } else {
+                                    echo "<h2 class='text-warning text-center'> No tiene ningun producto agregado al carrito!</h2>";
                                 }
-                            } else {
-                                echo "<h2 class='text-warning text-center'> Debes crear una sesion para poder comprar productos! </h2>";
                             }
-                            ?>
-                        </table>
+                        } else {
+                            echo "<h2 class='text-warning text-center'> Debes crear una sesion para poder comprar productos! </h2>";
+                        }
+                        ?>
                     </div>
                     <span id="total-Compra"></span>
                 </div>
@@ -110,7 +115,7 @@ include_once("../estructura/Cabecera.php");
             </div>
         </div>
     </div>
-    <div id="head__productos" class="container align-items-center justify-content-center">
+    <div class="container d-flex align-items-center justify-content-center">
         <div id="content__filter" class="col-md-8 text-center">
             <input type="text" name="filtrador" id="filtrador" class="col-md-6" placeholder="Buscador" onkeyup="filtrar(this.value)">
         </div>
