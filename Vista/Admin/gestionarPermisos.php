@@ -64,7 +64,7 @@ $i = 0;
     }
     ?>
 </div>
-<div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white mt-5">
+<div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white my-5 mb-5">
     <form class="row justify-content-center needs-validation" id="formNuevoPermiso"
         method="POST" action="../Accion/nuevoPermiso.php" novalidate>
         <div class="col-10">
