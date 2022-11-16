@@ -116,7 +116,7 @@ class C_Usuario
         $usuarios = $this->buscar($datos);
         $objUsuarioRol = new C_UsuarioRol();
         //aca obtengo los roles que tiene antes de modificar el usuario:
-        $rolesDesc = $objUsuarioRol->darDescripcionRoles($usuarios);
+        $rolesDesc = $objUsuarioRol->darIdRoles($usuarios);
         //ahora obtengo los roles que pase por POST
         $roles = $param['rol'];
         if (count($rolesDesc[0])<count($roles)) {
