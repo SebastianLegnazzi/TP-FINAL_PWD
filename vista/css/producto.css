@@ -67,12 +67,6 @@ hr {
     display: none;
 }
 
-/* Head Productos */
-
-#head__productos {
-    display: flex;
-}
-
 /* Filtrador */
 
 #filtrador {

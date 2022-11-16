@@ -27,7 +27,7 @@ if ($objSession->activa()) {
 </head>
 
 <body>
-  <header class="navbar navbar-expand-md navbar-dark bg-dark" >
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark" >
     <div class="container-fluid">
         <a href="../../index.php" class="navbar-brand text-white">
           LOSADEF ❤
