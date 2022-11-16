@@ -158,4 +158,23 @@ class C_UsuarioRol
         }
         return $rolesDesc;
     }
+
+    public function darIdRoles($arrayUsuarios){
+        $rolesUs = [];
+        foreach ($arrayUsuarios as $us) {
+            $param['idUsuario'] = $us->getIdUsuario();
+            array_push($rolesUs, $this->buscar($param)); //esto me devuelve un array de objetos usuario +rol
+        }
+        $rolesId = [];
+        foreach ($rolesUs as $rolUs) {
+            $roles = [];
+            //aca me devuelve el array de roles de cada usuario:
+            foreach ($rolUs as $rolU) {
+                $rol = $rolU->getRol()->getIdRol();
+                array_push($roles, $rol);
+            }
+            array_push($rolesId, $roles);
+        }
+        return $rolesId;
+    }
 }
