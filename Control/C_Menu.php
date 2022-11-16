@@ -151,6 +151,17 @@ class C_Menu{
         }
         return $resp;
     }
+
+    public function habilitar($param){
+        $resp = false;
+        $arrayObjMenues = $this->buscar($param);
+        $objMenu = $arrayObjMenues[0];
+        $objMenu->setMeDeshabilitado('habilitar');
+        if ($objMenu!= null and $objMenu->modificar()) {
+            $resp = true;
+        }
+        return $resp;
+    }
    
 }
 ?>
