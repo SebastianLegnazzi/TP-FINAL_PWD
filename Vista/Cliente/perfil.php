@@ -1,63 +1,79 @@
 <?php
 include_once('../estructura/Cabecera.php');
 
-print_r($_SESSION);
-
+$datos['UsNombre'] = $_SESSION['nombreUsuario'];
+$usuario = new C_Usuario;
+$usuario = $usuario->buscar($datos)[0];
 
 ?>
-<div class="container-md mb-5">
-<main class="w-50 m-auto mt-5 text-center">
-    <form class="row gy-2 text-center justify-content-center rounded bg-dark text-white needs-validation" novalidate>
-    <div class="col-10" style="display:none;">
-        <label for="floatingInput" class="form-label mt-2">ID</label>
-        <input type="number" class="form-control" 
-                name="idUsuario" id="idUsuario" value="<?php echo $usuarioModificar[0]->getIdUsuario()?>">
-    </div>
-    <div class="col-10 col-lg-7">
-        <label for="floatingInput" class="form-label mt-2">NOMBRE DE USUARIO</label>
-        <input type="text" class="form-control" placeholder="Username" 
-                name="usNombre" id="usNombre" value="<?php echo $usuarioModificar[0]->getUsNombre()?>" required>
-    </div>
-    <div class="col-10 col-lg-7">
-    <label for="usNombre" class="form-label mt-2">MAIL</label>
-        <input type="text" class="form-control" placeholder="Mail" 
-                name="usMail" id="usMail" value="<?php echo $usuarioModificar[0]->getUsMail()?>" required>
-    </div>
-    <div class="col-10 col-lg-7">
-    <label for="usPass" class="form-label mt-2">CONTRASEÑA</label>
-        <input type="password" class="form-control" placeholder="***********" 
-                name="usPass" id="usPass" value="<?php echo $usuarioModificar[0]->getUsPass()?>"required>
-    </div>
-    <div class="col-8 col-lg-7 mt-4">
-        <h6 class="text-center mb-3">ROLES</h6>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ROLE_USER" id="user" name="rol[]" checked readonly>
-            <label class="form-check-label" for="user">
-                CLIENTE
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" name="rol[]" id="admin"
-            <?php 
-            foreach($descRolesUsuario[0] as $rol){
-                if($rol=="ROLE_ADMIN"){
-                    ?>checked
-                    <?php
-                }
-            }
-            ?>
-            >
-            <label class="form-check-label" for="admin">
-                ADMIN
-            </label>
+
+<div class="container-fluid" style="margin-bottom: 15%">
+<div class="container col-md-5 text-white mt-5 ">
+        <h2>Mis Datos:</h2>
+        <div class="mb-3">
+                
+                <table class="table table-striped table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+
+                <?php
+               
+                    echo '<tr>';
+                    echo '<td>' . $usuario->getIdUsuario() . '</td>';
+                    echo '<td>' . $usuario->getUsNombre() . '</td>';
+                    echo '<td>' . $usuario->getUsMail() . '</td>';
+                    
+                    echo '</tr>';
+        
+                ?>
+                </table>
+
+                <input class="btn btn-secondary mt-2 col-3" type="button" name="boton_editarDatos"  id="boton_editarDatos" value="EDITAR">
+                <input class="btn btn-secondary mt-2 mx-3 col-5" type="button" name="boton_contra"  id="boton_contra" value="CAMBIAR MI CONTRASEÑA">
         </div>
     </div>
-    <button class="btn btn-lg btn-success my-3 col-10 col-lg-7 mt-4">MODIFICAR</button>
-    </form>
-</main>
+    <div class="container-fluid col-md-5 text-white mt-5 d-none" id='editarDatos'>
+        <h2>Editar Datos:</h2>
+        <div class="mb-3">
+            
+        <form  id='form-editar' method="post" action="../Accion/accionActualizarPerfil.php"class="needs-validation row text-white justify-content-center col-12" novalidate>
+                <table class="table table-striped table-dark">
+                    <tr>
+                         
+                        <th>Username:</th>
+                        <th>Email:</th>
+                    
+                    </tr>
+ 
+                    <tr>
+
+                    <td><div class="col-lg-7 col-12 "><input value = '<?php echo $usuario->getUsNombre()?>' type="text" style="width: 150px;" pattern="[a-zA-Z]+\s?[0-9]*" name="usNombre" required></input><div class="invalid-feedback">
+                    Ingrese un nombre valido!</div>
+                    <div class="valid-feedback">
+                    Correcto!</div></div><div class="col-lg-7 col-12 d-none"><input value = '<?php echo $usuario->getUsPass()?>' type="text" name="usPass" required></input></div></td>
+
+                    <td><div class="col-lg-7 col-12 "><input value = '<?php echo $usuario->getUsMail()?>' type="email" style="width: 250px;" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*\.([a-z]{3})(\.[a-z]{2})*$" name="usMail" required></input><div class="invalid-feedback">
+                    Ingrese un email valido!</div>
+                    <div class="valid-feedback">
+                    Correcto!</div></div><div class="col-lg-7 col-12 d-none"><input value = '<?php echo $usuario->getIdUsuario()?>' type="number"  name="idUsuario" required></input></div></td>
+                    
+                    </tr>
+            
+
+                </table>
+
+                <input class="btn btn-success mt-2 col-3" type="submit" name="boton_enviar"  id="boton_enviar" value="GUARDAR">
+                <input class="btn btn-danger mx-4 mt-2 col-3" name="boton_cancelar" type="button" id="boton_cancelar" value="CANCELAR">
+            </form>
+        </div>
+    </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
-<script src="../js/mainActualizarLogin.js"></script>
+
+<script src="../js/perfil.js"></script>
 <?php
+
 include_once("../estructura/Pie.php")
 ?>
