@@ -45,7 +45,7 @@ function registerSuccess() {
 }
 
 function redireccionarIndexUser() {
-    //location.href = "../paginas/index.php"
+    location.reload();
 }
 
 function registerFailure() {

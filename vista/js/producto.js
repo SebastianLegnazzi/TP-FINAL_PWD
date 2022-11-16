@@ -8,7 +8,7 @@ $(document).on('click', '#logo_carrito', function() {
     totalCompra = document.getElementById("total-Compra");
     sumaTot = 0;
     for (i = 1; i < tabla.rows.length; i++) {
-        sumaTot += parseInt(tabla.rows[i].cells[3].innerHTML);
+        sumaTot += parseInt(tabla.rows[i].cells[3].innerHTML * tabla.rows[i].cells[4].innerHTML);
     }
     totalCompra.innerHTML = "Precio Total: $ " + sumaTot;
 });
@@ -16,8 +16,6 @@ $(document).on('click', '#logo_carrito', function() {
 /**************************************/
 /************* DETALLE ****************/
 /**************************************/
-var arrayDatosProducto = [];
-
 function verDetalle(datos) {
     let imagenInfo, nombreInfo, descripcionInfo, precioInfo, cantidadInfo, cantidadInput, idProductoInput;
     imagenInfo = document.getElementById("foto__detalle");

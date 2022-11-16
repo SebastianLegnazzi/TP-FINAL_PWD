@@ -9,13 +9,11 @@ class C_Usuario
         //print_r($param);
         $obj = null;
         if (array_key_exists('idUsuario', $param) and array_key_exists('usNombre', $param) and array_key_exists('usPass', $param) and array_key_exists('usMail', $param)) {
-            if ($this->buscar($param["usNombre"]) == null) {
-                $obj = new Usuario();
-                if (array_key_exists('usDeshabilitado', $param)) {
-                    $obj->setear($param["idUsuario"], $param["usNombre"], $param["usPass"], $param["usMail"], $param["usDeshabilitado"]);
-                } else {
-                    $obj->setear($param["idUsuario"], $param["usNombre"], $param["usPass"], $param["usMail"], NULL);
-                }
+            $obj = new Usuario();
+            if (array_key_exists('usDeshabilitado', $param)) {
+                $obj->setear($param["idUsuario"], $param["usNombre"], $param["usPass"], $param["usMail"], $param["usDeshabilitado"]);
+            } else {
+                $obj->setear($param["idUsuario"], $param["usNombre"], $param["usPass"], $param["usMail"], NULL);
             }
         }
         return $obj;
@@ -44,12 +42,14 @@ class C_Usuario
     public function alta($param)
     {
         $resp = false;
-        $param['idUsuario'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
-        $objUsuario = $this->cargarObjeto($param);
-        if ($objUsuario != null && $objUsuario->insertar()) {
-            if ($this->altaRol($objUsuario)) {
-                $resp = true;
-                //aca hice el alta del rolUsuario
+        if ($this->buscar($param) == null) {
+            $param['idUsuario'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
+            $objUsuario = $this->cargarObjeto($param);
+            if ($objUsuario != null && $objUsuario->insertar()) {
+                if ($this->altaRol($objUsuario)) {
+                    $resp = true;
+                    //aca hice el alta del rolUsuario
+                }
             }
         }
         return $resp;
