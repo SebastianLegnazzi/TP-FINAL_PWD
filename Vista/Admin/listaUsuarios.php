@@ -13,7 +13,7 @@ if ($arrayUsers != null) {
 $i = 0;
 ?>
 
-<div class="container-md mx-auto m-5">
+<div class="container-fluid mx-auto m-5">
     <?php
     if ($cantUsers > -1) {
     ?>
