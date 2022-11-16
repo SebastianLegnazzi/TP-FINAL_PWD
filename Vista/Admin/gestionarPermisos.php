@@ -23,9 +23,10 @@ $i = 0;
             <tr>
             <th scope="col-6">NOMBRE MENU</th>
             <th scope="col-6">RUTA RELATIVA</th>
-            <th scope="col-4">ID ROL</th>
+            <th scope="col-2">ID ROL</th>
             <th scope="col-4">ROL</th>
-            <th scope="col-2">ACCIONES</th>
+            <th scope="col-4">DESHABILITADO</th>
+            <th scope="col-4">ACCIONES</th>
             </tr>
             </thead>
             <tbody>
@@ -38,13 +39,21 @@ $i = 0;
                     <td class="text-center"> <?php echo $permiso->getRol()->getIdRol() ?> </td>
                     <td class="text-center"> <?php echo $permiso->getRol()->getRolDescripcion()  ?> 
                     </td>
+                    <td class="text-center"> <?php echo $permiso->getMenu()->getMeDeshabilitado()==NULL?"NO":$permiso->getMenu()->getMeDeshabilitado()?>
+                    </td>
                     <td class="text-center">
                         <form method="POST" action="modificarPermisos.php">
                             <input style="display:none;" name="idMenu" value="<?php echo $permiso->getMenu()->getIdMenu()?>">
                         <button type="submit"
-                        class="ms-3 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
-                        <button type="button" onclick="eliminar(<?php echo $permiso->getMenu()->getIdMenu()?>)" 
-                        class="ms-3 text-decoration-none btn btn-outline-danger"> DESHABILITAR</button>
+                        class="ms-3 my-1 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
+                        <?php echo $permiso->getMenu()->getMeDeshabilitado()==NULL?
+                        "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger deshabilitar'>
+                        DESHABILITAR
+                        </button>":
+                        "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger habilitar'>
+                        HABILITAR
+                        </button>";
+                        ?>
                         </form>
                     </td>
                 </tr>
@@ -132,6 +141,7 @@ $i = 0;
 </div>
 
 <script src="../js/mainPermisos.js"></script>
+<script src="../js/deshabilitarMenu.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
