@@ -19,7 +19,7 @@ class C_MenuRol{
             $objMenu = null;
             if (isset($param['idMenu'])){
                 $objMenu = new Menu();
-                $objMenu->setIdmenu($param['idpadre']);
+                $objMenu->setIdMenu($param['idPadre']);
                 $objMenu->cargar();
             }
 
