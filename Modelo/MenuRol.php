@@ -132,7 +132,7 @@ class MenuRol
         $resp = false;
         $base = new BaseDatos();
         $sql = "DELETE FROM menurol WHERE 
-                idMenuRol = " . $this->getMenu()->getIdMenu()
+                idMenu = " . $this->getMenu()->getIdMenu()
             . "and idRol =" . $this->getRol()->getIdRol();
 
         if ($base->Iniciar()) {

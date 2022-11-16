@@ -8,31 +8,21 @@ class C_MenuRol{
      * @param array $param
      * @return object
      */
-    private function cargarObjeto($param){
+    public function cargarObjeto($param){
         
-        $obj = null;
+        $objMenuRol = null;
+        $objMenu = null;
+        $objRol = null;
            
         if(array_key_exists('idMenu',$param) and array_key_exists('idRol',$param)){
-            
-            $obj = new MenuRol();
-            
-            $objMenu = null;
-            if (isset($param['idMenu'])){
-                $objMenu = new Menu();
-                $objMenu->setIdmenu($param['idpadre']);
-                $objMenu->cargar();
-            }
-
-            $objRol = null;
-            if (isset($param['idRol'])){
-                $objRol = new Rol();
-                $objRol->setIdRol($param['idRol']);
-                $objRol->cargar();
-            }
-            
-            $obj->setear($param['idMenu'], $param['idRol']); 
+            $objMenu = new Menu();
+            $objMenu->setIdMenu($param['idMenu']);
+            $objRol = new Rol();
+            $objRol->setIdRol($param['idRol']);
+            $objMenuRol=new MenuRol();
+            $objMenuRol->setear($objMenu,$objRol);
         }
-        return $obj;
+        return $objMenuRol;
     }
     
     private function cargarObjetoConClave($param)
@@ -64,8 +54,6 @@ class C_MenuRol{
      */
     public function alta($param){
         $resp = false;
-        $param['idMenu'] =null;
-        $param['idRol'] = null;
         $objMenuRol = $this->cargarObjeto($param);
        
         if($objMenuRol!=null and $objMenuRol->insertar()){

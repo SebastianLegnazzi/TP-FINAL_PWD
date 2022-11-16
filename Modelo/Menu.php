@@ -87,7 +87,7 @@ class Menu {
     }
 
 
-    //carga info de bd (idUsuario+IdRol+rolDescripcion) a objeto php
+    //carga info de bd a objeto php
     public function cargar(){
         $resp = false;
         $base = new BaseDatos();
@@ -123,11 +123,15 @@ class Menu {
         $idPadre = $this->getPadre();
         if($idPadre != null){
             $idPadre = "'".$idPadre->getIdMenu()."'";
+        }else{
+            $idPadre='NULL';
         }
 
         $deshabilitado = $this->getMeDeshabilitado();
         if($deshabilitado != null){
             $deshabilitado = "'".$deshabilitado."'"; 
+        }else{
+            $deshabilitado='NULL';
         }
 
         $sql = "INSERT INTO menu (meNombre, meDescripcion, idPadre, meDeshabilitado)  VALUES (
@@ -224,7 +228,7 @@ class Menu {
                     $objMenu = new Menu();
                     $objPadre =null;
                     
-                    if ($row['idpadre']!=null){
+                    if ($row['idPadre']!=null){
                         $objPadre = new Menu();
                         $objPadre->setIdMenu($row['idPadre']);
                         $objPadre->cargar();

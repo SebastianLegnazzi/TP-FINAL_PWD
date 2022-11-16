@@ -12,23 +12,23 @@ class C_Menu{
         
         $obj = null;
            
-        if( array_key_exists('idMenu',$param) and array_key_exists('meNombre',$param) and array_key_exists('meDescripcion',$param)  ){
+        if(array_key_exists('meNombre',$param) and array_key_exists('meDescripcion',$param)){
             
             $obj = new Menu();
             
             $objMenu = null;
-            if (isset($param['idPadre'])){
+            if ($param['idPadre']!=''){
                 $objMenu = new Menu();
-                $objMenu->setIdmenu($param['idpadre']);
+                $objMenu->setIdMenu($param['idPadre']);
                 $objMenu->cargar();
             }
             
-            if(!isset($param['medeshabilitado'])){
-                $param['medeshabilitado']=null;
+            if(!isset($param['meDeshabilitado'])){
+                $param['meDeshabilitado']=null;
             }else{
-                $param['medeshabilitado']= date("Y-m-d H:i:s");
+                $param['meDeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->setear($param['idMenu'], $param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
+            $obj->setear('',$param['meNombre'],$param['meDescripcion'],$objMenu,$param['meDeshabilitado']); 
         }
         return $obj;
     }
@@ -41,9 +41,9 @@ class C_Menu{
     private function cargarObjetoConClave($param){
         $obj = null;
         
-        if( isset($param['idmenu']) ){
+        if( isset($param['idMenu']) ){
             $obj = new Menu();
-            $obj->setIdmenu($param['idmenu']);
+            $obj->setIdmenu($param['idMenu']);
         }
         return $obj;
     }
@@ -57,7 +57,7 @@ class C_Menu{
     
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idmenu']))
+        if (isset($param['idMenu']))
             $resp = true;
         return $resp;
     }
@@ -67,15 +67,25 @@ class C_Menu{
      * @param array $param
      */
     public function alta($param){
-        $resp = false;
-        $param['idmenu'] =null;
-        $param['medeshabilitado'] = null;
-        $objMenu = $this->cargarObjeto($param);
-       
+        $resp=false;
+        $objMenu=$this->cargarObjeto($param);
         if($objMenu!=null and $objMenu->insertar()){
-            $resp = true;
+            if($this->altaRol($objMenu,$param)){
+                $resp=true;
+            }
         }
       return $resp;
+    }
+
+    public function altaRol($objMenu,$param){
+        $resp=false;
+        $param['idMenu']=$objMenu->getIdMenu();
+        $objMenuRol=new C_MenuRol();
+        $menuRol=$objMenuRol->cargarObjeto($param);
+        if($menuRol!=null && $menuRol->insertar()){
+            $resp=true;
+        }
+        return $resp;
     }
     /**
      * permite eliminar un objeto 
