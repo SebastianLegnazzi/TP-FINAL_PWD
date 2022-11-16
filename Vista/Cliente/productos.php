@@ -63,10 +63,10 @@ include_once("../estructura/Cabecera.php");
                                 $arrayCompra = $objCompra->buscar($idUsuario);
                                 if ($arrayCompra != null) {
                                     $objCompraEstado = new C_CompraEstado();
-                                    $objCompraEstadoIniciada = $objCompraEstado->buscarCompraBorrador($arrayCompra);
-                                    if ($objCompraEstadoIniciada != null) {
+                                    $objCompraEstadoBorrador = $objCompraEstado->buscarCompraBorrador($arrayCompra);
+                                    if ($objCompraEstadoBorrador != null) {
                                         $objCompraItem = new C_CompraItem();
-                                        $idCompra["idCompra"] = $objCompraEstadoIniciada->getCompra()->getIdCompra();
+                                        $idCompra["idCompra"] = $objCompraEstadoBorrador->getCompra()->getIdCompra();
                                         $arrayCompraItem = $objCompraItem->buscar($idCompra);
                         ?>
                                         <table id="lista__carrito" class="table table-dark">
@@ -77,7 +77,7 @@ include_once("../estructura/Cabecera.php");
                                                 <th>Precio</th>
                                                 <th>Cantidad</th>
                                                 <th>Eliminar</th>
-                                                <th class="d-none" id="idCompraEstado"><?php echo $objCompraEstadoIniciada->getIdCompraEstado() ?></th>
+                                                <th class="d-none" id="idCompraEstado"><?php echo $objCompraEstadoBorrador->getIdCompraEstado() ?></th>
                                             </tr>
                                             <?php
                                             if ($arrayCompraItem != null) {

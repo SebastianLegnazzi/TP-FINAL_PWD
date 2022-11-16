@@ -131,6 +131,20 @@ class C_CompraEstado{
         }
         return $objCompraEstadoInciada;
     }
+
+    public function buscarCompras($arrayCompra)
+    {
+        $arrayCompraIniciadas = [];
+        /* Busca en el arraycompra si hay alguna que este con el estado "iniciada" */
+        foreach($arrayCompra as $compra){
+            $idCompra["idCompra"] = $compra->getIdCompra();
+            $arrayCompraEstado = $this->buscar($idCompra);
+            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getIdCompraEstadoTipo() >= 2) {
+                array_push($arrayCompraIniciadas, $arrayCompraEstado[0]);
+            }
+        }
+        return $arrayCompraIniciadas;
+    }
 }
 
 ?>
