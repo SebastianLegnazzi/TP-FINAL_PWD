@@ -1,5 +1,7 @@
 $(document).on('click', '.edit', function() {
 
+    document.getElementById('editarProducto').classList.remove('d-none');
+
     var fila = $(this).closest('tr');
 
     var id = fila[0].children[0].innerHTML;
@@ -9,13 +11,21 @@ $(document).on('click', '.edit', function() {
     var urlImg = fila[0].children[4].innerHTML;
     var precio = fila[0].children[5].innerHTML;
 
-    var inputs = document.getElementById('form-editar').getElementsByTagName('input');
+    var form = document.getElementById('form-editar');
+    var inputs = form.getElementsByTagName('input');
+
+    document.getElementById('mostrarId').innerHTML = id;
+
     inputs[0].value = id;
     inputs[1].value = nombre;
     inputs[2].value = detalle;
     inputs[3].value = stock;
     inputs[4].value = urlImg;
     inputs[5].value = precio;
+});
+
+$(document).on('click', '#boton_cancelar', function() {
+    document.getElementById('editarProducto').classList.add('d-none');
 });
 
 $(document).ready(function () {
