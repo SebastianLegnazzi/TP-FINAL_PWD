@@ -29,7 +29,8 @@ include_once("../estructura/Cabecera.php");
             </div>
             <div class="col-lg-7 col-12 mt-2">
                 <label>CONTRASEÑA </label>
-                <input type="password" name="usPass" id="input_contraseña" class="form-control mt-2" required>
+                <input type="password" id="input_contraseña" class="form-control mt-2" required>
+                <input type="password" class="form-control d-none" name="usPass"  id="contraseñaEnviada">
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>

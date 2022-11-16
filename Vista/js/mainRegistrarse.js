@@ -5,7 +5,7 @@ $(document).ready(function () {
         if (verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep')) && forms[0].checkValidity()) {
             var password = document.getElementById("input_contraseña").value;
             var passhash = hex_md5(password).toString();
-            document.getElementById("input_contraseña").value = passhash;
+            document.getElementById("contraseñaEnviada").value = passhash;
             $.ajax({
                 type: "POST",
                 url: '../Accion/accionRegistrarse.php',

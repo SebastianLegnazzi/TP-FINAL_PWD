@@ -249,7 +249,7 @@ class Producto
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM producto WHERE idproducto = '" . $this->getIdProducto() . "'";
+            $consulta = "DELETE FROM producto WHERE idProducto = '" . $this->getIdProducto() . "'";
             if ($base->Ejecutar($consulta)) {
                 $resp =  true;
             } else {

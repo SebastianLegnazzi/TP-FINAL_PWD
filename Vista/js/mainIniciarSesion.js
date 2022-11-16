@@ -5,8 +5,7 @@ $(document).ready(function () {
         if (forms[0].checkValidity()) {
             var password = document.getElementById("contraseña").value;
             var passhash = hex_md5(password).toString();
-            document.getElementById("contraseña").value = passhash;
-            console.log(document.getElementById("contraseña").value);
+            document.getElementById("contraseñaEnviada").value = passhash;
             $.ajax({
                 type: "POST",
                 url: '../Accion/accionIniciarSesion.php',
