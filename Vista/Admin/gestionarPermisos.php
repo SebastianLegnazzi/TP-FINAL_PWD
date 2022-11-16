@@ -39,8 +39,13 @@ $i = 0;
                     <td class="text-center"> <?php echo $permiso->getRol()->getRolDescripcion()  ?> 
                     </td>
                     <td class="text-center">
-                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
-                        <button type="button" class="ms-3 text-decoration-none btn btn-outline-danger"> ELIMINAR</button>
+                        <form method="POST" action="modificarPermisos.php">
+                            <input style="display:none;" name="idMenu" value="<?php echo $permiso->getMenu()->getIdMenu()?>">
+                        <button type="submit"
+                        class="ms-3 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
+                        <button type="button" onclick="eliminar(<?php echo $permiso->getMenu()->getIdMenu()?>)" 
+                        class="ms-3 text-decoration-none btn btn-outline-danger"> DESHABILITAR</button>
+                        </form>
                     </td>
                 </tr>
                 <?php
