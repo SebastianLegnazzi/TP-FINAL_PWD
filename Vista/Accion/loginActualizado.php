@@ -4,7 +4,7 @@ $datos=data_submitted();
 $objUsuario=new C_Usuario();
 $usuarioModificado=$objUsuario->modificacion($datos);
 //rol Agregado da falso cuando no se pudo o cuando no se modifico el rol.VER
-$rolAgregado=$objUsuario->agregarRolAdmin($datos);
+$rolAgregado=$objUsuario->cambiarRoles($datos);
 
 if($usuarioModificado && !$rolAgregado){
     //solo modifico el usuario: Datos modificados con exito!
