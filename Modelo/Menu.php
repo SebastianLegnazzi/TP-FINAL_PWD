@@ -87,7 +87,7 @@ class Menu {
     }
 
 
-    //carga info de bd (idUsuario+IdRol+rolDescripcion) a objeto php
+    //carga info de bd a objeto php
     public function cargar(){
         $resp = false;
         $base = new BaseDatos();
