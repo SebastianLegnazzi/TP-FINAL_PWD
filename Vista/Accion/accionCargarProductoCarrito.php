@@ -36,7 +36,7 @@ function buscarComprasUsuario($idUsuario)
 }
 
 /* Lo que realiza es cargarle el producto deseado */
-function cargarProducto($objCompraEstadoBorrador , $datos)
+function cargarProducto($objCompraEstadoBorrador, $datos)
 {
     $objCompraItem = new C_CompraItem();
     $arrayCompraItem = $objCompraItem->buscar($datos);
@@ -48,28 +48,33 @@ function cargarProducto($objCompraEstadoBorrador , $datos)
         } else {
             echo json_encode(array('success' => 0));
         }
-    }else{
+    } else {
         $cantStockDisp = $objCompraItemRepetido->getObjProducto()->getCantStock();
         $cantTot = $datos["ciCantidad"] + $objCompraItemRepetido->getCantidad();
-        if($cantTot > $cantStockDisp){
-            echo json_encode(array('success'=>0));
-        }else{
-            $param = ["idCompraItem" => $objCompraItemRepetido->getIdCompraItem(),
-            "idProducto" => $objCompraItemRepetido->getObjProducto()->getIdProducto(),
-            "idCompra" => $objCompraItemRepetido->getObjCompra()->getIdCompra(),
-            "ciCantidad" => $cantTot];
+        if ($cantTot > $cantStockDisp) {
+            echo json_encode(array('success' => 0));
+        } else {
+            $param = [
+                "idCompraItem" => $objCompraItemRepetido->getIdCompraItem(),
+                "idProducto" => $objCompraItemRepetido->getObjProducto()->getIdProducto(),
+                "idCompra" => $objCompraItemRepetido->getObjCompra()->getIdCompra(),
+                "ciCantidad" => $cantTot
+            ];
             $objCompraItem->modificacion($param);
-            echo json_encode(array('success'=>1));
+            echo json_encode(array('success' => 1));
         }
     }
 }
 
 /* Devuelve si el producto ya esta cargado en el carrito utilizado actualmente */
-function productoRepetido($arrayCompraItem, $idCompra){
+function productoRepetido($arrayCompraItem, $idCompra)
+{
     $resp = null;
-    foreach ($arrayCompraItem as $compraItem){
-        if ($compraItem->getObjCompra()->getIdCompra() == $idCompra) {
-            $resp = $compraItem;
+    if ($arrayCompraItem != null) {
+        foreach ($arrayCompraItem as $compraItem) {
+            if ($compraItem->getObjCompra()->getIdCompra() == $idCompra) {
+                $resp = $compraItem;
+            }
         }
     }
     return $resp;
@@ -84,7 +89,7 @@ function crearCompra($idUsuario)
     if ($objCompra->alta($idUsuario)) {
         $arrayCompra = $objCompra->buscar($idUsuario);
         $fecha = new DateTime();
-        $fechaStamp=$fecha->format('Y-m-d H:i:s');
+        $fechaStamp = $fecha->format('Y-m-d H:i:s');
         $paramCompraEstado = [
             "idCompra" => end($arrayCompra)->getIdCompra(),
             "idCompraEstadoTipo" => 1,

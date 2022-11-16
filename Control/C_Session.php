@@ -32,7 +32,7 @@ class C_Session{
 
     public function __construct(){
         session_start();
-        $this->objUsuario = new C_Usuario();
+        $this->setObjUsuario(new C_Usuario());
         if(isset($_SESSION["nombreUsuario"])){
             $usuario = $this->getObjUsuario()->buscar($_SESSION["nombreUsuario"]);
             $this->setObjUsuario($usuario[0]);

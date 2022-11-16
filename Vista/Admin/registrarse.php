@@ -9,7 +9,7 @@ include_once("../estructura/Cabecera.php");
         <form method="post" action="../Accion/accionRegistrarse.php" class="needs-validation row text-white my-4 justify-content-center" novalidate>
             <div class="col-lg-7 col-12 mt-2">
                 <label>NOMBRE </label>
-                <input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text mt-2" required>
+                <input type="text" pattern="[a-zA-Z]+\s?[0-9]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text mt-2" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
                 </div>

@@ -45,7 +45,7 @@ function registerSuccess() {
 
 
 function redireccionarIndex() {
-    location.href = "../paginas/index.php"
+    location.href = "../paginas/home.php"
 }
 
 function registerFailure() {

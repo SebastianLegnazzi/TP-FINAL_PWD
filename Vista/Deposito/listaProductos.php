@@ -4,7 +4,7 @@ $objProducto = new C_Producto();
 $arrayProductos = $objProducto->buscar();
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom: 19%">
     <div class="container col-md-10 text-white mt-5">
         <h2>Listado de productos existentes en la plataforma:</h2>
         <div class="mb-3">

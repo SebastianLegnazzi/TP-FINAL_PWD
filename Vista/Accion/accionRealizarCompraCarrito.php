@@ -39,11 +39,13 @@ function modificarEstadoCompra($datos, $compraEstado){
     $objCompraEstado = new C_CompraEstado();
     $resp = false;
     $paramCompraEstado = null;
+    $fecha = new DateTime();
+    $fechaStamp = $fecha->format('Y-m-d H:i:s');
     $paramCompraEstado = [
         "idCompraEstado" => $datos["idCompraEstado"],
         "idCompra" => $compraEstado->getCompra()->getIdCompra(),
         "idCompraEstadoTipo" => 2,
-        "ceFechaIni" => "CURRENT_TIMESTAMP",
+        "ceFechaIni" => $fechaStamp,
         "ceFechaFin" => null,
     ];
     if($objCompraEstado->modificacion($paramCompraEstado)){
