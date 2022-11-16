@@ -67,15 +67,27 @@ class C_Menu{
      * @param array $param
      */
     public function alta($param){
-        $resp = false;
-        $param['idMenu'] =null;
-        $param['meDeshabilitado'] = null;
-        $objMenu = $this->cargarObjeto($param);
-       
+        $resp=false;
+        $param['idMenu']=null;
+        $param['meDeshabilitado']=null;
+        $objMenu=$this->cargarObjeto($param);
         if($objMenu!=null and $objMenu->insertar()){
-            $resp = true;
+            if($this->altaRol($objMenu,$param)){
+                $resp=true;
+            }
         }
       return $resp;
+    }
+
+    public function altaRol($objMenu,$param){
+        $resp=false;
+        $param['idMenu']=$objMenu->getIdMenu();
+        $objMenuRol=new C_MenuRol();
+        $objMenuRol->cargarObjeto($param);
+        if($objMenuRol!=null && $objMenuRol->insertar()){
+            $resp=true;
+        }
+        return $resp;
     }
     /**
      * permite eliminar un objeto 
