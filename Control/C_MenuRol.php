@@ -8,7 +8,7 @@ class C_MenuRol{
      * @param array $param
      * @return object
      */
-    private function cargarObjeto($param){
+    public function cargarObjeto($param){
         
         $objMenuRol = null;
         $objMenu = null;
