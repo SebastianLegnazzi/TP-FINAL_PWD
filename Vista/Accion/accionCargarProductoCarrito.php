@@ -58,7 +58,7 @@ function cargarProducto($objCompraEstadoBorrador , $datos)
             "idProducto" => $objCompraItemRepetido->getObjProducto()->getIdProducto(),
             "idCompra" => $objCompraItemRepetido->getObjCompra()->getIdCompra(),
             "ciCantidad" => $cantTot];
-            $objCompraItemRepetido->modificacion($param);
+            $objCompraItem->modificacion($param);
             echo json_encode(array('success'=>1));
         }
     }
@@ -75,7 +75,7 @@ function productoRepetido($arrayCompraItem, $idCompra){
     return $resp;
 }
 
-/* Crea una compra con el idusuario */
+/* Crea una compra y compraEstado con el idusuario */
 function crearCompra($idUsuario)
 {
     $objCompra = new C_Compra();
@@ -89,7 +89,7 @@ function crearCompra($idUsuario)
             "ceFechaFin" => null
         ];
         if ($objCompraEstado->alta($paramCompraEstado)) {
-            $idCompra["idCompra"] = $arrayCompra[0]->getIdCompra();
+            $idCompra["idCompra"] = end($arrayCompra)->getIdCompra();
             $arrayObjCompraEstado = $objCompraEstado->buscar($idCompra);
         }
     }

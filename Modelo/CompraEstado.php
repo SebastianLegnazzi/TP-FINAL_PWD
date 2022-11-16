@@ -13,7 +13,7 @@ class CompraEstado{
         $this->idCompraEstado = "";
         $this->compra = new Compra();
         $this->comoEstadoTipo = new CompraEstadoTipo();
-        $this->ceFechaIni = getDate();
+        $this->ceFechaIni = null;
         $this->ceFechaFin = null;
     }
 

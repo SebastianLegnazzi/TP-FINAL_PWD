@@ -5,6 +5,7 @@ include_once("../../configuracion.php");
 /********* PROGRAMA GENERAL ***********/
 /**************************************/
 $datos = data_submitted();
+$objCompraEstado = new C_CompraEstado();
 $arrayCompraEstado = $objCompraEstado->buscar($datos);
 $idCompra["idCompra"] = $arrayCompraEstado[0]->getCompra()->getIdCompra();
 $arrayObjProductoCarrito = obtenerProductos($idCompra);
@@ -25,6 +26,7 @@ if ($arrayObjProductoCarrito != null) {
 /**************** MODULOS *************/
 /**************************************/
 
+/* Devuelve todos los productos del idCompra */
 function obtenerProductos($idCompra)
 {
     $objCompraItem = new C_CompraItem;
@@ -32,6 +34,7 @@ function obtenerProductos($idCompra)
     return $arrayCompraItem;
 }
 
+/* Modifica el estado de la compra a "iniciada" */
 function modificarEstadoCompra($datos, $compraEstado){
     $objCompraEstado = new C_CompraEstado();
     $resp = false;
@@ -49,6 +52,7 @@ function modificarEstadoCompra($datos, $compraEstado){
     return $resp;
 }
 
+/* Modifica el es stock del producto */
 function modificarStockProducto($objProductoCarrito)
 {
     $objProducto = new C_Producto();
