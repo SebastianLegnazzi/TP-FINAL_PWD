@@ -25,7 +25,7 @@ if($_SESSION['vista']!=NULL){
                             foreach ($arrayComprasRealiazadas as $compraRealizada) {
                                 echo '
                             <tr>
-                                <td>' . $arrayCompra[0]->getObjUsuario()->getUsNombre() . '</td>
+                                <td>' . $compraRealizada->getCompra()->getObjUsuario()->getUsNombre() . '</td>
                                 <td>' . $compraRealizada->getCompraEstadoTipo()->getCetDescripcion() . '</td>
                                 <td>' . $compraRealizada->getCeFechaIni() . '</td>
                                 <td>' . $compraRealizada->getCeFechaFin() . '</td>
