@@ -86,6 +86,7 @@ $(document).ready(function () {
                 }
             });
         } else {
+            location.reload();
             forms[1].classList.add('was-validated');
         }
     }else{
