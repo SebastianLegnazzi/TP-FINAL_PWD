@@ -26,7 +26,7 @@ function enviarConsulta(fila){
         url: '../Accion/accionModificarEstadoCompra.php',
         data: { 
             idCompraEstado: fila[0].children[0].innerHTML,
-            idCompra: fila[0].children[4].innerHTML,
+            idCompra: fila[0].children[5].innerHTML,
             idCompraEstadoTipo: valorEstadoCompra,
         },
 

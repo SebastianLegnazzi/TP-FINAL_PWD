@@ -21,7 +21,7 @@ function modificarEstadoCompra($datos){
     $resp = false;
     $paramCompraEstado = null;
     $fechaFin = null;
-    if($datos["idCompraEstadoTipo"] == 4){
+    if($datos["idCompraEstadoTipo"] == 4 || $datos["idCompraEstadoTipo"] == 5){
         $fecha = new DateTime();
         $fechaFin = $fecha->format('Y-m-d H:i:s');
     }
