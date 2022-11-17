@@ -52,9 +52,18 @@ if ($objSession->activa()) {
           </ul>
 
 
-          <div class="text-end">
+          <div class="text-end d-flex align-items-center">
             <?php if ($objSession->activa()) {
             ?>
+            <select class="form-select form-select-lg me-2" aria-label=".form-select-lg example">
+              <?php
+            foreach($idRoles as $idRol){
+              ?>
+              <option value="<?php echo $idRol ?>"><?php echo $idRol ?></option>
+              <?php
+            }
+              ?>
+            </select>
               <button type='button' class='btn btn-lg btn-outline-light me-2' onclick="cerrarSesion()">SALIR</button>
             <?php
             } else {
