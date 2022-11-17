@@ -14,7 +14,7 @@ if($_SESSION['vista']!=NULL){
                     <h2 class="text-white">Gestinar Compras:</h2>
                     <table class="container table table-dark table-hover">
                         <tr>
-                            <th>IdCompra</th>
+                            <th>Nombre Usuario</th>
                             <th>Estado</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha de Fin</th>
@@ -25,7 +25,7 @@ if($_SESSION['vista']!=NULL){
                             foreach ($arrayComprasRealiazadas as $compraRealizada) {
                                 echo '
                             <tr>
-                                <td>' . $compraRealizada->getIdCompraEstado() . '</td>
+                                <td>' . $arrayCompra[0]->getObjUsuario()->getUsNombre() . '</td>
                                 <td>' . $compraRealizada->getCompraEstadoTipo()->getCetDescripcion() . '</td>
                                 <td>' . $compraRealizada->getCeFechaIni() . '</td>
                                 <td>' . $compraRealizada->getCeFechaFin() . '</td>
