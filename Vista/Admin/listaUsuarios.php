@@ -18,7 +18,7 @@ if($_SESSION['vista']!=NULL){
     <?php
     if ($cantUsers > -1) {
     ?>
-        <div class="mb-3">
+        <div class="mb-3 text-center">
             <a class="btn text-decoration-none btn btn-outline-light" href="registrarse.php">NUEVO USUARIO</a>
         </div>
         <div class="rounded p-3 mb-2 bg-dark text-white">
