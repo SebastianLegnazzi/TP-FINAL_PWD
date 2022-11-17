@@ -1,10 +1,11 @@
 <?php
 include_once('../estructura/Cabecera.php');
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 2) {
+        $datos['usNombre'] = $_SESSION['nombreUsuario'];
 
-$datos['usNombre'] = $_SESSION['nombreUsuario'];
-
-$usuario = new C_Usuario;
-$usuario = $usuario->buscar($datos)[0];
+        $usuario = new C_Usuario;
+        $usuario = $usuario->buscar($datos)[0];
 
 ?>
 
@@ -151,6 +152,11 @@ $usuario = $usuario->buscar($datos)[0];
 <script src="../js/validarContraseñaIguales.js"></script>
 <script src="../js/md5.js"></script>
 <?php
-
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>

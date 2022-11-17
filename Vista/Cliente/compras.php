@@ -1,14 +1,16 @@
 <?php
 include_once('../estructura/Cabecera.php');
-$objUsuario = $objSession->getUsuario();
-if ($objUsuario != null) {
-    $objCompra = new C_Compra();
-    $idUsuario["idUsuario"] = $objUsuario->getIdUsuario();
-    $arrayCompra = $objCompra->buscar($idUsuario);
-    if ($arrayCompra != null) {
-        $objCompraEstado = new C_CompraEstado();
-        $arrayComprasRealiazadas = $objCompraEstado->buscarCompras($arrayCompra);
-        if (count($arrayComprasRealiazadas) > 0) {
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 2) {
+        $objUsuario = $objSession->getUsuario();
+        if ($objUsuario != null) {
+        $objCompra = new C_Compra();
+        $idUsuario["idUsuario"] = $objUsuario->getIdUsuario();
+        $arrayCompra = $objCompra->buscar($idUsuario);
+        if ($arrayCompra != null) {
+            $objCompraEstado = new C_CompraEstado();
+            $arrayComprasRealiazadas = $objCompraEstado->buscarCompras($arrayCompra);
+            if (count($arrayComprasRealiazadas) > 0) {
 ?>
             <div style="margin-bottom: 15%;">
                 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -81,6 +83,12 @@ if ($objUsuario != null) {
     if ($arrayCompra == null || count($arrayComprasRealiazadas) == 0) {
         echo "<h2 class='text-warning text-center' style='margin-bottom:20%;margin-top:5%'> Todavia no realizaste ninguna compra! </h2>";
     }
+}
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else{
+    header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")
 ?>

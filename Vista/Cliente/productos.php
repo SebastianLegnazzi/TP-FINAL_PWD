@@ -1,5 +1,7 @@
 <?php
 include_once("../estructura/Cabecera.php");
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 2) {
 ?>
 <div class="">
     <div class="container">
@@ -165,5 +167,11 @@ include_once("../estructura/Cabecera.php");
 <script src="../js/mainAgregarProductoCarrito.js"></script>
 <script src="../js/mainBorrarProductoCarrito.js"></script>
 <?php
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>
