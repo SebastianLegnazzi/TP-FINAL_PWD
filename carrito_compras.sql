@@ -122,13 +122,13 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabilitado`) VALUES
-(7, 'Productos', '../Cliente/productos.php', NULL, NULL),
-(8, 'Mis Compras', '../Cliente/compras.php', NULL, NULL),
-(12, 'Mi Perfil', '../Cliente/perfil.php', NULL, NULL);
-(9, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
-(10, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
-(11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL),
-(12, 'Listar Productos', '../Deposito/listaProductos.php', NULL, NULL);
+(1, 'Productos', '../Cliente/productos.php', NULL, NULL),
+(2, 'Mis Compras', '../Cliente/compras.php', NULL, NULL),
+(3, 'Mi Perfil', '../Cliente/perfil.php', NULL, NULL),
+(4, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
+(5, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
+(6, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL),
+(7, 'Listar Productos', '../Deposito/listaProductos.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -149,12 +149,13 @@ CREATE TABLE IF NOT EXISTS `menurol` (
 --
 
 INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
-(9, 1),
-(10, 1),
-(7, 2),
-(8, 2),
-(12, 2),
-(11, 3);
+(4, 1),
+(5, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(6, 3),
+(7, 3);
 -- --------------------------------------------------------
 
 --
@@ -206,9 +207,9 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `rolDescripcion`) VALUES
-(1, 'ROLE_ADMIN'),
-(2, 'ROLE_CLIENTE'),
-(3, 'ROLE_DEPOSITO');
+(1, 'ADMIN'),
+(2, 'CLIENTE'),
+(3, 'DEPOSITO');
 
 -- --------------------------------------------------------
 

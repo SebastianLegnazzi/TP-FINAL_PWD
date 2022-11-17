@@ -42,6 +42,9 @@ class C_Session{
     private function iniciar($nombreUsuario, $arrayRoles){
         $_SESSION["nombreUsuario"] = $nombreUsuario;
         $_SESSION["roles"] = $arrayRoles;
+        $objRol = new C_Rol();
+        $param = [2];
+        $_SESSION["vista"] = $objRol->obtenerObj($param)[0];
     }
 
     public function valida($param){

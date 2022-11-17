@@ -6,7 +6,7 @@ if ($objSession->activa()) {
   $idRoles = $_SESSION['roles'];
   $objMenuRol = new C_MenuRol();
   $objRol=new C_Rol();
-  $menues = $objMenuRol->menuesByIdRol($idRoles);
+  $menues = $objMenuRol->menuesByIdRol($_SESSION['vista']);
   $objRoles=$objRol->obtenerObj($idRoles);
 }
 ?>
@@ -27,6 +27,7 @@ if ($objSession->activa()) {
   <script src="../jQuery/jquery-3.6.1.min.js"></script>
   <script src="../js/cerrarSesion.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="../js/cambiarVista.js"></script>
 </head>
 
 <body>
@@ -57,7 +58,8 @@ if ($objSession->activa()) {
           <div class="text-end d-flex align-items-center">
             <?php if ($objSession->activa()) {
             ?>
-            <select class="form-select form-select-lg me-2" aria-label=".form-select-lg example">
+            <select class="form-select form-select-lg me-2" id="cambiar_vista" aria-label=".form-select-lg example">
+              <option selected disabled><?php echo $_SESSION['vista']->getRolDescripcion() ?></option>
               <?php
             foreach($objRoles as $objRol){
               ?>

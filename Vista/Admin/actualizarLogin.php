@@ -48,7 +48,7 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
         </div>
             <?php
              foreach($roles as $rol){
-                if($rol->getRolDescripcion()!='ROLE_CLIENTE'){
+                if($rol->getRolDescripcion()!='CLIENTE'){
                     ?>
                     <div class="form-check">
                     <input class='form-check-input' type='checkbox' name='rol[]' value='<?php echo $rol->getIdRol() ?>'
