@@ -116,31 +116,46 @@ class C_Usuario
         $usuarios = $this->buscar($datos);
         $objUsuarioRol = new C_UsuarioRol();
         //aca obtengo los roles que tiene antes de modificar el usuario:
-        $rolesDesc = $objUsuarioRol->darIdRoles($usuarios);
+        $rolesIdViejos = $objUsuarioRol->darIdRoles($usuarios);
         //ahora obtengo los roles que pase por POST
         $roles = $param['rol'];
-        if (count($rolesDesc[0])<count($roles)) {
+        if (count($rolesIdViejos[0])<count($roles)) {
             //si lo que hace es agregarRoles
-            foreach($roles as $rolAgregar){
-                if(!in_array($rolAgregar,$rolesDesc[0])){
-                    $idUsuario = $param['idUsuario'];
-                    $modUsRol = new UsuarioRol();
-                    $modUsRol->setearConClave($idUsuario, $rolAgregar);
-                    $cambiado = $modUsRol->insertar(); 
-                }
-            }
-        }else if(count($rolesDesc[0])>count($roles)){
+            $this->agregarRoles($roles,$rolesIdViejos[0]);
+        }else if(count($rolesIdViejos[0])>count($roles)){
             //si le quita roles
-            foreach($rolesDesc[0] as $rolEliminar){
-                if(!in_array($rolEliminar,$roles)){
-                    $idUsuario = $param['idUsuario'];
-                    $modUsRol = new UsuarioRol();
-                    $modUsRol->setearConClave($idUsuario, $rolEliminar);
-                    $cambiado = $modUsRol->eliminar(); 
-                }
-            }
+            $this->quitarRoles($roles,$rolesIdViejos[0]);
+        }else{
+            //si quita uno y agrega otro:
+            
         }
         return $cambiado;
+    }
+
+    private function agregarRoles($rolesNuevos,$rolesViejos){
+        $agregado=false;
+        foreach($rolesNuevos as $rolAgregar){
+            if(!in_array($rolAgregar,$rolesViejos)){
+                $idUsuario = $param['idUsuario'];
+                $modUsRol = new UsuarioRol();
+                $modUsRol->setearConClave($idUsuario, $rolAgregar);
+                $agregado = $modUsRol->insertar(); 
+            }
+        }
+        return $agregado;
+    }
+
+    private function quitarRoles($rolesNuevos,$rolesViejos){
+        $eliminado=false;
+        foreach($rolesViejos as $rolesNuevos){
+            if(!in_array($rolEliminar,$roles)){
+                $idUsuario = $param['idUsuario'];
+                $modUsRol = new UsuarioRol();
+                $modUsRol->setearConClave($idUsuario, $rolEliminar);
+                $eliminado = $modUsRol->eliminar(); 
+            }
+        }
+        return $eliminado;
     }
 
     function deshabilitar($param)
