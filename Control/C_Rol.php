@@ -72,8 +72,7 @@ class C_Rol
         return $resp;
     }
 
-    public function buscar($param)
-    {
+    public function buscar($param){
         $where = "true";
         if ($param <> NULL) {
             if (isset($param['idRol']))
@@ -85,4 +84,5 @@ class C_Rol
         $arreglo = $objRol->listar($where);
         return $arreglo;
     }
+    
 }

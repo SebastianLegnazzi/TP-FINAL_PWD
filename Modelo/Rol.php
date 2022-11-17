@@ -136,9 +136,8 @@ class Rol
         return $resp;
     }
 
-    public static function listar($parametro = "")
-    {
-        $arreglo = array();
+    public static function listar($parametro = ""){
+        $arreglo = [];
         $base = new BaseDatos();
         $sql = "SELECT * FROM rol ";
         if ($parametro != "") {

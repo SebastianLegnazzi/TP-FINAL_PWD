@@ -4,6 +4,8 @@ include_once('../estructura/Cabecera.php');
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
 $objUsuarioRol=new C_UsuarioRol();
+$objRol=new C_Rol();
+$roles=$objRol->buscar(null);
 $usuarioModificar=$objUsuario->buscar($datos);
 $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
@@ -33,26 +35,38 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
     <div class="col-8 col-lg-7 mt-4">
         <h6 class="text-center mb-3">ROLES</h6>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ROLE_USER" id="user" name="rol[]" checked readonly>
+            <input class="form-check-input" type="checkbox" checked disabled>
             <label class="form-check-label" for="user">
                 CLIENTE
             </label>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" name="rol[]" id="admin"
-            <?php 
-            foreach($descRolesUsuario[0] as $rol){
-                if($rol=="ROLE_ADMIN"){
-                    ?>checked
+        <div class="form-check d-none">
+            <input class="form-check-input" type="checkbox" value="2" name="rol[]">
+            <label class="form-check-label" for="user">
+                CLIENTE
+            </label>
+        </div>
+            <?php
+             foreach($roles as $rol){
+                if($rol->getRolDescripcion()!='ROLE_CLIENTE'){
+                    ?>
+                    <div class="form-check">
+                    <input class='form-check-input' type='checkbox' name='rol[]' value='<?php echo $rol->getIdRol() ?>'
+                    <?php
+                        foreach($descRolesUsuario[0] as $rolUsuario){
+                            if($rolUsuario==$rol->getRolDescripcion()){
+                                ?>checked
+                                <?php
+                            }
+                        }
+                    ?>
+                    >
+                    <label class='form-check-label' for='admin'><?php echo $rol->getRolDescripcion() ?> </label>
+                    </div>
                     <?php
                 }
             }
             ?>
-            >
-            <label class="form-check-label" for="admin">
-                ADMIN
-            </label>
-        </div>
     </div>
     <button class="btn btn-lg btn-success my-3 col-10 col-lg-7 mt-4">MODIFICAR</button>
     </form>

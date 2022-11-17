@@ -13,7 +13,7 @@ if ($arrayUsers != null) {
 $i = 0;
 ?>
 
-<div class="container-md mx-auto m-5">
+<div class="container-fluid mx-auto m-5">
     <?php
     if ($cantUsers > -1) {
     ?>
@@ -21,12 +21,12 @@ $i = 0;
         <table class="table table-dark table-hover p-5">
             <thead class="text-center">
             <tr>
-            <th scope="col-6">USUARIO</th>
-            <th scope="col-6">NOMBRE</th>
+            <th scope="col-4">USUARIO</th>
+            <th scope="col-4">NOMBRE</th>
             <th scope="col-4">MAIL</th>
             <th scope="col-4">ROL</th>
-            <th scope="col-4">DESHABILITADO</th>
-            <th scope="col-2">ACCIONES</th>
+            <th scope="col-6">DESHABILITADO</th>
+            <th scope="col-6">ACCIONES</th>
             </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@ $i = 0;
                         } 
                         echo $msn ?> 
                     </td>
-                    <td class="text-center"> <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?"NO":"SI";?> </td>
+                    <td class="text-center"> <?php echo $arrayUsers[$i]->getUsDeshabilitado()==NULL?"NO":$arrayUsers[$i]->getUsDeshabilitado();?> </td>
                     <td>
                         <form method='post' action='actualizarLogin.php' id="'<?php echo $arrayUsers[$i]->getIdUsuario()?>">
                         <input style="display:none;" name='idUsuario' id='idUsuario' value='<?php echo $arrayUsers[$i]->getIdUsuario()?>'>
