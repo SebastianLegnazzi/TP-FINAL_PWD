@@ -131,7 +131,7 @@ include_once("../estructura/Cabecera.php");
             </a>
         </div>
     </div>
-    <div id="content__productos">
+    <div id="content__productos" class="text-center">
         <?php
         $objProducto = new C_Producto;
         $arrayProdcutos = $objProducto->buscar();
@@ -145,9 +145,9 @@ include_once("../estructura/Cabecera.php");
                     </div>
                     <div class="tarjeta-producto__info">
                         <p class="nombre__producto">' . $producto->getNombre() . '</p>
-                        <span class="descripcion__producto">' . $producto->getDetalle() . '</span>
-                        <span class="precio__producto">' . $producto->getProPrecio() . '</span>
-                        <span class="stock">' . $producto->getCantStock() . '</span>
+                        <span class="descripcion__producto d-none">' . $producto->getDetalle() . '</span>
+                        <span class="precio__producto d-none">' . $producto->getProPrecio() . '</span>
+                        <span class="stock d-none">' . $producto->getCantStock() . '</span>
                         <span class="idProducto_Producto d-none">' . $producto->getIdProducto() . '</span>
                     </div>
                 </a>

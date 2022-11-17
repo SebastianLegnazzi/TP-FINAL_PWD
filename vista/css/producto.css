@@ -57,14 +57,11 @@ hr {
 .tarjeta-producto__imagen img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
 
 .tarjetas-productos:hover {
     transform: scale(1.05);
-}
-
-.tarjeta-producto__info span {
-    display: none;
 }
 
 /* Filtrador */

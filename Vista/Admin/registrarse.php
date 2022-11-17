@@ -59,7 +59,7 @@ include_once("../estructura/Cabecera.php");
                     <div class="g-recaptcha m-4" data-sitekey="6Lf95XwiAAAAANd2Ey0ue87QCWiiD6_A17eONhTX"></div>
                 </div>
                 <input class="btn btn-lg btn-success my-3 col-8 mt-4" type="submit" name="boton_enviar" id="boton_enviar" value="REGISTRARSE">
-                <a href="../sesion/IniciarSesion.php" class="link-info mt-4">YA TENGO CUENTA</a>
+                <a href="listaUsuarios.php" class="link-info mt-4">VOLVER</a>
             </div>
         </form>
     </div>
