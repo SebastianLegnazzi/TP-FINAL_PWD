@@ -74,11 +74,6 @@ if($_SESSION['vista']!=NULL){
                                 <div class="col-lg-7 col-12" id='mostrarId'></div>
                                 <div class="col-lg-7 col-12 d-none"><input type="number" style="width: 40px;" name="idProducto" required></input></div>
 
-
-                            <td>
-                                <div class="col-lg-7 col-12" id='mostrarId'></div>
-                                <div class="col-lg-7 col-12 d-none"><input type="number" style="width: 40px;" name="idProducto" required></input></div>
-
                             <td>
                                 <div class="col-lg-7 col-12 "><input type="text" style="width: 150px;" name="proNombre" required></input>
                                     <div class="invalid-feedback">

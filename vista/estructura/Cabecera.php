@@ -5,11 +5,11 @@ $menues = [];
 if ($objSession->activa()) {
   $idRoles = $_SESSION['roles'];
   $objMenuRol = new C_MenuRol();
-  $objRol=new C_Rol();
+  $objRol = new C_Rol();
   $menues = $objMenuRol->menuesByIdRol($_SESSION['vista']);
-  $objRoles=$objRol->obtenerObj($idRoles);
-}else{
-  $_SESSION['vista']=null;
+  $objRoles = $objRol->obtenerObj($idRoles);
+} else {
+  $_SESSION['vista'] = null;
 }
 ?>
 <!DOCTYPE html>
@@ -33,50 +33,52 @@ if ($objSession->activa()) {
 </head>
 
 <body>
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a href="../../index.php" class="navbar-brand losadef text-white">
-          Losadef
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <a href="../../index.php" class="navbar-brand losadef text-white">
+        Losadef
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample03">
-          <ul class="navbar-nav me-auto mb-2 m-2 mb-sm-0">
-            <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
-            <?php
-            foreach ($menues as $objMenu) {
-              if($objMenu->getMeDeshabilitado()==NULL){
-                ?>
-                <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav me-auto mb-2 m-2 mb-sm-0">
+          <li><a href="../../index.php" role="button" class="px-2 mx-1 btn btn-lg btn-outline-light">Home</a></li>
+          <?php
+          foreach ($menues as $objMenu) {
+            if ($objMenu->getMeDeshabilitado() == NULL) {
+          ?>
+              <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+          <?php
+            }
+          }
+          ?>
+        </ul>
+
+
+        <div class="text-end d-flex align-items-center">
+          <?php if ($objSession->activa()) {
+            if (count($objRoles) > 1) {
+          ?>
+              <select class="form-select form-select-lg me-2" id="cambiar_vista" aria-label=".form-select-lg example">
+                <option selected disabled><?php echo $_SESSION['vista']->getRolDescripcion() ?></option>
                 <?php
+                foreach ($objRoles as $objRol) {
+                ?>
+                  <option value="<?php echo $objRol->getIdRol() ?>"><?php echo $objRol->getRolDescripcion() ?></option>
+              <?php
+                }
               }
-            }
-            ?>
-          </ul>
-
-
-          <div class="text-end d-flex align-items-center">
-            <?php if ($objSession->activa()) {
-            ?>
-            <select class="form-select form-select-lg me-2" id="cambiar_vista" aria-label=".form-select-lg example">
-              <option selected disabled><?php echo $_SESSION['vista']->getRolDescripcion() ?></option>
-              <?php
-            foreach($objRoles as $objRol){
               ?>
-              <option value="<?php echo $objRol->getIdRol() ?>"><?php echo $objRol->getRolDescripcion() ?></option>
-              <?php
-            }
-              ?>
-            </select>
+              </select>
               <button type='button' class='btn btn-lg btn-outline-light me-2' onclick="cerrarSesion()">SALIR</button>
             <?php
-            } else {
+          } else {
             ?>
               <a href='../sesion/IniciarSesion.php' class='btn btn-lg btn-outline-light me-2'>INGRESAR</a>
             <?php
-            } ?>
+          } ?>
         </div>
       </div>
     </div>

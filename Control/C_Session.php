@@ -34,7 +34,8 @@ class C_Session{
         session_start();
         $this->setObjUsuario(new C_Usuario());
         if(isset($_SESSION["nombreUsuario"])){
-            $usuario = $this->getObjUsuario()->buscar($_SESSION["nombreUsuario"]);
+            $usNombre["usNombre"] = $_SESSION["nombreUsuario"];
+            $usuario = $this->getObjUsuario()->buscar($usNombre);
             $this->setObjUsuario($usuario[0]);
         }
     }
