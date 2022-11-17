@@ -121,18 +121,18 @@ class C_Usuario
         $roles = $param['rol'];
         if (count($rolesIdViejos[0])<count($roles)) {
             //si lo que hace es agregarRoles
-            $this->agregarRoles($roles,$rolesIdViejos[0]);
+            $cambiado=$this->agregarRoles($roles,$rolesIdViejos[0],$param);
         }else if(count($rolesIdViejos[0])>count($roles)){
             //si le quita roles
-            $this->quitarRoles($roles,$rolesIdViejos[0]);
+            $cambiado=$this->quitarRoles($roles,$rolesIdViejos[0],$param);
         }else{
             //si quita uno y agrega otro:
-            
+            $cambiado=$this->agregarRoles($roles,$rolesIdViejos[0],$param) && $this->quitarRoles($roles,$rolesIdViejos[0],$param);
         }
         return $cambiado;
     }
 
-    private function agregarRoles($rolesNuevos,$rolesViejos){
+    private function agregarRoles($rolesNuevos,$rolesViejos,$param){
         $agregado=false;
         foreach($rolesNuevos as $rolAgregar){
             if(!in_array($rolAgregar,$rolesViejos)){
@@ -145,10 +145,10 @@ class C_Usuario
         return $agregado;
     }
 
-    private function quitarRoles($rolesNuevos,$rolesViejos){
+    private function quitarRoles($rolesNuevos,$rolesViejos,$param){
         $eliminado=false;
-        foreach($rolesViejos as $rolesNuevos){
-            if(!in_array($rolEliminar,$roles)){
+        foreach($rolesViejos as $rolEliminar){
+            if(!in_array($rolEliminar,$rolesNuevos)){
                 $idUsuario = $param['idUsuario'];
                 $modUsRol = new UsuarioRol();
                 $modUsRol->setearConClave($idUsuario, $rolEliminar);
