@@ -1,6 +1,6 @@
 <?php
 include_once('../estructura/Cabecera.php');
-
+if ($_SESSION["vista"]->getIdRol() == 1) {
 $objMenuRol=new C_MenuRol();
 $objRol=new C_Rol();
 $permisos=$objMenuRol->buscar(null);
@@ -143,5 +143,8 @@ $i = 0;
 <script src="../js/mainPermisos.js"></script>
 <script src="../js/deshabilitarMenu.js"></script>
 <?php
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>
