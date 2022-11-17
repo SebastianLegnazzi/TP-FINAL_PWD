@@ -8,6 +8,8 @@ if ($objSession->activa()) {
   $objRol=new C_Rol();
   $menues = $objMenuRol->menuesByIdRol($_SESSION['vista']);
   $objRoles=$objRol->obtenerObj($idRoles);
+}else{
+  $_SESSION['vista']=null;
 }
 ?>
 <!DOCTYPE html>
