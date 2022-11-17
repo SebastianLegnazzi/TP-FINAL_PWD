@@ -1,6 +1,12 @@
 $(document).ready(function() {
     $('form').submit(function(e) {
         e.preventDefault();
+
+        var contra = document.getElementById('usPass').value;
+        contra = hex_md5(contra).toString();
+
+        document.getElementById('usPass').value = contra;
+
         $.ajax({
             type: "POST",
             url: '../Accion/loginActualizado.php',

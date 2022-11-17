@@ -74,6 +74,7 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 </div>
 <script src="../js/validarCamposVacios.js"></script>
 <script src="../js/mainActualizarLogin.js"></script>
+<script src="../js/md5.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>
