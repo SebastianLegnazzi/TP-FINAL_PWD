@@ -19,18 +19,31 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
     </div>
     <div class="col-10 col-lg-7">
         <label for="floatingInput" class="form-label mt-2">NOMBRE DE USUARIO</label>
-        <input type="text" class="form-control" placeholder="Username" 
+        <input type="text" class="form-control" placeholder="Username" pattern="[a-zA-Z]+\s?[0-9]*" minlength="3"
                 name="usNombre" id="usNombre" value="<?php echo $usuarioModificar[0]->getUsNombre()?>" required>
+                <div class="invalid-feedback">
+                    Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
     </div>
     <div class="col-10 col-lg-7">
     <label for="usNombre" class="form-label mt-2">MAIL</label>
-        <input type="text" class="form-control" placeholder="Mail" 
+        <input type="text" class="form-control" placeholder="Mail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*\.([a-z]{3})(\.[a-z]{2})*$"
                 name="usMail" id="usMail" value="<?php echo $usuarioModificar[0]->getUsMail()?>" required>
     </div>
     <div class="col-10 col-lg-7">
     <label for="usPass" class="form-label mt-2">CONTRASEÑA</label>
-        <input type="password" class="form-control" placeholder="***********" 
-                name="usPass" id="usPass" value="<?php echo $usuarioModificar[0]->getUsPass()?>"required>
+        <input type="password" class="form-control" placeholder="***********" id="usPassNueva">
+        <input type="password" class="form-control d-none"
+            id="usPassAnterior" value="<?php echo $usuarioModificar[0]->getUsPass()?>">
+            <div class="invalid-feedback">
+                    Porfavor ingrese un email válido.
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
     </div>
     <div class="col-8 col-lg-7 mt-4">
         <h6 class="text-center mb-3">ROLES</h6>

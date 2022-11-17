@@ -2,10 +2,16 @@ $(document).ready(function() {
     $('form').submit(function(e) {
         e.preventDefault();
 
-        var contra = document.getElementById('usPass').value;
-        contra = hex_md5(contra).toString();
-
-        document.getElementById('usPass').value = contra;
+        let contra=document.querySelector('#usPassAnterior').value;
+        let contraNueva=document.querySelector('#usPassNueva').value;
+        if(contraNueva.length>0){
+            contraNueva = hex_md5(contraNueva).toString();
+            document.querySelector('#usPassNueva').value = contraNueva;
+            document.querySelector('#usPassNueva').name='usPass';
+        }else{
+            document.querySelector('#usPassAnterior').value=contra;
+            document.querySelector('#usPassAnterior').name='usPass';
+        }
 
         $.ajax({
             type: "POST",
