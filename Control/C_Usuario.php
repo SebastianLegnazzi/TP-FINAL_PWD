@@ -42,8 +42,9 @@ class C_Usuario
     public function alta($param)
     {
         $resp = false;
-        if ($this->buscar($param) == null) {
-            $param['idUsuario'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
+        $nombreUsuario["usNombre"] = $param["usNombre"];
+        if ($this->buscar($nombreUsuario) == null) {
+        $param['idUsuario'] = null;  // Se comenta ya que esta line es para cuando la base de datos tiene su clave principal Usuario incrementable
             $objUsuario = $this->cargarObjeto($param);
             if ($objUsuario != null && $objUsuario->insertar()) {
                 if ($this->altaRol($objUsuario)) {

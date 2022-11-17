@@ -71,7 +71,7 @@ $arrayProductos = $objProducto->buscar();
                     
                     <td><div class="col-lg-7 col-12" id='mostrarId'></div><div class="col-lg-7 col-12 d-none"><input type="number" style="width: 40px;" name="idProducto" required></input></div>
 
-                    <td><div class="col-lg-7 col-12 "><input type="text" style="width: 150px;" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="proNombre" required></input><div class="invalid-feedback">
+                    <td><div class="col-lg-7 col-12 "><input type="text" style="width: 150px;" name="proNombre" required></input><div class="invalid-feedback">
                     Ingrese un nombre valido!</div>
                     <div class="valid-feedback">
                     Correcto!</div></div></td>
@@ -86,7 +86,7 @@ $arrayProductos = $objProducto->buscar();
                     <div class="valid-feedback">
                     Correcto!</div></div></td>
                     
-                    <td><div class="col-lg-7 col-12"><input type="url" name="urlImagen"   required></input><div class="invalid-feedback">
+                    <td><div class="col-lg-7 col-12"><input type="url" name="urlImagen" required></input><div class="invalid-feedback">
                     Ingrese una url!</div>
                     <div class="valid-feedback">
                     Correcto!</div></div></td>
