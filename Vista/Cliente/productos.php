@@ -34,7 +34,7 @@ if($_SESSION['vista']!=NULL){
                         <div>
                             <input type="number" name="ciCantidad" id="cantidad_input" min="1" class="form-control" placeholder="Ingrese la cantidad que desea comprar" required>
                             <div class="invalid-feedback mb-1">
-                                Porfavor ingrese una cantidad valida del producto que desea adquirir!
+                                No hay stock suficiente!
                             </div>
                             <div class="valid-feedback">
                                 Correcto!
