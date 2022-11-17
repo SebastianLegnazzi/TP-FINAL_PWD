@@ -23,9 +23,10 @@ $i = 0;
             <tr>
             <th scope="col-6">NOMBRE MENU</th>
             <th scope="col-6">RUTA RELATIVA</th>
-            <th scope="col-4">ID ROL</th>
+            <th scope="col-2">ID ROL</th>
             <th scope="col-4">ROL</th>
-            <th scope="col-2">ACCIONES</th>
+            <th scope="col-4">DESHABILITADO</th>
+            <th scope="col-4">ACCIONES</th>
             </tr>
             </thead>
             <tbody>
@@ -38,13 +39,21 @@ $i = 0;
                     <td class="text-center"> <?php echo $permiso->getRol()->getIdRol() ?> </td>
                     <td class="text-center"> <?php echo $permiso->getRol()->getRolDescripcion()  ?> 
                     </td>
+                    <td class="text-center"> <?php echo $permiso->getMenu()->getMeDeshabilitado()==NULL?"NO":$permiso->getMenu()->getMeDeshabilitado()?>
+                    </td>
                     <td class="text-center">
                         <form method="POST" action="modificarPermisos.php">
                             <input style="display:none;" name="idMenu" value="<?php echo $permiso->getMenu()->getIdMenu()?>">
                         <button type="submit"
-                        class="ms-3 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
-                        <button type="button" onclick="eliminar(<?php echo $permiso->getMenu()->getIdMenu()?>)" 
-                        class="ms-3 text-decoration-none btn btn-outline-danger"> DESHABILITAR</button>
+                        class="ms-3 my-1 text-decoration-none btn btn-outline-warning"> MODIFICAR </button>
+                        <?php echo $permiso->getMenu()->getMeDeshabilitado()==NULL?
+                        "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger deshabilitar'>
+                        DESHABILITAR
+                        </button>":
+                        "<button type='button' class='mx-2 text-decoration-none btn btn-outline-danger habilitar'>
+                        HABILITAR
+                        </button>";
+                        ?>
                         </form>
                     </td>
                 </tr>
@@ -64,7 +73,7 @@ $i = 0;
     }
     ?>
 </div>
-<div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white mt-5">
+<div class="container-md w-50 text-center rounded p-3 mb-2 bg-dark text-white my-5 mb-5">
     <form class="row justify-content-center needs-validation" id="formNuevoPermiso"
         method="POST" action="../Accion/nuevoPermiso.php" novalidate>
         <div class="col-10">
@@ -95,7 +104,7 @@ $i = 0;
             <div class="col-lg-7 col-12 mt-2">
                 
                 <label>Menu Padre Si Posee</label>
-                <select name="idPadre" class="form-select mb-3" aria-label=".form-select example">
+                <select name="idPadre" class="form-select mt-2" aria-label=".form-select example">
                 <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($permisos as $permiso){
@@ -111,7 +120,7 @@ $i = 0;
             <div class="col-lg-7 col-12 mt-2">
                 
                 <label>Rol que puede acceder</label>
-                <select name="idRol" class="form-select mb-3" aria-label=".form-select example" required>
+                <select name="idRol" class="form-select mt-2" aria-label=".form-select example" required>
                 <option value="" selected>Seleccionar</option>
                 <?php
                 foreach($roles as $rol){
@@ -132,6 +141,7 @@ $i = 0;
 </div>
 
 <script src="../js/mainPermisos.js"></script>
+<script src="../js/deshabilitarMenu.js"></script>
 <?php
 include_once("../estructura/Pie.php")
 ?>

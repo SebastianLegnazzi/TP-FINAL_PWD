@@ -170,6 +170,19 @@ CREATE TABLE IF NOT EXISTS `producto` (
   UNIQUE KEY `idproducto` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+INSERT INTO `producto` (`idProducto`, `proNombre`, `proDetalle`, `proCantStock`, `proPrecio`, `urlImagen`) VALUES
+(1, 'Vestido - Rosa', "Vestido entallado de tela de seda rosada, divino para salir a perrear", 20, 10000, "https://i.pinimg.com/564x/ee/16/ab/ee16ab10a6b85d24f82ac7aa814cfdd1.jpg"),
+(2, 'Ambo - Negro', "Ambo negro, tela elastizada y moderna", 4, 25000, "https://i.pinimg.com/564x/d9/1e/65/d91e65b986985d85c542e1d73c2f3fb6.jpg"),
+(3, 'Saco de Paño - Marron', "Saco de paño marron, bien fachero para ir a trabajar 😉", 10, 15000, "https://i.pinimg.com/564x/c9/ca/e3/c9cae316546fb7599ba738d6245439a6.jpg"),
+(4, 'Traje - Negro', "Traje completo clasico negro, lindo y elegante. Nunca falla", 1, 50000, "https://i.pinimg.com/564x/14/75/27/147527aa29bad996c754af937449abc6.jpg"),
+(5, 'Traje - Rosado', "Traje completo rosado, blanco y girs, posiblemente se lo compraria Sebastian, por qué vos no? 🤔", 1, 110000, "https://i.pinimg.com/564x/7d/96/d1/7d96d1dde843aab936e1471e8d3b7e39.jpg"),
+(6, 'Vestido - Amarillo', "Vestido amarillo con detalles delicados. Bello para ir a tomar unos mates por la tarde en tu yate por las Bahamas", 1, 20000, "https://i.pinimg.com/564x/f0/d5/2e/f0d52edfdf2e6f77e4864e6385bf3c06.jpg"),
+(8, 'Traje - Sebastian', "La revolucion de los trajes!! Este traje trae la tecnologia S.S.C. (Sebastian Sensitive Colour), este maravilloso e innovador descubrimiento permite cambiar de color la corbata dependiendo tu estado de animo. Increible para relucirse en una fiesta y que todos vean si la estas pasando como el traste y lo mejor? BRILLA EN LA OSCURIDAD!!!! (El modelo de la foto no viene incluido)", 5, 300000, "https://i.imgur.com/bwYIpNM.jpeg"),
+(9, 'Conjunto - Elegancia la de Francia', "Increbile conjunto para ir a trabajar y tirar facha por donde camines. Con el simple hecho de entrar a cualquier lugar asi seras visto por todos 😍", 20, 40000, "https://i.pinimg.com/564x/be/45/3e/be453e35a4d745ba439212fa8b367ba2.jpg"),
+(10, 'Traje - Blanco', "Traje completo blanco, muy elegante y estilizado, un momento... alguien me explica como esta en esa posicion?", 10, 80000, "https://http2.mlstatic.com/D_NQ_NP_793946-MLA31536957055_072019-W.jpg"),
+(11, 'Vestido - Rojo', "Vestido rojo con cinturon bañado en oro.", 30, 35000, "https://cdn0.casamientos.com.ar/article-dress/3351/original/1280/jpg/m281533.jpeg"),
+(12, 'Vestido - Turqueza', "Vestido turqueza a una manga, muy facha para el veranito. 😎", 50, 15000, "https://3.bp.blogspot.com/-S3XcmCUfskU/UnfKQKqUGQI/AAAAAAABIjY/nFLdrXHWLV8/s1600/Vestidos+elegantes+(5).jpg");
 -- --------------------------------------------------------
 
 --

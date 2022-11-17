@@ -1,11 +1,3 @@
-function eliminar(id){
-    
-}
-
-function modificar(id){
-    
-}
-
  $(document).ready(function () {
     $('#formNuevoPermiso').submit(function (e) {
         e.preventDefault();
@@ -42,7 +34,7 @@ function permisoSuccess() {
         timer: 1500
     })
     setTimeout(function () {
-        location.reload();
+        location.href='gestionarPermisos.php';
     }, 1500);
 }
 

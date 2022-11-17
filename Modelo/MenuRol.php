@@ -185,4 +185,24 @@ class MenuRol
         }
         return $arreglo;
     }
+
+    public function modificar()
+    {
+        $resp = false;
+        $base = new BaseDatos();
+        $sql = "UPDATE menurol SET idRol =". $this->getRol()->getIdRol() .
+               " WHERE menurol.idMenu =". $this->getMenu()->getIdMenu();
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                $resp = true;
+            } else {
+                $this->setMensajeOperacion("menurol->insertar: " . $base->getError());
+                $resp=false;
+            }
+        } else {
+            $this->setMensajeOperacion("menurol->insertar: " . $base->getError());
+        }
+        return $resp;
+    }
+
 }
