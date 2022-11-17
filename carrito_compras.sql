@@ -127,6 +127,7 @@ INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabi
 (9, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
 (10, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
 (11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL);
+(12, 'Mi Perfil', '../Cliente/perfil.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,6 +152,7 @@ INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
 (10, 1),
 (7, 2),
 (8, 2),
+(12, 2),
 (11, 3);
 -- --------------------------------------------------------
 
