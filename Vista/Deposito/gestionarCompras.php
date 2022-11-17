@@ -1,27 +1,28 @@
 <?php
 include_once('../estructura/Cabecera.php');
-$objCompra = new C_Compra();
-$arrayCompra = $objCompra->buscar();
-if ($arrayCompra != null) {
-    $objCompraEstado = new C_CompraEstado();
-    $arrayComprasRealiazadas = $objCompraEstado->buscarCompras($arrayCompra);
-    if (count($arrayComprasRealiazadas) > 0) {
+if ($_SESSION["vista"]->getIdRol() == 3) {
+    $objCompra = new C_Compra();
+    $arrayCompra = $objCompra->buscar();
+    if ($arrayCompra != null) {
+        $objCompraEstado = new C_CompraEstado();
+        $arrayComprasRealiazadas = $objCompraEstado->buscarCompras($arrayCompra);
+        if (count($arrayComprasRealiazadas) > 0) {
 ?>
-        <div class="container-fluid" style="margin-bottom: 19%">
-            <div class="container col-md-10 text-white mt-5">
-                <h2 class="text-white">Gestinar Compras:</h2>
-                <table class="container table table-dark table-hover">
-                    <tr>
-                        <th>IdCompra</th>
-                        <th>Estado</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Fin</th>
-                        <th>Editar</th>
-                    </tr>
-                    <?php
-                    if ($arrayComprasRealiazadas != null) {
-                        foreach ($arrayComprasRealiazadas as $compraRealizada) {
-                            echo '
+            <div class="container-fluid" style="margin-bottom: 19%">
+                <div class="container col-md-10 text-white mt-5">
+                    <h2 class="text-white">Gestinar Compras:</h2>
+                    <table class="container table table-dark table-hover">
+                        <tr>
+                            <th>IdCompra</th>
+                            <th>Estado</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Fin</th>
+                            <th>Editar</th>
+                        </tr>
+                        <?php
+                        if ($arrayComprasRealiazadas != null) {
+                            foreach ($arrayComprasRealiazadas as $compraRealizada) {
+                                echo '
                             <tr>
                                 <td>' . $compraRealizada->getIdCompraEstado() . '</td>
                                 <td>' . $compraRealizada->getCompraEstadoTipo()->getCetDescripcion() . '</td>
@@ -33,17 +34,20 @@ if ($arrayCompra != null) {
                                 </svg></a></td>
                             </tr>
                         ';
+                            }
                         }
-                    }
-                    ?>
-                </table>
+                        ?>
+                    </table>
+                </div>
             </div>
-        </div>
 <?php
+        }
     }
-}
-if ($arrayCompra == null || count($arrayComprasRealiazadas) == 0) {
-    echo "<h2 class='text-warning text-center' style='margin-bottom: 20%;margin-top:5%'> Todavia nadie creo compras! </h2>";
+    if ($arrayCompra == null || count($arrayComprasRealiazadas) == 0) {
+        echo "<h2 class='text-warning text-center' style='margin-bottom: 20%;margin-top:5%'> Todavia nadie creo compras! </h2>";
+    }
+} else {
+    header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")
 ?>
