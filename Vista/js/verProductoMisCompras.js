@@ -1,6 +1,6 @@
 $(document).on('click', '#ver_productos_compras', function () {
-    var fila = $(this).closest('tr');
     limpiarTabla();
+    var fila = $(this).closest('tr');
     let timerInterval
     Swal.fire({
         title: 'Buscando Productos!',
@@ -31,11 +31,25 @@ $(document).on('click', '#ver_productos_compras', function () {
             // user is logged in successfully in the back-end
             // let's redirect
             if (Array.isArray(jsonData.success)) {
-                document.getElementById("nombre_tabla").innerHTML = jsonData.success[0].Nombre;
-                document.getElementById("detalle_tabla").innerHTML = jsonData.success[0].Descripcion;
-                document.getElementById("precio_tabla").innerHTML = jsonData.success[0].Precio;
-                document.getElementById("cantidad_tabla").innerHTML = jsonData.success[0].Cantidad;
-                document.getElementById("urlImagen_tabla").src = jsonData.success[0].UrlImagen;
+                let tabla = document.getElementById("lista__carrito");
+                for (let producto of jsonData.success) {
+                    let fila = tabla.insertRow(tabla.rows.length);
+                    let celda0 = fila.insertCell(0);
+                    let celda1 = fila.insertCell(1);
+                    let celda2 = fila.insertCell(2);
+                    let celda3 = fila.insertCell(3);
+                    let celda4 = fila.insertCell(4);
+                    celda0.className = "col-md-2 urlImagen_tabla"
+                    celda1.className = "nombre_tabla"
+                    celda2.className = "detalle_tabla"
+                    celda3.className = "precio_tabla"
+                    celda4.className = "cantidad_tabla"
+                    celda0.innerHTML = '<img src="'+producto.UrlImagen+'" class="img-thumbnail"></img>';
+                    celda1.innerHTML = producto.Nombre;
+                    celda2.innerHTML = producto.Descripcion;
+                    celda3.innerHTML = producto.Precio;
+                    celda4.innerHTML = producto.Cantidad;
+                }
             }
             else if (jsonData.success == "0") {
                 registerFailure();
@@ -58,9 +72,12 @@ function registerFailure() {
 }
 
 function limpiarTabla() {
-    document.getElementById("nombre_tabla").innerHTML = "";
-    document.getElementById("detalle_tabla").innerHTML = "";
-    document.getElementById("precio_tabla").innerHTML = "";
-    document.getElementById("cantidad_tabla").innerHTML = "";
-    document.getElementById("urlImagen_tabla").src = "";
+    let tabla = document.getElementById("lista__carrito");
+    let cantColumnas = tabla.rows.length;
+    let rows = tabla.rows;
+    if (cantColumnas > 1) {
+        for (let i = 1; i < cantColumnas; i++) {
+            tabla.deleteRow(1);
+        }
+    }
 }

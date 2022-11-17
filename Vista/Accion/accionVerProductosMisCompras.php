@@ -14,8 +14,8 @@ if ($arrayCompraItem != null) {
 
 /* Arma un array para que se pueda ver en JS */
 function arrayArmadoJS($arrayCompraItem){
+    $arrayJS = [];
     foreach($arrayCompraItem as $compraItem){
-        $arrayJS = [];
         $param = [
             "Nombre" => $compraItem->getObjProducto()->getNombre() ,
             "Descripcion" => $compraItem->getObjProducto()->getDetalle() ,

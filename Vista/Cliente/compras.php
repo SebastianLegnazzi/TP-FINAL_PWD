@@ -32,13 +32,6 @@ if($_SESSION['vista']!=NULL){
                                             <th>Precio</th>
                                             <th>Cantidad</th>
                                         </tr>
-                                        <tr>
-                                            <td class="col-md-2"><img src="" id="urlImagen_tabla" class="img-thumbnail"></td>
-                                            <td id="nombre_tabla"></td>
-                                            <td id="detalle_tabla"></td>
-                                            <td id="precio_tabla"></td>
-                                            <td id="cantidad_tabla"></td>
-                                        </tr>
                                     </table>
                                 </div>
                             </div>
