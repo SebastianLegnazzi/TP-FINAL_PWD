@@ -5,7 +5,9 @@ $menues = [];
 if ($objSession->activa()) {
   $idRoles = $_SESSION['roles'];
   $objMenuRol = new C_MenuRol();
+  $objRol=new C_Rol();
   $menues = $objMenuRol->menuesByIdRol($idRoles);
+  $objRoles=$objRol->obtenerObj($idRoles);
 }
 ?>
 <!DOCTYPE html>
@@ -57,9 +59,9 @@ if ($objSession->activa()) {
             ?>
             <select class="form-select form-select-lg me-2" aria-label=".form-select-lg example">
               <?php
-            foreach($idRoles as $idRol){
+            foreach($objRoles as $objRol){
               ?>
-              <option value="<?php echo $idRol ?>"><?php echo $idRol ?></option>
+              <option value="<?php echo $objRol->getIdRol() ?>"><?php echo $objRol->getRolDescripcion() ?></option>
               <?php
             }
               ?>
