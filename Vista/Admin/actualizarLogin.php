@@ -90,11 +90,11 @@ if($_SESSION['vista']!=NULL){
 <script src="../js/mainActualizarLogin.js"></script>
 <script src="../js/md5.js"></script>
 <?php
+    }else{
+        header('Location: ../paginas/home.php');
+    }
 }else{
     header('Location: ../paginas/home.php');
-}
-}else{
-header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")
 ?>

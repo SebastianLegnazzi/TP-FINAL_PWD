@@ -1,6 +1,7 @@
 <?php
 include_once("../estructura/Cabecera.php");
-if ($_SESSION["vista"]->getIdRol() == 3) {
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 3) {
 ?>
 
     <div class="container-fluid">
@@ -60,6 +61,9 @@ if ($_SESSION["vista"]->getIdRol() == 3) {
     </div>
     <script src="../js/cargarProducto.js"></script>
 <?php
+    }else{
+        header('Location: ../paginas/home.php');
+    }
 }else{
     header('Location: ../paginas/home.php');
 }

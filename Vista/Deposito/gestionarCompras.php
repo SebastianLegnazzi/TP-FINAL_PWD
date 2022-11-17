@@ -1,6 +1,7 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION["vista"]->getIdRol() == 3) {
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 3) {
     $objCompra = new C_Compra();
     $arrayCompra = $objCompra->buscar();
     if ($arrayCompra != null) {
@@ -46,7 +47,10 @@ if ($_SESSION["vista"]->getIdRol() == 3) {
     if ($arrayCompra == null || count($arrayComprasRealiazadas) == 0) {
         echo "<h2 class='text-warning text-center' style='margin-bottom: 20%;margin-top:5%'> Todavia nadie creo compras! </h2>";
     }
-} else {
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else{
     header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")

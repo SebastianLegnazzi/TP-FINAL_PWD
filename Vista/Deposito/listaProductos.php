@@ -1,8 +1,9 @@
 <?php
 include_once("../estructura/Cabecera.php");
-if ($_SESSION["vista"]->getIdRol() == 3) {
-    $objProducto = new C_Producto();
-    $arrayProductos = $objProducto->buscar();
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 3) {
+        $objProducto = new C_Producto();
+        $arrayProductos = $objProducto->buscar();
 ?>
 
     <div class="container-fluid" style="margin-bottom: 19%">
@@ -137,7 +138,10 @@ if ($_SESSION["vista"]->getIdRol() == 3) {
     <script src="../js/eliminarProducto.js"></script>
     <script src="../js/editarProducto.js"></script>
 <?php
-} else {
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else{
     header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php");
