@@ -1,6 +1,6 @@
 <?php
 include_once('../estructura/Cabecera.php');
-
+if ($_SESSION["vista"]->getIdRol() == 1) {
 $datos=data_submitted();
 $objUsuario=new C_Usuario();
 $objUsuarioRol=new C_UsuarioRol();
@@ -76,5 +76,8 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 <script src="../js/mainActualizarLogin.js"></script>
 <script src="../js/md5.js"></script>
 <?php
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>

@@ -1,6 +1,6 @@
 <?php
 include_once('../estructura/Cabecera.php');
-
+if ($_SESSION["vista"]->getIdRol() == 1) {
 $objUsuario = new C_Usuario;
 $objUsuarioRol = new C_UsuarioRol;
 $arrayUsers = $objUsuario->buscar(NULL);
@@ -81,5 +81,8 @@ $i = 0;
 </div>
 <script src="../js/deshabilitarUsuarios.js"></script>
 <?php
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>

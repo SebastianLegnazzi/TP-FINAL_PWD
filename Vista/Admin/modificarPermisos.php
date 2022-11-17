@@ -1,6 +1,6 @@
 <?php
 include_once('../estructura/Cabecera.php');
-
+if ($_SESSION["vista"]->getIdRol() == 1) {
 $datos=data_submitted();
 $objMenu=new C_Menu();
 $objMenuRol=new C_MenuRol();
@@ -66,8 +66,10 @@ $permisos=$objMenuRol->buscar(null);
     </form>
 </main>
 </div>
-
 <script src="../js/modificarPermisos.js"></script>
 <?php
+}else{
+    header('Location: ../paginas/home.php');
+}
 include_once("../estructura/Pie.php")
 ?>
