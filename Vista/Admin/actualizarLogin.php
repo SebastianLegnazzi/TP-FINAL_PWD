@@ -35,7 +35,13 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
     <div class="col-8 col-lg-7 mt-4">
         <h6 class="text-center mb-3">ROLES</h6>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ROLE_CLIENTE" id="user" name="rol[]" checked readonly>
+            <input class="form-check-input" type="checkbox" checked disabled>
+            <label class="form-check-label" for="user">
+                CLIENTE
+            </label>
+        </div>
+        <div class="form-check d-none">
+            <input class="form-check-input" type="checkbox" value="2" name="rol[]">
             <label class="form-check-label" for="user">
                 CLIENTE
             </label>

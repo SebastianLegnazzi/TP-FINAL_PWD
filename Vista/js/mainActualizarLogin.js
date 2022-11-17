@@ -21,7 +21,7 @@ $(document).ready(function() {
                 }
            }
        });
-     });
+    });
 });
 
 function datosSuccess(){
@@ -44,7 +44,7 @@ function redireccionarListado() {
 function rolesSuccess(){
     Swal.fire({
         icon: 'success',
-        title: 'Rol/roles agregados con exito!',
+        title: 'Roles modificados con exito!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -56,7 +56,7 @@ function rolesSuccess(){
 function ambosSuccess(){
     Swal.fire({
         icon: 'success',
-        title: 'Rol agregado y datos modificados con exito!',
+        title: 'Rol y datos modificados con exito!',
         showConfirmButton: false,
         timer: 1500
     })
