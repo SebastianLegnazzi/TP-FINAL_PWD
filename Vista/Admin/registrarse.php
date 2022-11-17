@@ -1,6 +1,7 @@
 <?php
 include_once("../estructura/Cabecera.php");
-if ($_SESSION["vista"]->getIdRol() == 1) {
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 1) {
 ?>
 <script src="../js/validarContraseñaIguales.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer> </script>
@@ -67,7 +68,10 @@ if ($_SESSION["vista"]->getIdRol() == 1) {
 </div>
 <script src="../js/mainRegistrarse.js"></script>
 <?php
-}else{
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else {
     header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php");

@@ -1,14 +1,15 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION["vista"]->getIdRol() == 1) {
-$datos=data_submitted();
-$objMenu=new C_Menu();
-$objMenuRol=new C_MenuRol();
-$objRol=new C_Rol();
-$menuModificar=$objMenu->buscar($datos);
-$rolModificar=$objMenuRol->buscar($datos);
-$roles=$objRol->buscar(null);
-$permisos=$objMenuRol->buscar(null);
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 1) {
+        $datos=data_submitted();
+        $objMenu=new C_Menu();
+        $objMenuRol=new C_MenuRol();
+        $objRol=new C_Rol();
+        $menuModificar=$objMenu->buscar($datos);
+        $rolModificar=$objMenuRol->buscar($datos);
+        $roles=$objRol->buscar(null);
+        $permisos=$objMenuRol->buscar(null);
 
 ?>
 
@@ -68,7 +69,10 @@ $permisos=$objMenuRol->buscar(null);
 </div>
 <script src="../js/modificarPermisos.js"></script>
 <?php
-}else{
+    }else{
+        header('Location: ../paginas/home.php');
+    }
+}else {
     header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")

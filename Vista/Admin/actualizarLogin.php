@@ -1,13 +1,14 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION["vista"]->getIdRol() == 1) {
-$datos=data_submitted();
-$objUsuario=new C_Usuario();
-$objUsuarioRol=new C_UsuarioRol();
-$objRol=new C_Rol();
-$roles=$objRol->buscar(null);
-$usuarioModificar=$objUsuario->buscar($datos);
-$descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 1) {
+        $datos=data_submitted();
+        $objUsuario=new C_Usuario();
+        $objUsuarioRol=new C_UsuarioRol();
+        $objRol=new C_Rol();
+        $roles=$objRol->buscar(null);
+        $usuarioModificar=$objUsuario->buscar($datos);
+        $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 ?>
 <div class="container-md mb-5">
 <main class="w-50 m-auto mt-5 text-center">
@@ -91,6 +92,9 @@ $descRolesUsuario=$objUsuarioRol->darDescripcionRoles($usuarioModificar);
 <?php
 }else{
     header('Location: ../paginas/home.php');
+}
+}else{
+header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")
 ?>

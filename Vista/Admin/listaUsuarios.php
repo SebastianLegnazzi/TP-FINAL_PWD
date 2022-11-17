@@ -1,16 +1,17 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION["vista"]->getIdRol() == 1) {
-$objUsuario = new C_Usuario;
-$objUsuarioRol = new C_UsuarioRol;
-$arrayUsers = $objUsuario->buscar(NULL);
-if ($arrayUsers != null) {
-    $cantUsers = count($arrayUsers);
-    $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsers);
-} else {
-    $cantUsers = -1;
-}
-$i = 0;
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 1) {
+    $objUsuario = new C_Usuario;
+    $objUsuarioRol = new C_UsuarioRol;
+    $arrayUsers = $objUsuario->buscar(NULL);
+    if ($arrayUsers != null) {
+        $cantUsers = count($arrayUsers);
+        $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsers);
+    } else {
+        $cantUsers = -1;
+    }
+    $i = 0;
 ?>
 
 <div class="container-fluid mx-auto m-5">
@@ -81,6 +82,9 @@ $i = 0;
 </div>
 <script src="../js/deshabilitarUsuarios.js"></script>
 <?php
+    }else{
+        header('Location: ../paginas/home.php');
+    }
 }else{
     header('Location: ../paginas/home.php');
 }

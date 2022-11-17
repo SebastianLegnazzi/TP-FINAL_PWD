@@ -1,16 +1,17 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION["vista"]->getIdRol() == 1) {
-$objMenuRol=new C_MenuRol();
-$objRol=new C_Rol();
-$permisos=$objMenuRol->buscar(null);
-$roles=$objRol->buscar(null);
-if ($permisos != null) {
-    $cantPermisos=count($permisos);
-} else{
-    $cantRoles=-1;
-}
-$i = 0;
+if($_SESSION['vista']!=NULL){
+    if ($_SESSION["vista"]->getIdRol() == 1) {
+        $objMenuRol=new C_MenuRol();
+        $objRol=new C_Rol();
+        $permisos=$objMenuRol->buscar(null);
+        $roles=$objRol->buscar(null);
+        if ($permisos != null) {
+            $cantPermisos=count($permisos);
+        } else{
+            $cantRoles=-1;
+        }
+        $i = 0;
 ?>
 
 <div class="container-md mx-auto m-5">
@@ -145,6 +146,9 @@ $i = 0;
 <?php
 }else{
     header('Location: ../paginas/home.php');
+}
+}else{
+header('Location: ../paginas/home.php');
 }
 include_once("../estructura/Pie.php")
 ?>
