@@ -126,7 +126,7 @@ INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabi
 (8, 'Mis Compras', '../Cliente/compras.php', NULL, NULL),
 (9, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
 (10, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
-(11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL);
+(11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL),
 (12, 'Mi Perfil', '../Cliente/perfil.php', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -226,6 +226,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `idusuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `usuario` (`idUsuario`, `usNombre`, `usPass`, `usMail`, `usDeshabilitado`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', null);
 -- --------------------------------------------------------
 
 --
@@ -241,6 +243,11 @@ CREATE TABLE IF NOT EXISTS `usuariorol` (
   KEY `idrol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+INSERT INTO `usuariorol` (`idUsuario`, `idRol`) VALUES
+(1, 1),
+(1, 2),
+(1, 3);
 --
 -- Restricciones para tablas volcadas
 --

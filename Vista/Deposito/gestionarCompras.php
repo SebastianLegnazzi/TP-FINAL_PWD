@@ -43,7 +43,7 @@ if ($arrayCompra != null) {
     }
 }
 if ($arrayCompra == null || count($arrayComprasRealiazadas) == 0) {
-    echo "<h2 class='text-warning text-center'> Todavia no realizaste ninguna compra! </h2>";
+    echo "<h2 class='text-warning text-center'> Todavia nadie creo compras! </h2>";
 }
 include_once("../estructura/Pie.php")
 ?>
