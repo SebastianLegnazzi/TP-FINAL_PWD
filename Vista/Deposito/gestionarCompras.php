@@ -1,7 +1,7 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if ($_SESSION['vista'] != NULL) {
-    if ($_SESSION["vista"]->getIdRol() == 3) {
+if($objSession->getVista()!=NULL){
+    if ($objSession->getVista()->getIdRol() == 3) {
         $objCompra = new C_Compra();
         $arrayCompra = $objCompra->buscar();
         if ($arrayCompra != null) {
