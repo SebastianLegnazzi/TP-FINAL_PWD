@@ -141,8 +141,8 @@ if($_SESSION['vista']!=NULL){
     </form>
 </div>
 
-<script src="../js/mainPermisos.js"></script>
-<script src="../js/deshabilitarMenu.js"></script>
+<script src="js/mainPermisos.js"></script>
+<script src="js/deshabilitarMenu.js"></script>
 <?php
 }else{
     header('Location: ../paginas/home.php');

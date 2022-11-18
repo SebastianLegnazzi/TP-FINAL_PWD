@@ -59,7 +59,7 @@ if($_SESSION['vista']!=NULL){
 
     </div>
     </div>
-    <script src="../js/cargarProducto.js"></script>
+    <script src="js/cargarProducto.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

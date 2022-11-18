@@ -128,7 +128,6 @@ if($_SESSION['vista']!=NULL){
         </div>
         <div id="content__carrito" class="row justify-content-end">
             <a class="link-light col-md-3" data-bs-toggle="modal" href="#exampleModalToggle2" role="button">
-                <p id="contador__carrito"></p>
                 <img id="logo_carrito" src="../img/carritoCompra.png" class="img-fluid" alt="Logo de Carrito">
             </a>
         </div>
@@ -162,10 +161,10 @@ if($_SESSION['vista']!=NULL){
         ?>
     </div>
 </div>
-<script src="../js/producto.js"></script>
-<script src="../js/mainIniciarCompraCarrito.js"></script>
-<script src="../js/mainAgregarProductoCarrito.js"></script>
-<script src="../js/mainBorrarProductoCarrito.js"></script>
+<script src="js/producto.js"></script>
+<script src="js/mainIniciarCompraCarrito.js"></script>
+<script src="js/mainAgregarProductoCarrito.js"></script>
+<script src="js/mainBorrarProductoCarrito.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

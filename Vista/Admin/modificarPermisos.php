@@ -67,7 +67,7 @@ if($_SESSION['vista']!=NULL){
     </form>
 </main>
 </div>
-<script src="../js/modificarPermisos.js"></script>
+<script src="js/modificarPermisos.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

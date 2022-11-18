@@ -130,8 +130,8 @@ if($_SESSION['vista']!=NULL){
         </div>
     </div>
 
-    <script src="../js/eliminarProducto.js"></script>
-    <script src="../js/editarProducto.js"></script>
+    <script src="js/eliminarProducto.js"></script>
+    <script src="js/editarProducto.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

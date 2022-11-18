@@ -66,7 +66,7 @@ if($_SESSION['vista']!=NULL){
         </form>
     </div>
 </div>
-<script src="../js/mainRegistrarse.js"></script>
+<script src="js/mainRegistrarse.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

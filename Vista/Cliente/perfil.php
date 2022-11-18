@@ -147,7 +147,7 @@ if($objSession->getVista()!=NULL){
     </div>
 </div>
 
-<script src="../js/perfil.js"></script>
+<script src="js/perfil.js"></script>
 <script src="../js/validarContraseñaIguales.js"></script>
 <script src="../js/md5.js"></script>
 <?php

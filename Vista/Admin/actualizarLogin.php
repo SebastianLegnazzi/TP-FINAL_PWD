@@ -87,7 +87,7 @@ if($_SESSION['vista']!=NULL){
 </main>
 </div>
 <script src="../js/validarCamposVacios.js"></script>
-<script src="../js/mainActualizarLogin.js"></script>
+<script src="js/mainActualizarLogin.js"></script>
 <script src="../js/md5.js"></script>
 <?php
     }else{

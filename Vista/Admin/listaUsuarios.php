@@ -80,7 +80,7 @@ if($_SESSION['vista']!=NULL){
     }
     ?>
 </div>
-<script src="../js/deshabilitarUsuarios.js"></script>
+<script src="js/deshabilitarUsuarios.js"></script>
 <?php
     }else{
         header('Location: ../paginas/home.php');

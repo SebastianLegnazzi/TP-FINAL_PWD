@@ -74,8 +74,6 @@ if ($_SESSION['vista'] != NULL) {
                                 <th>ID Compra</th>
                                 <th>Nombre Usuario</th>
                                 <th>Estado</th>
-                                <th>Fecha de Inicio</th>
-                                <th>Fecha de Fin</th>
                                 <th>Editar</th>
                                 <th>Ver productos</th>
                                 <th>Historial Compra</th>
@@ -88,9 +86,9 @@ if ($_SESSION['vista'] != NULL) {
                                 <td>' . $compraRealizada->getIdCompraEstado() . '</td>
                                 <td>' . $compraRealizada->getCompra()->getObjUsuario()->getUsNombre() . '</td>
                                 <td>' . $compraRealizada->getCompraEstadoTipo()->getCetDescripcion() . '</td>
-                                <td>' . $compraRealizada->getCeFechaIni() . '</td>
+                                <td class="d-none">' . $compraRealizada->getCeFechaIni() . '</td>
                                 <td class="d-none" id="idCompra">' . $compraRealizada->getCompra()->getIdCompra() . '</td>
-                                <td>' . $compraRealizada->getCeFechaFin() . '</td>
+                                <td class="d-none">' . $compraRealizada->getCeFechaFin() . '</td>
                                 
                                 <td class="text-center"><a class="text-white" href="#" id="editar_estado"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -125,6 +123,6 @@ if ($_SESSION['vista'] != NULL) {
 }
 include_once("../estructura/Pie.php")
 ?>
-<script src="../js/gestinarEstadoCompra.js"></script>
+<script src="js/gestinarEstadoCompra.js"></script>
 <script src="../js/verProductoMisCompras.js"></script>
 <script src="../js/verHistorialCompra.js"></script>
