@@ -100,7 +100,9 @@ class C_Session{
         return $cerrar;
     }
 
-
+    public function getVista(){
+        return $_SESSION['vista'];
+    }
 
 }
 
