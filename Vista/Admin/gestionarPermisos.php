@@ -1,7 +1,7 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if($_SESSION['vista']!=NULL){
-    if ($_SESSION["vista"]->getIdRol() == 1) {
+if($objSession->getVista()!=NULL){
+    if ($objSession->getVista()->getIdRol() == 1) {
         $objMenuRol=new C_MenuRol();
         $objRol=new C_Rol();
         $permisos=$objMenuRol->buscar(null);
