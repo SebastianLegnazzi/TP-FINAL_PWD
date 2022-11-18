@@ -1,8 +1,8 @@
 <?php
 include_once('../estructura/Cabecera.php');
-if($_SESSION['vista']!=NULL){
-    if ($_SESSION["vista"]->getIdRol() == 2) {
-        $datos['usNombre'] = $_SESSION['nombreUsuario'];
+if($objSession->getVista()!=NULL){
+    if ($objSession->getVista()->getIdRol() == 2) {
+        $datos['usNombre'] = $objSession->getUsuario()->getUsNombre();
 
         $usuario = new C_Usuario;
         $usuario = $usuario->buscar($datos)[0];
