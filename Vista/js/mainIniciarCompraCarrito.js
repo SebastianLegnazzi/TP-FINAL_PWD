@@ -1,4 +1,4 @@
-function registerSuccess() {
+function compraRealizada() {
     Swal.fire({
         icon: 'success',
         title: 'El producto se ha comprado correctamente!',
@@ -10,7 +10,7 @@ function registerSuccess() {
     }, 1500);
 }
 
-function registerFailure() {
+function compraFallida() {
     Swal.fire({
         icon: 'error',
         title: 'No se ha podido realizar la compra el producto!',
@@ -51,10 +51,10 @@ $(document).on('click', '#iniciar_compra', function() {
             // user is logged in successfully in the back-end
             // let's redirect
             if (jsonData.success == "1") {
-                registerSuccess();
+                compraRealizada();
             }
             else if (jsonData.success == "0") {
-                registerFailure();
+                compraFallida();
             } 
             else if (jsonData.success == "2") {
                 noexisteproducto();

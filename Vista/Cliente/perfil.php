@@ -6,7 +6,6 @@ if($_SESSION['vista']!=NULL){
 
         $usuario = new C_Usuario;
         $usuario = $usuario->buscar($datos)[0];
-
 ?>
 
 <div class="container-fluid" style="margin-bottom: 15%">
