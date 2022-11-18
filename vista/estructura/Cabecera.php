@@ -3,7 +3,7 @@ include "../../configuracion.php";
 $objSession = new C_Session();
 $menues = [];
 if ($objSession->activa()) {
-  $idRoles = $_SESSION['roles'];
+  $idRoles=$objSession->getRol();
   $objMenuRol = new C_MenuRol();
   $objRol = new C_Rol();
   $menues = $objMenuRol->menuesByIdRol($_SESSION['vista']);

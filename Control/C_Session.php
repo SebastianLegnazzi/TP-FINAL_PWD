@@ -54,15 +54,7 @@ class C_Session{
         if($arrayUsuario != null){
             if($param["usPass"] == $arrayUsuario[0]->getUsPass()){
                 $this->setObjUsuario($arrayUsuario[0]);
-                $arrayRol = [];
-                $arrayObjUsuarioRol = $this->getRol();
-                foreach($arrayObjUsuarioRol as $rol){
-                    array_push($arrayRol, $rol->getRol());
-                }
-                $idRoles=[];
-                foreach($arrayRol as $objRol){
-                    array_push($idRoles,$objRol->getIdRol());
-                }
+                $idRoles = $this->getRol();
                 $this->iniciar($param["usNombre"], $idRoles);
                 $resp = true;
             }
@@ -88,8 +80,16 @@ class C_Session{
             $objUsuarioRol = new C_UsuarioRol();
             $param["idUsuario"] = $this->getObjUsuario()->getIdUsuario();
             $arrayRolesUsuario = $objUsuarioRol->buscar($param);
+            $arrayRol = [];
+                foreach($arrayRolesUsuario as $rol){
+                    array_push($arrayRol, $rol->getRol());
+                }
+                $idRoles=[];
+                foreach($arrayRol as $objRol){
+                    array_push($idRoles,$objRol->getIdRol());
+                }
         }
-        return $arrayRolesUsuario;
+        return $idRoles;
     }
 
     public function cerrar(){
