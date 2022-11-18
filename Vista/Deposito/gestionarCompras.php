@@ -52,7 +52,7 @@ if($objSession->getVista()!=NULL){
                                         ?>
                                         <table id="seguimiento_compra" class="table table-dark">
                                             <tr>
-                                                <th>ID Compra</th>
+                                                <th>ID Estado</th>
                                                 <th>Nombre Usuario</th>
                                                 <th>Estado</th>
                                                 <th>Fecha de Inicio</th>
@@ -83,11 +83,11 @@ if($objSession->getVista()!=NULL){
                                 foreach ($arrayComprasRealiazadas as $compraRealizada) {
                                     echo '
                             <tr>
-                                <td>' . $compraRealizada->getIdCompraEstado() . '</td>
+                                <td>' . $compraRealizada->getCompra()->getIdCompra() . '</td>
                                 <td>' . $compraRealizada->getCompra()->getObjUsuario()->getUsNombre() . '</td>
                                 <td>' . $compraRealizada->getCompraEstadoTipo()->getCetDescripcion() . '</td>
                                 <td class="d-none">' . $compraRealizada->getCeFechaIni() . '</td>
-                                <td class="d-none" id="idCompra">' . $compraRealizada->getCompra()->getIdCompra() . '</td>
+                                <td class="d-none" id="idCompra">' . $compraRealizada->getIdCompraEstado() . '</td>
                                 <td class="d-none">' . $compraRealizada->getCeFechaFin() . '</td>
                                 
                                 <td class="text-center"><a class="text-white" href="#" id="editar_estado"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

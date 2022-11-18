@@ -49,8 +49,8 @@ function enviarConsulta(fila) {
         type: "POST",
         url: 'Accion/accionModificarEstadoCompra.php',
         data: {
-            idCompraEstado: fila[0].children[0].innerHTML,
-            idCompra: fila[0].children[4].innerHTML,
+            idCompraEstado: fila[0].children[4].innerHTML,
+            idCompra: fila[0].children[0].innerHTML,
             ceFechaIni: fila[0].children[3].innerHTML,
             idCompraEstadoTipoAnterior: estadoAnterior,
             idCompraEstadoTipoActualizado: valorEstadoCompra,

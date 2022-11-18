@@ -24,7 +24,7 @@ $(document).on('click', '#ver_historial', function () {
     $.ajax({
         type: "POST",
         url: '../Accion/accionVerHistorial.php',
-        data: { idCompra: fila[0].children[4].innerHTML },
+        data: { idCompra: fila[0].children[0].innerHTML },
 
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);
