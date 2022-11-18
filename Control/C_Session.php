@@ -92,6 +92,10 @@ class C_Session{
         return $idRoles;
     }
 
+    public function getRolActual(){
+        return $_SESSION["vista"];
+    }
+
     public function cerrar(){
         $cerrar = false; 
         if(session_destroy()){
