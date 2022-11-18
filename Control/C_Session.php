@@ -104,6 +104,14 @@ class C_Session{
         return $_SESSION['vista'];
     }
 
+    public function poseeVista(){
+        $resp=false;
+        if($_SESSION['vista']!=NULL){
+            $resp=true;
+        }
+        return $resp;
+    }
+
 }
 
 

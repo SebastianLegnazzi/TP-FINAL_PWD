@@ -6,7 +6,7 @@ if ($objSession->activa()) {
   $idRoles=$objSession->getRol();
   $objMenuRol = new C_MenuRol();
   $objRol = new C_Rol();
-  $menues = $objMenuRol->menuesByIdRol($_SESSION['vista']);
+  $menues = $objMenuRol->menuesByIdRol($objSession->getRolActual());
   $objRoles = $objRol->obtenerObj($idRoles);
 } else {
   $_SESSION['vista'] = null;
