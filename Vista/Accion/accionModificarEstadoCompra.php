@@ -5,36 +5,39 @@ include_once("../../configuracion.php");
 /********* PROGRAMA GENERAL ***********/
 /**************************************/
 $datos = data_submitted();
-if(modificarEstadoCompra($datos)){
-    echo json_encode(array('success'=>1));
-}else{
-    echo json_encode(array('success'=>0));
-
+if (modificarEstadoCompra($datos)) {
+    echo json_encode(array('success' => 1));
+} else {
+    echo json_encode(array('success' => 0));
 }
 
 /**************************************/
 /**************** MODULOS *************/
 /**************************************/
 
-function modificarEstadoCompra($datos){
+function modificarEstadoCompra($datos)
+{
     $objCompraEstado = new C_CompraEstado();
     $resp = false;
-    $paramCompraEstado = null;
-    $fechaFin = null;
-    if($datos["idCompraEstadoTipo"] == 4 || $datos["idCompraEstadoTipo"] == 5){
-        $fecha = new DateTime();
-        $fechaFin = $fecha->format('Y-m-d H:i:s');
-    }
+    $paramCompraEstadoAnterior = null;
+    $paramCompraEstadoNuevo = null;
     $fecha = new DateTime();
-    $fechaIni = $fecha->format('Y-m-d H:i:s');
-    $paramCompraEstado = [
+    $fechaHoy = $fecha->format('Y-m-d H:i:s');
+    $paramCompraEstadoAnterior = [
         "idCompraEstado" => $datos["idCompraEstado"],
         "idCompra" => $datos["idCompra"],
-        "idCompraEstadoTipo" => $datos["idCompraEstadoTipo"],
-        "ceFechaIni" => $fechaIni,
-        "ceFechaFin" => $fechaFin,
+        "idCompraEstadoTipo" => $datos["idCompraEstadoTipoAnterior"],
+        "ceFechaIni" => $datos["ceFechaIni"],
+        "ceFechaFin" => $fechaHoy,
     ];
-    if($objCompraEstado->modificacion($paramCompraEstado)){
+    $paramCompraEstadoNuevo = [
+        "idCompraEstado" => $datos["idCompraEstado"],
+        "idCompra" => $datos["idCompra"],
+        "idCompraEstadoTipo" => $datos["idCompraEstadoTipoActualizado"],
+        "ceFechaIni" => $fechaHoy,
+        "ceFechaFin" => null,
+    ];
+    if ($objCompraEstado->modificacion($paramCompraEstadoAnterior) && $objCompraEstado->alta($paramCompraEstadoNuevo)) {
         $resp = true;
     }
     return $resp;

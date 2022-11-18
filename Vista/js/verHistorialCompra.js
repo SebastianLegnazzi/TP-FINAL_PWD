@@ -1,5 +1,5 @@
-$(document).on('click', '#ver_productos_compras', function () {
-    limpiarTabla("lista__carrito");
+$(document).on('click', '#ver_historial', function () {
+    limpiarTabla("seguimiento_compra");
     var fila = $(this).closest('tr');
     let timerInterval
     Swal.fire({
@@ -23,7 +23,7 @@ $(document).on('click', '#ver_productos_compras', function () {
     })
     $.ajax({
         type: "POST",
-        url: '../Accion/accionVerProductosMisCompras.php',
+        url: '../Accion/accionVerHistorial.php',
         data: { idCompra: fila[0].children[4].innerHTML },
 
         success: function (respuesta) {
@@ -31,24 +31,19 @@ $(document).on('click', '#ver_productos_compras', function () {
             // user is logged in successfully in the back-end
             // let's redirect
             if (Array.isArray(jsonData.success)) {
-                let tabla = document.getElementById("lista__carrito");
-                for (let producto of jsonData.success) {
+                let tabla = document.getElementById("seguimiento_compra");
+                for (let compra of jsonData.success) {
                     let fila = tabla.insertRow(tabla.rows.length);
                     let celda0 = fila.insertCell(0);
                     let celda1 = fila.insertCell(1);
                     let celda2 = fila.insertCell(2);
                     let celda3 = fila.insertCell(3);
                     let celda4 = fila.insertCell(4);
-                    celda0.className = "col-md-2 urlImagen_tabla"
-                    celda1.className = "nombre_tabla"
-                    celda2.className = "detalle_tabla"
-                    celda3.className = "precio_tabla"
-                    celda4.className = "cantidad_tabla"
-                    celda0.innerHTML = '<img src="'+producto.UrlImagen+'" class="img-thumbnail"></img>';
-                    celda1.innerHTML = producto.Nombre;
-                    celda2.innerHTML = producto.Descripcion;
-                    celda3.innerHTML = producto.Precio;
-                    celda4.innerHTML = producto.Cantidad;
+                    celda0.innerHTML = compra.idCompra;
+                    celda1.innerHTML = compra.NombreUsuario;
+                    celda2.innerHTML = compra.Estado;
+                    celda3.innerHTML = compra.FechaInicio;
+                    celda4.innerHTML = compra.FechaFin;
                 }
             }
             else if (jsonData.success == "0") {
@@ -59,24 +54,31 @@ $(document).on('click', '#ver_productos_compras', function () {
 });
 
 
-function registerFailure() {
+
+function estadoAcpetada() {
     Swal.fire({
-        icon: 'error',
-        title: 'El producto no se pudo mostrar!',
+        icon: 'success',
+        title: 'El estado de la compra se modifico correctamente!',
         showConfirmButton: false,
-        timer: 1500
+        timer: 1000
     })
     setTimeout(function () {
         recargarPagina();
-    }, 1500);
+    }, 800);
 }
 
-function limpiarTabla(nombreTabla) {
-    let tabla = document.getElementById(nombreTabla);
-    let cantColumnas = tabla.rows.length;
-    if (cantColumnas > 1) {
-        for (let i = 1; i < cantColumnas; i++) {
-            tabla.deleteRow(1);
-        }
-    }
+function estadoError() {
+    Swal.fire({
+        icon: 'error',
+        title: 'El estado de la compra no se pudo modificar!',
+        showConfirmButton: false,
+        timer: 1000
+    })
+    setTimeout(function () {
+        recargarPagina();
+    }, 800);
+}
+
+function recargarPagina() {
+    location.reload();
 }

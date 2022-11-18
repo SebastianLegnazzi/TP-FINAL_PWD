@@ -5,11 +5,11 @@ $(document).on('click', '#editar_estado', function () {
         title: 'Elija el estado de la compra',
         input: 'select',
         inputOptions: {
-          'Estados': {
-            3: 'Aceptada',
-            4: 'Enviada',
-            5: 'Cancelada',
-          },
+            'Estados': {
+                3: 'Aceptada',
+                4: 'Enviada',
+                5: 'Cancelada',
+            },
         },
         inputPlaceholder: 'Selecciona el estado de la compra',
         showCancelButton: true,
@@ -17,17 +17,42 @@ $(document).on('click', '#editar_estado', function () {
             valorEstadoCompra = value;
             enviarConsulta(fila)
         }
-      })
+    })
 });
 
-function enviarConsulta(fila){
+function enviarConsulta(fila) {
+    let estadoAnterior
+    switch (fila[0].children[2].innerHTML) {
+        case "aceptada":
+            estadoAnterior = 3;
+            break;
+
+        case "cancelada":
+            estadoAnterior = 5;
+            break;
+
+        case "enviada":
+            estadoAnterior = 4;
+            break;
+
+        case "inciada":
+            estadoAnterior = 2;
+            break;
+
+        case "borrador":
+            estadoAnterior = 1;
+            break;
+
+    }
     $.ajax({
         type: "POST",
         url: '../Accion/accionModificarEstadoCompra.php',
-        data: { 
+        data: {
             idCompraEstado: fila[0].children[0].innerHTML,
-            idCompra: fila[0].children[5].innerHTML,
-            idCompraEstadoTipo: valorEstadoCompra,
+            idCompra: fila[0].children[4].innerHTML,
+            ceFechaIni: fila[0].children[3].innerHTML,
+            idCompraEstadoTipoAnterior: estadoAnterior,
+            idCompraEstadoTipoActualizado: valorEstadoCompra,
         },
 
         success: function (respuesta) {

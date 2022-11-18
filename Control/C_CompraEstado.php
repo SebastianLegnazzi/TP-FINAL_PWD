@@ -1,6 +1,7 @@
 <?php
-class C_CompraEstado{
-    
+class C_CompraEstado
+{
+
     /**
      * @param array $param
      * @return CompraEstado
@@ -8,9 +9,11 @@ class C_CompraEstado{
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idCompraEstado', $param) and array_key_exists('idCompra', $param)
+        if (
+            array_key_exists('idCompraEstado', $param) and array_key_exists('idCompra', $param)
             and array_key_exists('idCompraEstadoTipo', $param) and array_key_exists('ceFechaIni', $param)
-            and array_key_exists('ceFechaFin', $param)){
+            and array_key_exists('ceFechaFin', $param)
+        ) {
 
             $objCompra = new Compra();
             $objCompra->setIdCompra($param['idCompra']);
@@ -26,7 +29,7 @@ class C_CompraEstado{
         return $obj;
     }
 
-     /**
+    /**
      * @param array $param
      * @return CompraEstado
      */
@@ -44,7 +47,8 @@ class C_CompraEstado{
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param){
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['idCompraEstado']))
             $resp = true;
@@ -56,7 +60,8 @@ class C_CompraEstado{
      * @param array $param
      * @return boolean
      */
-    public function alta($param){
+    public function alta($param)
+    {
         $resp = false;
         $param['idCompraEstado'] = null;
         $obj = $this->cargarObjeto($param);
@@ -66,23 +71,25 @@ class C_CompraEstado{
         return $resp;
     }
 
-    
-    public function baja($param){
+
+    public function baja($param)
+    {
         $resp = false;
-        if ($this->seteadosCamposClaves($param)){
+        if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
-            if ($obj !=null and $obj->eliminar()){
+            if ($obj != null and $obj->eliminar()) {
                 $resp = true;
             }
         }
         return $resp;
-    } 
+    }
 
     /**
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param){
+    public function modificacion($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -136,15 +143,25 @@ class C_CompraEstado{
     {
         $arrayCompraIniciadas = [];
         /* Busca en el arraycompra si hay alguna que este con el estado "iniciada" */
-        foreach($arrayCompra as $compra){
+        foreach ($arrayCompra as $compra) {
             $idCompra["idCompra"] = $compra->getIdCompra();
             $arrayCompraEstado = $this->buscar($idCompra);
-            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getIdCompraEstadoTipo() >= 2) {
-                array_push($arrayCompraIniciadas, $arrayCompraEstado[0]);
+            if (count($arrayCompraEstado) > 1) {
+                foreach ($arrayCompraEstado as $compraEstado) {
+                    if ($compraEstado->getCeFechaFin() == "0000-00-00 00:00:00") {
+                        array_push($arrayCompraIniciadas, $compraEstado);
+                    }
+                }
+            } else {
+                if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getIdCompraEstadoTipo() >= 2) {
+                    array_push($arrayCompraIniciadas, $arrayCompraEstado[0]);
+                }
             }
         }
         return $arrayCompraIniciadas;
     }
-}
 
-?>
+    public function compraEstadoActual($arrayCompra)
+    {
+    }
+}
