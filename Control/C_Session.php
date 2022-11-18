@@ -3,7 +3,6 @@ class C_Session{
 
     private $objUsuario;       
 
-
 /**************************************/
 /**************** SET *****************/
 /**************************************/
@@ -92,10 +91,6 @@ class C_Session{
         return $idRoles;
     }
 
-    public function getRolActual(){
-        return $_SESSION["vista"];
-    }
-
     public function cerrar(){
         $cerrar = false; 
         if(session_destroy()){
@@ -105,13 +100,9 @@ class C_Session{
     }
 
     public function getVista(){
-        return $_SESSION['vista'];
-    }
-
-    public function poseeVista(){
-        $resp=false;
+        $resp=NULL;
         if($_SESSION['vista']!=NULL){
-            $resp=true;
+            $resp=$_SESSION['vista'];
         }
         return $resp;
     }
