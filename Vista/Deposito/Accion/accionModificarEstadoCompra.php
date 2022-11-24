@@ -40,5 +40,22 @@ function modificarEstadoCompra($datos)
     if ($objCompraEstado->modificacion($paramCompraEstadoAnterior) && $objCompraEstado->alta($paramCompraEstadoNuevo)) {
         $resp = true;
     }
+    if($datos["idCompraEstadoTipoActualizado"] == 5){
+        $objCompraItem = new C_CompraItem();
+        $arrayCompraItem = $objCompraItem->buscar($datos);
+        foreach($arrayCompraItem as $compraItem){
+            $paramProducto = [
+                "idProducto" =>$compraItem->getObjProducto()->getIdProducto(),
+                "proNombre" =>$compraItem->getObjProducto()->getNombre(),
+                "proDetalle" =>$compraItem->getObjProducto()->getDetalle(),
+                "proCantStock" =>$compraItem->getObjProducto()->getCantStock() + $compraItem->getCantidad(),
+                "proPrecio" =>$compraItem->getObjProducto()->getProPrecio(),
+                "urlImagen" =>$compraItem->getObjProducto()->getUrlImagen()
+            ];
+            $objProducto = new C_Producto();
+            $objProducto->modificacion($paramProducto);
+        }
+
+    }
     return $resp;
 }
