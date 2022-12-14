@@ -3,7 +3,7 @@
 - **DESCRIPCION:** Realzar una tienda online de compras con todo lo visto en la materia.
 - **REQUERIMIENTOS:** [Requerimentos](https://drive.google.com/file/d/1H26SaxxDlL0lCAmOXDys3YI-X0ihJHE1/view?usp=sharing)
 - **PROFESORES:**  Sanchez Viviana, Pino Maria Laura, Carrasco Claudia
-- **NOTA:** :white_check_mark: 9 :white_check_mark:
+- **NOTA:** :arrows_counterclockwise: En proceso :arrows_counterclockwise:
 ## Datos Institucionales 📜
 - **AÑO:** 2º
 - **CUATRIMESTRE:** 1º
