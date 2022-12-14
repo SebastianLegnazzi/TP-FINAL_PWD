@@ -21,9 +21,9 @@ function verEstructura($e){
 spl_autoload_register(function ($class_name){ //Se ejecuta automáticamente cada vez que se llame el script configuracion.php que tiene incluido a este script funciones.php
     //echo "class ".$class_name ;
     $directorys = array( //Guarda las carpetas con clases (su creación) que usaremos
-        $GLOBALS['ROOT'].'Modelo/',
-        $GLOBALS['ROOT'].'Modelo/conector/',
-        $GLOBALS['ROOT'].'Control/',
+        $GLOBALS['ROOT'].'modelo/',
+        $GLOBALS['ROOT'].'modelo/conector/',
+        $GLOBALS['ROOT'].'control/',
     );
     //print_object($directorys) ;
     foreach($directorys as $directory){ //Busca la BaseDatos o las clases que esten siendo usadas, para que funcione TODAS LAS CLASES DEBEN TENER EL MISMO NOMBRE QUE SU SCRIPT 

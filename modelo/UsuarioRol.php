@@ -1,6 +1,6 @@
 <?php
 
-include_once('Conector/BaseDatos.php');
+include_once('conector/BaseDatos.php');
 
 class UsuarioRol{
     private $rol;
